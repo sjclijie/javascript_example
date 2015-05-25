@@ -19,6 +19,11 @@
 
                 oDiv.style.color = "green";
             }
+
+            //防止被嵌套
+            if ( window.top !== window ){
+                window.top.location.href = "http://www.baidu.com";
+            } 
         }
 
     </script>

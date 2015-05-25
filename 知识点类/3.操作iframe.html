@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>操作iframe</title>
+    <script type="text/javascript">
+
+        window.onload = function(){
+
+            var oInput = document.getElementById("btn1");
+            var oIframe = document.getElementById("iframe1");
+
+            oInput.onclick = function(){
+                
+                var oWindow = oIframe.contentWindow;   //取得iframe页面的window对象
+                var oDiv = oWindow.document.getElementById("div");
+                oDiv.style.color = "red";
+
+                var oDocument = oIframe.contentDocument; //直接取得iframe的document对象， IE6和IE7不支持
+            }
+        }
+
+    </script>
+</head>
+<body>
+
+    <iframe src="./iframe.html" id="iframe1"></iframe>
+        
+    <input type="button" id="btn1" value="改变颜色" />
+
+    <div id="div">父div</div>
+
+</body>
+</html>

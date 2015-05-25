@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iframe</title>
+    <script type="text/javascript">
+
+        window.onload = function(){
+
+            var oInput = document.getElementById("btn1");
+
+            oInput.onclick = function(){
+
+                var oWindow = window.parent; //获取父亲
+
+                //window.top   //还可以使用window.top  和window.parent的区别就这个是最顶层。
+
+                var oDiv = oWindow.document.getElementById("div");
+
+                oDiv.style.color = "green";
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <div id="div">iframe 里面的div</div>
+    <input type="button" value="改变颜色" id="btn1">
+</body>
+</html>

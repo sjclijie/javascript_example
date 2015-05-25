@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript">
+
+    /**
+     * 重排： 改变页面内容
+     * 重绘： 浏览器显示内容
+     * 添加顺序
+     *     - 尽量在appendChild之前操作DOM元素
+     *
+     * 合并DOM操作
+     *     - 利用cssText
+     *
+     * 缓存布局信息
+     *
+     * 文档碎片
+     *     - createDocumentFragment();
+     *
+     * DOM与事件
+     *     - 事件委托
+     *
+     * DOM与前端模板
+     *     能更好的对逻辑和视图的分享，MVC架构的基础
+     */
+
+
+        window.onload = function(){
+
+            /***************************/
+
+            var oDiv = document.getElementById("box");
+
+            console.time('Hello');
+        
+            for(var i=0; i<5000; i++){
+                oDiv.innerHTML += "a";
+            }
+            console.timeEnd('Hello');
+
+            /***************************/
+
+            console.time('world');
+            
+            var str = '';
+
+            for(var i=0; i<5000; i++){
+                str += 'a';
+            }
+
+            oDiv.innerHTML = str;
+
+            console.timeEnd('world');
+
+            /***************************/
+
+            console.time('ul1');
+            
+            var oUl1 = document.getElementById("ul1");
+
+            for(var i=0; i<5000; i++){
+                var oLi = document.createElement("li");
+                oLi.innerHTML = "li";
+                oUl1.appendChild(oLi);
+            }
+
+            console.timeEnd('ul1');
+
+            /***************************/
+
+            console.time('ul2');
+            
+            var oUl2 = document.getElementById("ul2");
+
+            var str = '';
+
+            for(var i=0; i<5000; i++){
+                str += '<li>li</li>';
+            }
+
+            oUl2.innerHTML = str;
+
+            console.timeEnd('ul2');
+
+            /***************************/
+
+            console.time('ul3');
+            
+            var oUl3 = document.getElementById("ul3");
+
+            var oLi = document.createElement("li");
+            oLi.innerHTML = "li";
+
+            for(var i=0; i<5000; i++){
+                var node = oLi.cloneNode(true);
+                oUl3.appendChild(node);
+            }
+            console.timeEnd('ul3');
+
+            console.log(document.querySelectorAll("#ul1 li"));
+
+            console.log(document.querySelector("#ul1 li"));
+
+            /*****************************/
+
+            var oDiv2 = document.querySelector("#box2");
+
+            var oDiv3 = document.querySelector("#box3");
+
+            console.time('odiv2');
+            for(var i=0; i<5000; i++){
+                oDiv2.style.width = "500px";
+                oDiv2.style.height = "500px";
+                oDiv2.style.backgroundColor = "red";
+            }
+            console.timeEnd('odiv2');
+
+            console.time('oDiv3');
+            for(var i=0; i<5000; i++){
+                oDiv3.style.cssText = "width:500px; height:500px; background-color:red;";
+            }
+            console.timeEnd('oDiv3');
+        }   
+
+    </script>
+</head>
+<body>
+    
+    <div id="box"></div> 
+    
+    <ul id="ul1"></ul>
+
+    <ul id="ul2"></ul>   
+
+    <ul id="ul3"></ul>
+
+    <div id="box2"></div>
+
+    <div id="box3"></div>
+</body>
+</html>

@@ -38,7 +38,10 @@
                 var target = event.target || event.srcElement;
 
                 //console.log(target.innerHTML);
-                target.style.color = "red";
+
+                if ( target.nodeName.toLowerCase() ==  'li'){
+                    target.style.color = "red";    
+                }
             }
 
             oUl.onmouseout = function(event){
@@ -46,7 +49,10 @@
                 var event = event || widnow.event;
                 var target = event.target || event.srcElement;
 
-                target.style.color = "";
+                if (target.nodeName.toLowerCase() == 'li'){
+                    target.style.color = "";    
+                }
+                
             }
             
 

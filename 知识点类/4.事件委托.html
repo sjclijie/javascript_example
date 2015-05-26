@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件委托</title>
+    <script type="text/javascript">
+
+        //事件委托
+        
+        //event对象： 事件源
+        
+        // ie:  window.event.srcElement
+        // 标准： event.target
+        
+        // nodeName 元素标签名
+        
+        window.onload = function(){
+
+            var oUl = document.getElementById("ul1");
+
+            var oLi = oUl.getElementsByTagName("li");
+
+            /*
+            for(var i=0; i<oLi.length; i++){
+                oLi[i].onmouseover  = function(){
+                    this.style.color="red";
+                }
+
+                oLi[i].onmouseout = function(){
+                    this.style.color = "";
+                }
+            }
+            */
+           
+            oUl.onmouseover = function(event){
+
+                var event = event || widnow.event;
+                var target = event.target || event.srcElement;
+
+                //console.log(target.innerHTML);
+                target.style.color = "red";
+            }
+
+            oUl.onmouseout = function(event){
+
+                var event = event || widnow.event;
+                var target = event.target || event.srcElement;
+
+                target.style.color = "";
+            }
+            
+
+
+        }
+        
+    </script>
+</head>
+<body>
+    <ul id="ul1">
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+        <li>444</li>
+    </ul>
+
+</body>
+</html>

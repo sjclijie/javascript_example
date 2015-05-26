@@ -14,11 +14,18 @@
         
         // nodeName 元素标签名
         
+        //好处：
+        //1.提高性能
+        //2.新添加的元素依然拥有事件
+        
         window.onload = function(){
+
 
             var oUl = document.getElementById("ul1");
 
-            var oLi = oUl.getElementsByTagName("li");
+            var oInput = document.getElementById("input1");
+
+            //var oLi = oUl.getElementsByTagName("li");
 
             /*
             for(var i=0; i<oLi.length; i++){
@@ -31,7 +38,8 @@
                 }
             }
             */
-           
+            
+            //事件委托
             oUl.onmouseover = function(event){
 
                 var event = event || widnow.event;
@@ -54,9 +62,14 @@
                 }
                 
             }
-            
 
+            //动态添加元素，依然拥有事件
+            oInput.onclick = function(){
+                var oLi = document.createElement("li");
+                oLi.innerHTML = "555";
 
+                oUl.appendChild(oLi);    
+            }
         }
         
     </script>
@@ -68,6 +81,8 @@
         <li>333</li>
         <li>444</li>
     </ul>
+
+    <input type="button" value="添加" id="input1" />
 
 </body>
 </html>

@@ -16,11 +16,55 @@
             属性
         */
        
-       var arr = [];
+       /*
+        var obj = new Object();
 
-       var.number = 10;
+        obj.name  = "xiaoming";
 
-       alert(arr.number);
+        obj.showName = function(){
+            alert(this.name);
+        }
+
+        obj.showName();
+        */
+       
+        //工厂模式
+        /*
+        function createPerson(name){
+            var obj = new Object();
+            obj.name = name;
+            obj.showName = function(){
+                alert(this.name);
+            }
+
+            return obj;
+        }
+
+        var p1 = createPerson("aaa");
+        p1.showName();
+
+        var p2 = createPerson("bbb");
+        p2.showName();
+        */
+       
+        //当用new去调用一个函数：这时函数中的this就是创建出来的对象，而且函数的返回值直接就是this(隐式返回)
+        //new 后面的函数叫做构造函数
+        function CreatePerson(name){
+
+            this.name = name;
+            this.showName = function(){
+                alert(this.name);
+            }
+        }
+
+        var p1 = new CreatePerson("aaa");
+        p1.showName();
+
+        var p2 = new CreatePerson("bbb");
+        p2.showName();
+
+        alert( p1.showName == p2.showName );  //false
+
 
     </script>
 </head>

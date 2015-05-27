@@ -44,7 +44,6 @@
         }
 
         #content div {
-            -border: 1px solid green;
             height: 272px;
             box-sizing: border-box;
             display: none;
@@ -59,40 +58,47 @@
     </style>
     <script type="text/javascript">
 
+
+        function Tab() {
+            this.oParent = document.getElementById("tab");
+            this.oUl = this.oParent.getElementsByTagName("ul")[0];
+            this.oLi = this.oUl.getElementsByTagName("li");
+            this.oContent = document.getElementById("content");
+            this.oDiv = this.oContent.getElementsByTagName("div");
+            this.current = 0;
+        }
+
+        Tab.prototype.init = function(){
+
+            var that = this;
+
+            for( var i=0; i<this.oLi.length; i++ ){
+                this.oLi[i].index = i;
+                this.oLi[i].onmouseover = function(){
+                    that.change(this);   
+                }
+            }
+        }
+
+        Tab.prototype.change = function(btn){
+
+            if ( this.current != btn.index ){
+
+                this.oLi[btn.index].className = "active";
+                this.oLi[this.current].className = "";
+
+                this.oDiv[btn.index].className = "active";
+                this.oDiv[this.current].className = "";
+            }
+
+            this.current = btn.index;
+        }
+
         window.onload = function(){
 
-            var oParent = document.getElementById("tab");
+            var t1 = new Tab();
 
-            var oUl = oParent.getElementsByTagName("ul")[0];
-
-            var oLi = oUl.getElementsByTagName("li");
-
-            var oContent = document.getElementById("content");
-
-            var oDiv = oContent.getElementsByTagName("div");
-
-            var current = 0;
-
-            for ( var i=0; i<oLi.length; i++ ){
-
-                (function(i){
-
-                    oLi[i].onmouseover = function(){
-
-                        if ( current != i){
-                            
-                            oLi[current].className = "";
-                            oLi[i].className = "active";
-
-                            oDiv[current].className = "";
-                            oDiv[i].className = "active";
-
-                            current = i;
-                        }
-                    }
-
-                })(i);
-            }
+            t1.init();
         }
 
     </script>

@@ -43,7 +43,7 @@
             background-color: red;
         }
 
-        .tab #content div {
+        .tab .content div {
             height: 272px;
             box-sizing: border-box;
             display: none;
@@ -52,17 +52,17 @@
             font-size: 20px;
         }
 
-        .tab #content div.active {
+        .tab .content div.active {
             display: block;
         }
     </style>
     <script type="text/javascript">
 
-        function Tab() {
-            this.oParent = document.getElementById("tab");
+        function Tab(id) {
+            this.oParent = document.getElementById(id);
             this.oUl = this.oParent.getElementsByTagName("ul")[0];
             this.oLi = this.oUl.getElementsByTagName("li");
-            this.oContent = document.getElementById("content");
+            this.oContent = this.oParent.getElementsByTagName("div")[0];
             this.oDiv = this.oContent.getElementsByTagName("div");
             this.current = 0;
         }
@@ -93,10 +93,37 @@
             this.current = btn.index;
         }
 
+        Tab.prototype.autoplay = function(){
+
+            var that = this;
+
+            setInterval(function(){
+
+                var prev = that.current;
+
+                if ( that.current == that.oLi.length -1 ){
+                    that.current = 0;
+                } else {
+                    that.current ++;
+                }
+
+                that.oLi[prev].className = "";
+                that.oLi[that.current].className = "active";
+                
+                that.oDiv[prev].className = "";
+                that.oDiv[that.current].className = "active";
+
+            },1000);
+        }
+
         window.onload = function(){
             
-            var t1 = new Tab();
+            var t1 = new Tab("tab1");
             t1.init();
+
+            var t2 = new Tab("tab2");
+            t2.init();
+            t2.autoplay();
         }
 
     </script>
@@ -111,7 +138,7 @@
             <li>4</li>
         </ul>
         
-        <div id="content">
+        <div class="content">
             <div class="active">11111</div>
             <div>22222</div>
             <div>33333</div>
@@ -128,7 +155,7 @@
             <li>4</li>
         </ul>
         
-        <div id="content">
+        <div class="content">
             <div class="active">11111</div>
             <div>22222</div>
             <div>33333</div>

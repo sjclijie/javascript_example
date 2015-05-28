@@ -11,7 +11,7 @@
             margin: 0;
         }
 
-        #tab {
+        .tab {
             width: 300px;
             height:300px;
             border: 1px solid #ccc;
@@ -43,7 +43,7 @@
             background-color: red;
         }
 
-        #content div {
+        .tab #content div {
             height: 272px;
             box-sizing: border-box;
             display: none;
@@ -52,7 +52,7 @@
             font-size: 20px;
         }
 
-        #content div.active {
+        .tab #content div.active {
             display: block;
         }
     </style>
@@ -103,8 +103,7 @@
 </head>
 <body>
     
-    <div id="tab">
-
+    <div id="tab1" class="tab">
         <ul>
             <li class="active">1</li>
             <li>2</li>
@@ -118,7 +117,23 @@
             <div>33333</div>
             <div>44444</div>    
         </div>
+    </div>
+    
 
+    <div id="tab2" class="tab">
+        <ul>
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        
+        <div id="content">
+            <div class="active">11111</div>
+            <div>22222</div>
+            <div>33333</div>
+            <div>44444</div>    
+        </div>
     </div>
 
 </body>

@@ -36,12 +36,43 @@
             __proto__(隐式链接)
             
             原型链的最外层是Object
-            
 
          */
         
+        /*
+            面向对象的一些属性和方法
 
+            hasOwnProperty();   属性是否对象自身的
 
+            function Aaa(){
+
+                this.num = 20;
+
+                console.log(this.num);
+            }
+
+            Aaa.prototype.num = 10;
+
+            var a1 = new Aaa();
+
+            console.log(a1.hasOwnProperty("num"));
+            
+            
+            constructor()  查看对象的构造函数
+            
+            var arr = [];
+
+            console.log(arr.constructor === Array);  //true
+
+            console.log(arr.constructor === Object); //false
+
+            console.log(arr.constructor.constructor === Function); //true
+
+        */
+       
+       
+       
+        
 
     </script>
 </head>

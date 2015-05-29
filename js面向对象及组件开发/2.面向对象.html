@@ -33,7 +33,17 @@
 
             实例对象与原型之间的连接
     
-            __proto__(隐式链接)
+            __proto__(隐式链接)   指向原型
+    
+            function Aaa(){}
+
+            var a1 = new Aaa();
+
+            a1.__proto__ == Aaa.constructor();
+
+            a1.constructor === Aaa;         //a1.constructor == Aaa.prototype.constructor === Aaa
+
+            a1.__proto__.constructor == Aaa
             
             原型链的最外层是Object
 
@@ -60,6 +70,11 @@
             
             constructor()  查看对象的构造函数
             
+            function Aaa(){}
+
+            Aaa.prototype.constructor = Aaa;  //每个构造函数都自动生成
+
+
             var arr = [];
 
             console.log(arr.constructor === Array);  //true
@@ -70,7 +85,7 @@
 
         */
        
-       
+
        
         
 

@@ -44,9 +44,10 @@
             a1.constructor === Aaa;         //a1.constructor == Aaa.prototype.constructor === Aaa
 
             a1.__proto__.constructor == Aaa
-            
+
             原型链的最外层是Object
 
+            默认： 一个对象的原型有两个属性：  constructor  指向构造函数    __proto__ 指向上一层原型对象
          */
         
         /*
@@ -82,7 +83,6 @@
             console.log(arr.constructor === Object); //false
 
             console.log(arr.constructor.constructor === Function); //true
-
         */
        
 

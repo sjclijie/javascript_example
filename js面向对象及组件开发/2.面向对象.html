@@ -85,8 +85,39 @@
             console.log(arr.constructor.constructor === Function); //true
         */
        
+        /*
+            instanceof   运算符    对象与构造函数在原型链上是否有关
 
-       
+         */
+        
+        /*
+            判断是否为数组
+            var arr = [];
+            Object.prototype.toString.call(arr) === '[object Array]';
+
+            在iframe中，使用instanceof 判断是否为数组失效
+         */
+        
+        window.onload = function(){
+
+            var oF = document.createElement("iframe");
+
+            document.body.appendChild(oF);
+
+            var ifArray = window.frames[0].Array;
+
+            var arr = new ifArray();
+
+            console.log( arr instanceof Array );  //false
+
+            console.log( arr.constructor === Array ); //false
+
+            console.log( Object.prototype.toString.call(arr) ); // [object Array]
+        }
+
+        
+
+
         
 
     </script>

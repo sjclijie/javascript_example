@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript">
+
+        //类式继承
+        //利用构造函数实现继承
+        
+        function Aaa(){
+            this.name = [1,2,3];
+        }
+
+        Aaa.prototype.showName = function(){
+            console.log(this.name);
+        }
+
+        function Bbb(){
+            Aaa.call(this);
+        }
+
+        /*
+        Bbb.prototype = new Aaa();
+        Bbb.prototype.constructor = Bbb;  //修正指向问题
+        */
+       
+        var F = function(){};
+        F.prototype = Aaa.prototype;
+        Bbb.prototype = new F();
+        Bbb.prototype.constructor = Bbb;
+        
+        var b1 = new Bbb();
+        b1.name.push(4);
+        b1.showName();
+        
+        var b2 = new Bbb();
+        b2.showName();
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+
+        .login {
+            min-width: 100px;
+            border: 1px solid #ccc;
+            position: absolute;
+            left: 50%;
+            top: 100px;
+            top: 100px;
+            display: none;
+        }
+
+        .login h3 {
+            display: inline-block;
+            height: 30px;
+            width: 100%;
+            font-weight: normal;
+            font-size: 14px;
+            border-bottom:1px solid #ccc;
+            padding: 0;
+            margin: 0;
+            line-height: 30px;
+            position: relative;
+        }
+
+        .login h3 span.title {
+            position: absolute;
+            left: 10px;
+            color: #666;
+        }
+
+        .login h3 span.close {
+            position: absolute;
+            right: 0;
+            width: 40px;
+            height: 20px;
+            line-height: 20px;
+            font-size: 14px;
+            text-align: center;
+            cursor: pointer;
+            color: #FFFFFF;
+            background: #C75050;
+        }
+
+        .login h3 span.close:hover {
+            background-color: #9B3422;
+        }
+
+        .login .content {
+            min-height: 50px;
+        }
+
+    </style>
+    <script type="text/javascript">
+
+        window.onload = function(){
+
+            var oInput = document.getElementById("btn1");
+
+            oInput.onclick = function(){
+
+                var d1 = new Dialog();
+
+                d1.init({
+                    width: 300,
+                    height: 200,
+                    title: "公告 xxxxxxx",
+                    pos: "bottomRight"
+                });
+            }
+        }
+
+        function Dialog(){
+
+            this.dialog = null;
+
+            this.defaults = {
+                //width: 300,
+                //height: 200,
+                pos: "center",
+                //pos: "topLeft",
+                //pos: "topRight",
+                //pos: "bottomLeft",
+                //pos: "bottomRight",
+                title: "",
+            };
+        }
+
+        Dialog.prototype.init = function(options){
+
+            extend(this.defaults, options);
+
+            console.log(this.defaults);
+
+            this.create();
+        }
+
+        Dialog.prototype.create = function(){
+
+            this.dialog = document.createElement("div");
+
+            this.dialog.className = "login";
+
+            this.dialog.innerHTML = '<h3><span class="title">'+this.defaults.title+'</span><span class="close">关闭</span></h3><div class="content"></div>';
+
+            this.dialog.style.display = 'block';
+
+            document.body.appendChild(this.dialog);
+
+            this.setData();
+        }
+
+        Dialog.prototype.setData = function(){
+
+            this.dialog.style.width = this.defaults.width + 'px';
+            this.dialog.style.height = this.defaults.height + 'px';
+
+            var left = 0;
+            var top = 0;
+
+            switch( this.defaults.pos ){
+                case "center":
+                    left = (viewWidth() - this.dialog.offsetWidth) / 2;
+                    top = (viewHeight() - this.dialog.offsetHeight) / 2;
+                    break;
+                case "topLeft":
+                    break;
+                case "topRight":
+                    left = viewWidth() - this.dialog.offsetWidth;
+                    break;
+                case "bottomLeft":
+                    top = viewHeight() - this.dialog.offsetHeight;
+                    break;
+                case "bottomRight":
+                    left = viewWidth() - this.dialog.offsetWidth;
+                    top = viewHeight() - this.dialog.offsetHeight;
+                    break;
+            }
+
+            console.log(left, top);
+
+            this.dialog.style.left = left + 'px';
+            this.dialog.style.top = top + 'px';
+        }
+
+        function extend(obj1, obj2){
+            for(var attr in obj2){
+                obj1[attr] = obj2[attr];
+            }
+        }
+
+        function viewWidth(){
+            return document.documentElement.clientWidth;
+        }
+
+        function viewHeight(){
+            return document.documentElement.clientHeight;
+        }
+    </script>
+</head>
+<body>
+    
+    <input type="button" value="弹窗" id="btn1">
+    <div class="login">
+        <h3><span class="title">标题</span><span class="close">关闭</span></h3><div class="content"></div>
+    </div>
+</body>
+</html>

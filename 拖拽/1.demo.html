@@ -3,8 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <title>拖拽</title>
+    <style type="text/css">
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 300px;
+            top: 300px;
+        }
+
+        #div2 {
+            width: 100px;
+            height: 100px;
+            background: yellow;
+            position: absolute;
+            left: 500px;
+            top: 300px;
+        }
+
+    </style>
+    <script type="text/javascript">
+
+        window.onload = function(){
+
+            var d1 = new Drag("div1");
+            d1.init();
+
+        }
+
+        function Drag(id){
+            this.obj = document.getElementById(id);
+            this.disX = 0;
+            this.disY = 0;
+        }
+
+        Drag.prototype.init = function(){
+            var that = this;
+            this.obj.onmousedown = function(ev){
+
+                var event = ev || window.event;
+
+                that.fnDown(event);
+
+                document.onmousemove = function(ev){
+                    var event = ev || window.event;
+                    that.fnMove(event);
+                }
+
+                document.onmouseup = function(){
+                    that.fnUp();
+                }
+
+                return false;
+            }
+        }
+
+        Drag.prototype.fnDown = function(event){
+            this.disX = event.clientX - this.obj.offsetLeft;
+            this.disY = event.clientY - this.obj.offsetTop;
+        }
+
+        Drag.prototype.fnMove = function(event){
+            this.obj.style.left = event.clientX - this.disX + 'px';
+            this.obj.style.top = event.clientY - this.disY + 'px'; 
+        }
+
+        Drag.prototype.fnUp = function(){
+            document.onmousemove = null;
+            document.onmouseup = null;
+        }
+
+    </script>
 </head>
 <body>
-    
+    <div id="div1"></div>
+    <div id="div2"></div>    
 </body>
 </html>

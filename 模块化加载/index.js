@@ -6,7 +6,6 @@
     
     window.thin = {
         define: function(name, dependencies, factory){
-
             if (!moduleMap[name]){
 
                 var module = {
@@ -22,33 +21,25 @@
         },
         
         use: function(name){
-
-            /*
+            
             var module = moduleMap[name];
 
-            if (!module.entity){
+            var args = [];
 
-                var args = [];
-                
-                for(var i=0; i<module.dependencies.length; i++){
-
-                    if ( moduleMap[module.dependencies[i].entity] ){
-
-                        args.push(moduleMap[module.dependencies[i].entity]);
-                    
-                    } else {
-                        args.push(this.use(module.dependencies[i]));
-                    }
-                }
-
-                module.entity = module.factory.apply(null, args);
+            for(var i=0; i<module.dependencies.length; i++){
+                if(!module.entity){
+                    module.entity= moduleMap[module.dependencies[i]].factory();
+                } 
+                console.log(args);
             }
 
-            console.log(moduleMap);
+            console.log(args);
 
+            module.entity = module.factory.apply(null,args);
+            
             return module.entity;
-            */
 
+            /*
             var module = moduleMap[name];
 
             console.log(module);
@@ -73,6 +64,7 @@
             module.entity = module.factory.apply(this, args);
 
             return module.entity;
+            */
         }
     }
 
@@ -80,6 +72,7 @@
 
 
 thin.define("A", [], function(){
+    console.log(this);
     return "a";
 });
 
@@ -95,7 +88,13 @@ thin.define("D", ["A","B","C"], function(A, B, C){
    return A+B+C; 
 });
 
+thin.define("E",["A"], function(A){
+    return A;
+});
 
-var D = thin.use("D");
+var A = thin.use("A");
+console.log(A);
 
-console.log(D);
+//var E = thin.use("E");
+//console.log(E);
+

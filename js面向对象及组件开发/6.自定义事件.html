@@ -23,6 +23,13 @@
          * @return {[type]}          [description]
          */
         function bindEvent(obj, events, fn){
+
+            obj.listeners = obj.listeners || {};
+
+            obj.listeners.events = obj.listeners.events || [];
+
+            obj.listeners.events.push(fn);
+
             if (obj.addEventListener){
                 obj.addEventListener(events, fn, false);
             }else {
@@ -38,11 +45,30 @@
          */
         function fireEvent(obj, evnets){
 
+            for(var i=0; i<obj.listeners.events.length; i++){
+                obj.listeners.events[i]();
+            }
+        }
+
+        window.onload = function(){
+
+            var oSpan = document.getElementById("sp1");
+
+            bindEvent(oSpan, "show", function(){
+                console.log(1);
+            });
+
+            bindEvent(oSpan, "show", function(){
+                console.log(2);
+            });
+
+            fireEvent(oSpan, 'show');
         }
 
     </script>
 </head>
 <body>
-    
+    <span id="sp1"></span>
+    <span id="sp2"></span>
 </body>
 </html>

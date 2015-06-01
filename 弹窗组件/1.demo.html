@@ -5,14 +5,25 @@
     <title>Document</title>
     <style type="text/css">
 
+        #mark {
+            background: #ccc;
+            opacity: 0.2;
+            filter: alpha(opacity=20);
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 100;
+        }
+
         .login {
             min-width: 100px;
-            border: 1px solid #ccc;
+            border: 1px solid #9B3422;
             position: absolute;
             left: 50%;
             top: 100px;
             top: 100px;
             display: none;
+            z-index: 201;
         }
 
         .login h3 {
@@ -21,7 +32,7 @@
             width: 100%;
             font-weight: normal;
             font-size: 14px;
-            border-bottom:1px solid #ccc;
+            border-bottom:1px solid #9B3422;
             padding: 0;
             margin: 0;
             line-height: 30px;
@@ -67,17 +78,35 @@
                 var d1 = new Dialog();
 
                 d1.init({
+                    id: 1,
                     width: 300,
                     height: 200,
                     title: "公告 xxxxxxx",
-                    pos: "bottomRight"
+                    pos: "center",
+                    //mark: true
                 });
+            }
+
+            var oInput2 = document.getElementById("btn2");
+
+            oInput2.onclick = function(){
+                var d2 = new Dialog();
+                d2.init({
+                    id: 2,
+                    width: 300,
+                    height: 200,
+                    title: "登入",
+                    pos: "topRight",
+                    //mark: true
+                });   
             }
         }
 
         function Dialog(){
 
             this.dialog = null;
+
+            this.mark = null;
 
             this.defaults = {
                 //width: 300,
@@ -88,16 +117,27 @@
                 //pos: "bottomLeft",
                 //pos: "bottomRight",
                 title: "",
+                mark: false
             };
         }
+
+        Dialog.prototype.DialogMap = {};
 
         Dialog.prototype.init = function(options){
 
             extend(this.defaults, options);
 
-            console.log(this.defaults);
+            if (!this.DialogMap[this.defaults.id]){
+                this.create();
 
-            this.create();
+                this.fnClose();
+
+                if (this.defaults.mark){
+                    this.createMark();    
+                }
+
+                this.DialogMap[this.defaults.id] = true;   
+            }
         }
 
         Dialog.prototype.create = function(){
@@ -148,6 +188,36 @@
             this.dialog.style.top = top + 'px';
         }
 
+        Dialog.prototype.fnClose = function(){
+
+            var dialog = this.dialog;
+
+            var oClose = dialog.getElementsByTagName('span')[1];
+
+            var that = this;
+
+            oClose.onclick = function(){
+
+                document.body.removeChild(dialog);
+
+                if (that.defaults.mark){
+                    document.body.removeChild(that.oMark);
+                }
+
+                that.DialogMap[that.defaults.id] = false;
+            }
+        }
+
+        Dialog.prototype.createMark = function(){
+
+            this.oMark = document.createElement("div");
+            this.oMark.id = "mark";
+            this.oMark.style.width = viewWidth() + 'px';
+            this.oMark.style.height = viewHeight() + 'px';
+
+            document.body.appendChild(this.oMark);
+        }
+
         function extend(obj1, obj2){
             for(var attr in obj2){
                 obj1[attr] = obj2[attr];
@@ -164,10 +234,8 @@
     </script>
 </head>
 <body>
-    
     <input type="button" value="弹窗" id="btn1">
-    <div class="login">
-        <h3><span class="title">标题</span><span class="close">关闭</span></h3><div class="content"></div>
-    </div>
+    
+    <input type="button" value="弹窗2" id="btn2">
 </body>
 </html>

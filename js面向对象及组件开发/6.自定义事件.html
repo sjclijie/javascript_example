@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义事件</title>
+    <script type="text/javascript">
+
+        /**
+         * 组件：
+         *    对面向对象的深入应用（UI组件，功能组件）
+         *    将配置参数，方法，事件 三者进行分离
+         *
+         * 自定义事件
+         *     有利于多人协作开发代码
+         *     如何挂载自定义事件和事件函数
+         */
+
+        function bindEvent(obj, events, fn){
+            if (obj.addEventListener){
+                obj.addEventListener(events, fn, false);
+            }else {
+                obj.attachEvent("on"+events, fn);
+            }
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

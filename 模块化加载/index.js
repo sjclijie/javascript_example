@@ -63,6 +63,7 @@
                 if ( moduleMap[module.dependencies[i].entity] ){
                     args.push(moduleMap[module.dependencies[i].entity]);
                 } else {
+
                     args.push(this.use(module.dependencies[i]));
                 }
             }

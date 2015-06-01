@@ -15,12 +15,29 @@
          *     如何挂载自定义事件和事件函数
          */
 
+        /**
+         * 绑定事件
+         * @param  {[type]}   obj    [description]
+         * @param  {[type]}   events [description]
+         * @param  {Function} fn     [description]
+         * @return {[type]}          [description]
+         */
         function bindEvent(obj, events, fn){
             if (obj.addEventListener){
                 obj.addEventListener(events, fn, false);
             }else {
                 obj.attachEvent("on"+events, fn);
             }
+        }
+
+        /**
+         * 主动出发事件
+         * @param  {[type]} obj    [description]
+         * @param  {[type]} evnets [description]
+         * @return {[type]}        [description]
+         */
+        function fireEvent(obj, evnets){
+
         }
 
     </script>

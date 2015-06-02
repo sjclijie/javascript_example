@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>模块化</title>
+    <!--script src="./js/module1.js" type="text/javascript"></script-->
+    <script src="./seajs-3.0.0/dist/sea.js" type="text/javascript"></script>
     <script type="text/javascript">
 
         /**
@@ -12,9 +14,12 @@
          *     依赖...
          *     性能...
          */
+    
+        seajs.use("./js/module1", function(exports){
+            exports.show();       
+        });
+
         
-
-
     </script>
 </head>
 <body>

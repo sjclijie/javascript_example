@@ -15,7 +15,6 @@
 
                 moduleMap[name] = module;
             }
-
             return moduleMap[name];
         },
         

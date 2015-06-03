@@ -8,7 +8,7 @@
 
 
 
-define("./dist/main.js", ["module1.js","module2.js"],function(require, exports, module){
+define("./dist/main", ["module1.js","module2.js"],function(require, exports, module){
 
     var a = require("module1.js").b;  
 

@@ -14,3 +14,9 @@ define(function(require, exports, module){
     exports.show = show;
 });
 
+
+
+var a = 100;
+define(function(require, exports, module){
+    exports.b = 200;
+});

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8" />
     <title>模块化</title>
     <!--script src="./js/module1.js" type="text/javascript"></script-->
     <script src="./seajs-3.0.0/dist/sea.js" type="text/javascript"></script>
@@ -16,11 +16,22 @@
          */
         
         /**
+         *  模块化
+         *
+         *      - AMD规范
+         *          requireJs
+         *      - CMD规范
+         *          seajs
+         *
+         */
+        
+        /**
          *
          * seajs的使用
          *     1. 引入seajs
          *     2. 如何变成模块
-         *         - define
+         *
+         *                  - define
          *     3. 如何调用模块
          *         - exports
          *         - seajs.use
@@ -28,14 +39,21 @@
          *         - require
          */
 
-        seajs.use("./js/module1", function(exports){
-            exports.show();       
-        });
 
-        
+        window.onload = function(){
+
+            var oInput = document.getElementById("id1");
+
+            oInput.onclick = function(){
+                seajs.use("./js/module1", function(exports){
+                    exports.show();                        
+                });        
+            }
+        }
+
     </script>
 </head>
 <body>
-    
+     <input type="button" value="load" id="id1">
 </body>
 </html>

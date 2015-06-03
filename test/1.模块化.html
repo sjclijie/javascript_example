@@ -12,9 +12,14 @@
             var oInput = document.getElementById("id1");
 
             oInput.onclick = function(){
-                seajs.use("./js/module1", function(exports){
+
+                seajs.config({
+                    base: 'http://localhost:8080/javascript/test/dist/'
+                });
+
+                seajs.use("js/main", function(exports){
                     exports.show();                        
-                });        
+                });      
             }
         }
 

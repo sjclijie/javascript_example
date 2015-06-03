@@ -1,10 +1,18 @@
 
 
-define(function(require, exports, module){
+/**
+ *
+ *  上线的版本，比如合并的操作，define要多出两个参数，第一个参数：当前模块的id, 第二个参数，依赖模块的数组
+ *
+ */
 
-    require("./module2.js");  
 
-    var b = require("./module3.js").b;//当引入的是sea下面的模块的时候，那么require执行完结果就是exports
+
+define("./dist/main.js", ["module1.js","module2.js"],function(require, exports, module){
+
+    var a = require("module1.js").b;  
+
+    var b = require("module2.js").a;//当引入的是sea下面的模块的时候，那么require执行完结果就是exports
 
     function show(){
         alert(a);
@@ -14,9 +22,12 @@ define(function(require, exports, module){
     exports.show = show;
 });
 
-
-
-var a = 100;
-define(function(require, exports, module){
+define("module1.js",[], function(require, exports, module){
     exports.b = 200;
 });
+
+define("module2.js",[], function(require, exports, module){
+    var a = 100;
+    exports.a = a;
+});
+

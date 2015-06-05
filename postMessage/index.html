@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>postMessage</title>    
+    <script type="text/javascript">
+        window.onload = function(){
+        
+            var oIframe = document.getElementById("iframe1"); 
+            var oWindow = oIframe.contentWindow;
+
+            window.addEventListener("message", function(event){
+                console.log(event);
+            },false);
+        }
+    </script>  
+</head>
+<body>
+    <iframe src="http://php.jaylee.cc" id="iframe1" width="500" height="500"></iframe>
+</body>
+</html>

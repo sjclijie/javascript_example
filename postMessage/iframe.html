@@ -61,6 +61,8 @@
             var oWindow = window.parent;
             var oBtn = document.getElementById("btn");
             var oMsg = document.getElementById("msg");
+            var oDiv = document.getElementById("message");
+            var oContent = oDiv.getElementsByTagName("div")[0];
 
             oBtn.onclick = function(){
                 oWindow.postMessage(oMsg.value, "*");
@@ -68,7 +70,9 @@
             }
 
             window.addEventListener("message", function(event){
-                console.log(event);
+                oContent.innerHTML += "接收到父窗口发送的消息为: ";
+                oContent.innerHTML += event.data;
+                oContent.innerHTML += "<br />";
             });
         }
     </script>   

@@ -73,12 +73,13 @@
             var oBtn = document.getElementById("btn");
 
             window.addEventListener("message", function(event){
+                oContent.innerHTML += "接收到子窗口发送的消息为: ";
                 oContent.innerHTML += event.data+"<br/>";              
             },false);
 
             oBtn.onclick = function(){
-                oWindow.postMessage(oInput.value,"*");
-                oInput.value = "";
+                oWindow.postMessage("hello world", "http://php.jaylee.cc");
+                oInput.value = '';
             }
         }
 

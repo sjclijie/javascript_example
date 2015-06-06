@@ -75,10 +75,11 @@
             window.addEventListener("message", function(event){
                 oContent.innerHTML += "接收到子窗口发送的消息为: ";
                 oContent.innerHTML += event.data+"<br/>";              
+                console.log(event);
             },false);
 
             oBtn.onclick = function(){
-                oWindow.postMessage("hello world", "http://php.jaylee.cc");
+                oWindow.postMessage(oInput.value, "http://php.jaylee.cc");
                 oInput.value = '';
             }
         }

@@ -56,7 +56,6 @@
         }
     </style>
     <script type="text/javascript">
-
         window.onload = function(){
 
             var oWindow = window.parent;
@@ -64,12 +63,13 @@
             var oMsg = document.getElementById("msg");
 
             oBtn.onclick = function(){
-
                 oWindow.postMessage(oMsg.value, "*");
-
                 oMsg.value = '';
             }
-                       
+
+            window.addEventListener("message", function(event){
+                console.log(event);
+            });
         }
     </script>   
 </head>

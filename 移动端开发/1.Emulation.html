@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Emulation</title>
+    <style type="text/css">
+        div#box {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+
+    Emulation:
+        Chrome开发都工具的插件
+
+    Device:
+        model: 设备选择
+        resolution: 分辨率
+        device pixel ratio: 像素比
+        emulation mobile: 是否模拟移动端特性
+        Shrink to fit: 缩放以适应屏幕    
+
+    Media： 媒体查询
+
+    Sensors: 传感器
+        emulation touch screen: 模拟移动端的事件
+        emulation geolocation coordinates: 模拟地理位置
+        Accelerometer: 模拟陀螺仪
+
+    <div id="box"></div>
+    <script type="text/javascript">
+
+        window.onload = function(){
+            var oDiv = document.getElementById("box");
+            oDiv.addEventListener("touchend", function(){
+                alert("aaa");
+            },false);
+        }
+
+    </script>
+</body>
+</html>

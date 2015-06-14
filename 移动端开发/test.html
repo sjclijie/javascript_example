@@ -70,7 +70,14 @@
             overflow: auto;
         }
 
+        section ul {
+            position: relative;
+        }
+
         section ul li {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 1rem;
             height: 1rem;
             float: left;
@@ -78,6 +85,11 @@
             box-sizing: border-box;
             background: url(./img/1.jpg) no-repeat;
             background-size: cover;
+            -webkit-transition: top .25s, left 0.25s;
+               -moz-transition: top .25s, left 0.25s;
+                -ms-transition: top .25s, left 0.25s;
+                 -o-transition: top .25s, left 0.25s;
+                    transition: top .25s, left 0.25s;
         }
 
         footer {
@@ -177,6 +189,8 @@
 
             oUl.innerHTML = sHtml;
 
+            setTimeout(toPosition, 100);
+
             oBtns[1].addEventListener("touchend", fnEnd, false);
 
             function fnEnd(){
@@ -209,13 +223,20 @@
 
             function fnDelete(){
                 oSelected.sort(function(a, b){return a>b});
-                alert(oSelected);
                 while(oSelected.length) {
                     var oNum = oSelected.pop();
                     oUl.removeChild(oLi[oNum]);
                 }
-                bOff = false;
+                bOff = true;
                 fnEnd();
+                toPosition();
+            }
+
+            function toPosition(){
+                for(var i=0; i<oData.length; i++){
+                    oLi[i].style.left = i % 3 + 'rem';
+                    oLi[i].style.top = Math.floor(i / 3) + 'rem';
+                }
             }
         }
     </script>

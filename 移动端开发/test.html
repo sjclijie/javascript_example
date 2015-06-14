@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,target-densitydpi=medium-dpi,user-scalable=no">    
+    <style type="text/css">
+        body, ul {
+            margin:0;
+            padding:0;
+            font-size:0.15rem;
+            font-family: Arial,"宋体";
+        }
+
+        li {list-style-type:none;}
+
+        a {text-decoration:none;color: #fff;}
+
+        article {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        header {
+            height: 0.45rem;
+            line-height: 0.45rem;
+            background: #000;
+            background: -webkit-linear-gradient(top, #fff, #1e1e1e);
+            background: -moz-linear-gradient(top, #fff, #1e1e1e);
+            background: linear-gradient(top, #fff, #1e1e1e);
+            border: 2px solid #353535;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .btn {
+            margin: 0;
+            padding: 0;
+            width: 0.5rem;
+            height: 0.25rem;
+            border: 2px solid #0d0d0d;
+            position: absolute;
+            top: 0.1rem;
+            line-height: 0.25rem;
+            left: 20px;
+            box-sizing: border-box;
+            border-radius: 5px;
+            box-shadow: 0 0 3px #0d0d0d, inset 0 0 3px #232323;
+        }
+
+        .btn:nth-of-type(1) {
+            display: none;
+        }
+
+        .btn:nth-of-type(2) {
+            left: auto;
+            right: 20px;
+        }
+
+        section {
+            position: absolute;
+            top:0.45rem;
+            bottom:0.45rem;
+            background: #ccc;
+            width:100%;
+            overflow: auto;
+        }
+
+        section ul li {
+            width: 1rem;
+            height: 1rem;
+            float: left;
+            border: 1px solid #000;
+            box-sizing: border-box;
+            background: url(./img/1.jpg) no-repeat;
+            background-size: cover;
+        }
+
+        footer {
+            height: 0.45rem;
+            width: 3rem;
+            background: linear-gradient(top, #1e1f21, #121212);
+            background: -webkit-linear-gradient(top, #fff, #121212);
+            background: -moz-linear-gradient(top, #1e1f21, #121212);
+            position: absolute;
+            bottom: 0;
+            left:0;
+        }
+
+        footer a {
+            height: 0.45rem;
+            width: 1.5rem;
+            line-height: 0.45rem;
+            text-align: center;
+            float: left;
+            box-sizing: border-box;
+        }
+
+        footer a:nth-of-type(1) {
+            border-right: 2px solid #222222;
+        }
+
+        footer a:nth-of-type(1) {
+            border-left: 2px solid #111111;
+        }
+
+        footer a.active {
+            background: -webkit-linear-gradient(top, red, blue);
+        }
+
+        #recycle {
+            width: 1.2rem;
+            height: 1.2rem;
+            position: absolute;
+            left: calc(50% - 0.6rem);
+            top: 100%;
+            background: url(./img/recycle.png);
+            background-size: cover;
+        }
+
+        #recycle2 {
+            width: 1.2rem;
+            height: 1.2rem;
+            position: absolute;
+            left: calc(50% - 0.6rem);
+            top: 100%;
+            background: url(./img/recycle2.png);
+            background-size: cover;
+        }
+    </style>
+    <script type="text/javascript">
+        document.getElementsByTagName("html")[0].style.fontSize = document.documentElement.clientWidth / 3 + 'px';
+    </script>
+</head>
+<body> 
+    <article>
+        <header>
+            <a href="javascript:;" class="btn">删除</a>
+            相机相册
+            <a href="javascript:;" class="btn">选择</a>
+        </header>
+        <section>
+            <ul>
+            </ul>
+        </section>
+        <footer>
+            <a href="javascript:;" class="active">相机相册</a>
+            <a href="javascript:;">所有相册</a>
+        </footer>
+        <div id='recycle'></div>
+        <div id='recycle2'></div>
+    </article>
+    <script type="text/javascript">
+
+        var oData = ["./img/1.jpg","./img/2.jpg","./img/3.jpg","./img/4.jpg","./img/5.jpg","./img/6.jpg",
+                    "./img/7.jpg","./img/8.jpg","./img/9.jpg","./img/10.jpg","./img/11.jpg","./img/12.jpg",
+                    "./img/13.jpg","./img/14.jpg","./img/15.jpg","./img/16.jpg"];
+
+        create(oData);
+
+        function create(oData){
+
+            var oUl = document.getElementsByTagName("ul")[0];
+            var oLi = oUl.getElementsByTagName("li");
+            var sHtml = '';
+            var oBtns = document.getElementsByClassName("btn");
+            var oSelected = [];
+            var bOff = false;
+
+            for(var i=0; i<oData.length; i++){
+                sHtml += '<li style="background-image: url('+oData[i]+')"></li>'
+            }
+
+            oUl.innerHTML = sHtml;
+
+            oBtns[1].addEventListener("touchend", fnEnd, false);
+
+            function fnEnd(){
+                if (!bOff){
+                    oBtns[1].innerHTML = "取消";
+                    for(var i=0; i<oLi.length; i++){
+                        oLi[i].index = i;
+                        oLi[i].addEventListener("touchend", fnSeleced, false);
+                    }
+                    bOff = true;
+                }else {
+                    oSelected = [];
+                    oBtns[1].innerHTML = "删除";
+                    oBtns[0].style.display = "none";
+                    for(var i=0; i<oLi.length; i++){
+                        oLi[i].style.borderColor = "#000";;
+                        oLi[i].removeEventListener("touchend", fnSeleced, false);
+                    }
+                    bOff = false;
+                }
+            }
+
+            function fnSeleced(){
+                oBtns[0].style.display = "block";
+                this.style.borderColor = "#fff";
+                oSelected.push(this.index);
+            }
+
+            oBtns[0].addEventListener("touchend", fnDelete, false);
+
+            function fnDelete(){
+                oSelected.sort(function(a, b){return a>b});
+                alert(oSelected);
+                while(oSelected.length) {
+                    var oNum = oSelected.pop();
+                    oUl.removeChild(oLi[oNum]);
+                }
+                bOff = false;
+                fnEnd();
+            }
+        }
+    </script>
+</body>
+</html>

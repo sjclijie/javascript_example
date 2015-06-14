@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>test</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, target-densitydpi=medium-dpi, user-scalable=no">
+    <style type="text/css">
+        body {
+            margin: 0;
+            background: #e1e1e1;
+            font-size: 0.4rem;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;        
+        }
+
+        #picWrap {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #picWrap ul {
+            width: 40rem;
+            overflow: hidden;
+        }
+
+        #picWrap ul li {
+            float: left;
+        }
+
+        #picWrap ul li img{
+            width: 10rem;
+        }
+
+        #picWrap .nav {
+            position: absolute;
+            right: 0.5rem;
+            bottom: 0.3rem;
+        }
+
+        #picWrap .nav span.btns {
+            display: inline-block;
+            width: 0.2rem;
+            height: 0.2rem;
+            border: 1px solid #2e2e2e;
+            box-shadow: 5px 5px 5px #2e2e2e;
+            text-align: center;
+            background-color: #e1e1e1;
+            box-sizing: border-box;
+            border-radius: 0.2rem;
+            opacity: 0.5;
+        }
+
+        #picWrap .nav span.active {
+            background: #1e1e1e;
+        }
+    </style>
+    <script type="text/javascript">
+        window.addEventListener("DOMContentLoaded",function(){
+
+            var oDiv = document.getElementsByTagName("div")[0];
+
+            oDiv.addEventListener("touchstart", function(e){
+                console.log("touchstart");
+                //console.log("当前屏幕上有"+e.touches.length+"个手指");
+                //console.log("当前DOM元素上有"+e.targetTouches.length+"个手指");
+                //console.log("涉及当前事件有"+e.changedTouches.length+"个手指");
+                console.log(e.changedTouches[0]);
+            }, false);
+
+            oDiv.addEventListener("touchmove", function(e){
+                console.log("touchmove");
+                //console.log(e.touches.length);         // 1 
+                //console.log(e.targetTouches.length);   // 1
+                console.log(e.changedTouches.length);
+            }, false);
+
+            oDiv.addEventListener("touchend", function(e){
+                console.log("touchend");
+                //console.log(e.touches.length);        // 0 
+                //console.log(e.targetTouches.length);  // 0
+                console.log(e.changedTouches[0]);
+            }, false);
+
+            document.getElementsByTagName("html")[0].style.fontSize = screen.width / 10 + 'px';
+        }, false);
+   </script>
+</head>
+<body>
+    <div id="picWrap">
+        <ul>
+            <li><a href="#1"><img src="./img/1.jpg"></a></li>
+            <li><a href="#2"><img src="./img/2.jpg"></a></li>
+            <li><a href="#3"><img src="./img/3.jpg"></a></li>
+            <li><a href="#4"><img src="./img/4.jpg"></a></li>
+        </ul>
+        <div class="nav">
+            <span class="btns active"></span>
+            <span class="btns"></span>
+            <span class="btns"></span>
+            <span class="btns"></span>
+        </div>
+    </div>
+</body>
+</html>

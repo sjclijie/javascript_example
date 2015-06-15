@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>fastclick</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <style type="text/css">
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            width: 5rem;
+            height: 5rem;
+            background: red;
+            float: left;
+        }
+
+        #div2 {
+            width: 5rem;
+            height: 5rem;
+            background: blue;
+            float: left;
+        }
+    </style>
+    <script type="text/javascript" src="fastclick/lib/fastclick.js"></script>
+    <script type="text/javascript">
+        document.getElementsByTagName("html")[0].style.fontSize = screen.width / 10 + 'px';
+    </script>
+</head>
+<body>
+    <div id="div1" class="fastclick"></div>
+    <div id="div2"></div>
+    <script type="text/javascript">
+
+        document.addEventListener("DOMContentLoaded", function(){
+
+            FastClick.attach(document.body);
+
+            var btn1 = document.querySelector("#div1");
+
+            var btn2 = document.querySelector("#div2");
+
+            btn1.addEventListener("click", function(){
+                alert(this);
+            }, false);
+
+        }, false);
+
+    </script>
+</body>
+</html>

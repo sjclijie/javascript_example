@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>模型视图</title>
+    <script type="text/javascript" src="./js/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="./js/underscore-1.8.2.js"></script>
+    <script type="text/javascript" src="./js/backbone-1.1.2.js"></script>
+    <script type="text/javascript">
+        
+        $(function(){
+            var M = Backbone.Model.extend({
+                defaults: {
+                    name: "hello"
+                }
+            });
+
+            var V = Backbone.View.extend({
+                initialize: function(){
+                    this.listenTo(this.model, "change", this.show);
+                },
+
+                show: function(){
+                    $("body").append("<div>"+this.model.get("name")+"</div>");
+                }
+            });
+
+
+            var m = new M;
+            var v = new V({model:m});
+
+            $("#btn1").on("click", function(){
+                m.set({"name":Math.random()});                
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <button id="btn1">添加</button>
+</body>
+</html>

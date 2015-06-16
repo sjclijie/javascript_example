@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>路由与历史管理</title>
+    <script type="text/javascript" src="./js/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="./js/underscore-1.8.2.js"></script>
+    <script type="text/javascript" src="./js/backbone-1.1.2.js"></script>
+    <script type="text/javascript">
+
+        var Workspace = Backbone.Router.extend({
+
+            routes: {
+                "help": "help",
+                "search/:query": "search",
+                "search/:query/:page": "search"
+            },
+
+            help: function(){
+                console.log("help");
+            },
+
+            search: function(query, page){
+                console.log(query, page);
+            }
+        });
+
+        var w = new Workspace;
+
+        Backbone.history.start();
+
+    </script>
+</head>
+<body>
+    <a href="#help">help</a>
+    <a href="#search/aaa">search</a>
+    <a href="#search/aaa/1">search#1</a>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>从服务器获取数据</title>
+    <script type="text/javascript" src="./js/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="./js/underscore-1.8.2.js"></script>
+    <script type="text/javascript" src="./js/backbone-1.1.2.js"></script>
+    <script type="text/javascript">
+
+        var C = Backbone.Collection.extend({
+            initialize: function(){
+
+                this.on("request", function(){
+                    console.log("request - 开始发送请求.");
+                });
+
+                this.on("add", function(model){
+                    console.log("add - " + model.get("user"));
+                });
+
+                this.on("sync", function(){
+                    console.log("sync" + "数据获取成功");
+                });
+
+                this.on("all", function(event_name){
+                    console.log("触发事件:"+event_name);
+                });
+
+            },
+            url:"/javascript/backbone/user.php"
+        });
+
+        var c = new C;
+
+        c.fetch();
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

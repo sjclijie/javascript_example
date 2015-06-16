@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>test1</title>
+    <script type="text/javascript" src="./js/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="./js/underscore-1.8.2.js"></script>
+    <script type="text/javascript" src="./js/backbone-1.1.2.js"></script>
+    <script type="text/javascript">
+
+        var model = new Backbone.Model();
+        var model2 = new Backbone.Model({name:"bbb"});
+        var models = new Backbone.Collection();
+        var view = new Backbone.View();
+
+        models.add(model);
+        models.add(model2);
+
+        model.set("name", "jaylee");
+        model.set({age:12,email:"sjclijie@vip.qq.com"});
+
+        console.log(model.get("name"));
+        console.log(model.get("age"));
+
+        console.log(JSON.stringify(models));
+
+        var M = Backbone.Model.extend({   //继承
+            defaults: {
+                name:"xxxxxx"
+            },
+            aaa: function(){            //属性
+                alert(123);
+            }
+        }, {
+            bbb: function(){            //类属性
+                alert(456);
+            }
+        });
+
+        var m  = new M;
+
+        //m.set("name","oooooo");
+
+        alert(m.get("name"));
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

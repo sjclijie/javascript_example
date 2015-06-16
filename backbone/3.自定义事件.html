@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>算定义事件</title>
+    <script type="text/javascript" src="./js/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="./js/underscore-1.8.2.js"></script>
+    <script type="text/javascript" src="./js/backbone-1.1.2.js"></script>
+    <script type="text/javascript">
+
+        var M = Backbone.Model.extend({
+            defaults: {
+                name: "Hello world"
+            },
+            initialize: function(){
+                this.on("change", function(model){
+                    alert(123);
+                });
+
+                this.on("change:age", function(model){
+                    alert("age");
+                });
+            }
+        });
+
+        var m = new M();
+
+        m.set("name","jaylee");
+
+        m.set("age", 22);
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

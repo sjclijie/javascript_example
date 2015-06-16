@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>数据与服务器</title>
+    <script type="text/javascript" src="./js/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="./js/underscore-1.8.2.js"></script>
+    <script type="text/javascript" src="./js/backbone-1.1.2.js"></script>
+    <script type="text/javascript">
+
+        
+        Backbone.sync = function(method, model, options){
+            console.log("method: "+ method);
+            console.log(JSON.stringify(model));
+            console.log(options);
+            model.id = 2;
+        }
+
+        var M = Backbone.Model.extend({
+            defaults: {
+                name:"hello"
+            },
+            url: "/javascript/backbone/user.php"
+        });
+
+        var m = new M;
+
+        m.save();
+
+        m.save({name:"hi"});
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

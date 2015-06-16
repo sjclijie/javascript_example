@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Backbone中的前端模板</title>
+    <script type="text/javascript" src="./js/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="./js/underscore-1.8.2.js"></script>
+    <script type="text/javascript" src="./js/backbone-1.1.2.js"></script>
+    <script type="text/javascript">
+
+        $(function(){
+
+            var M = Backbone.Model.extend({
+                defaults:{
+                    name:"jaylee"
+                }
+            });
+
+            var V = Backbone.View.extend({
+                initialize: function(){
+                    this.listenTo(this.model,"change", this.show);
+                },
+                show: function(model){
+                    
+                    var html = this.template(this.model.toJSON());
+
+                    console.log(html);
+
+                    $('body').append(html);
+
+                },
+                template: _.template($("#template").html())
+            });
+
+            var model = new M;
+
+            var view = new V({model:model});
+
+            $("input").on("click", function(){
+                model.set({"name":Math.random()});
+            })
+        });
+    
+    </script>
+</head>
+<body>
+    <input type="button" value="增加">
+
+    <script type="text/template" id="template">
+        <% for(var i=0; i<5; i++){%>
+            <div><%=name%></div>
+        <% }%>
+    </script>
+</body>
+</html>

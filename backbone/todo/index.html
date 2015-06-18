@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>todo</title>
+    <link rel="stylesheet" type="text/css" href="./css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="./css/main.css" />
+    <script type="text/javascript" src="vendor/require.js"></script>
+    <script type="text/javascript">
+        require.config({
+            baseUrl:"./js/",
+            paths: {
+                "underscore":"../vendor/underscore-1.8.2",
+                "jquery":"../vendor/jquery-2.1.4",
+                "backbone":"../vendor/backbone-1.1.2"
+            },
+            shim: {
+                'backbone':{
+                    deps:["underscore","jquery"],
+                    exports:"backbone"
+                },
+                "underscore":{
+                    exports:"_"
+                },
+                "jquery":{
+                    exports:"$"
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+
+    <div id="todo">
+        <header>
+            <h1>todos</h1>
+            <input type="text" placeholder="What needs to be done?" />
+        </header>
+        <section>
+            <div>
+                <input type="checkbox" id="toggle-all">
+                <label for="toggle-all">Mark all as complete</label>
+            </div>
+            <ul>
+
+                <li>
+                    <div>
+                        <input type="checkbox" id="li1" />
+                        <label for="li1">aaa</label>
+                        <span>aa</span>
+                    </div>
+                    <input type="text" style="display:none" />
+                </li>
+
+                <li>
+                    <div style="display:none;">
+                        <input type="checkbox" id="li1" />
+                        <label for="li1">aaa</label>
+                        <span>aa</span>
+                    </div>
+                    <input type="text"/>
+                </li>
+            </ul>
+        </section>
+        <footer>
+            <span>6 items left</span>
+            <div>Clear 1 completed item</div>
+        </footer>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+body {
+    padding: 0;
+    margin: 0;
+    background: #fff;
+}
+
+ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+input {
+    outline: none;
+}
+
+#todo {
+    width: 400px;
+    border: 1px solid #ccc;
+    margin: 20px auto;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px #ccc;
+}
+
+#todo header {
+    -border-bottom: 2px solid #ccc;
+}
+
+#todo header h1 {
+    display: block;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    width: 100%;
+}
+
+#todo header input {
+    display: block;
+    font-size: 28px;
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+    text-indent: 5px;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-right: none;
+    box-sizing: border-box;
+}
+
+#todo section > div {
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    margin: 5px 5%;
+    border-bottom: 2px solid green;
+}
+
+
+#todo section > ul {
+    margin: 5px 5%;
+}
+
+#todo section li {
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid #ccc;
+}
+
+#todo section li label {
+    font-size: 28px;
+    padding: 5px;
+}
+
+#todo section li > input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    font-size: 20px;
+    text-indent: 5px;
+    border-bottom: none;
+    border-top: none;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+
+#todo footer {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background: #F4FCE8;
+    margin-top: 20px;
+    font-size: 12px;
+    border-radius: 0 0 5px 5px;
+}
+
+#todo footer span {
+    display: inline-block;
+    float: left;
+    margin-left:5%;
+}
+
+#todo footer div {
+    display: inline-block;
+    background: #DBE2D0;
+    margin-top: 8px;
+    border-radius: 20px;
+    padding: 0 5px;
+    height: 24px;
+    line-height: 24px;
+    box-sizing: border-box;
+    float: right;
+    margin-right: 5%;
+    cursor: pointer;
+    box-shadow: 0 0 0 1px #ccc;
+}

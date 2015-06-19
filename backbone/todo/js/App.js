@@ -32,7 +32,7 @@ define(function(require, exports, module){
 
         el: $("#todo"),
 
-        statsTemplate: _.template($("#item-template").html()),
+        statsTemplate: _.template($("#stats-template").html()),
 
         events: {
             "keypress header input": "createOnEnter",
@@ -49,7 +49,7 @@ define(function(require, exports, module){
             this.footer = $("#todo footer");
             this.itemUl = $("#todo section ul");
 
-            //this.render();
+            this.render();
         },
 
         render: function(){

@@ -1,12 +1,12 @@
 define(function(require, exports, module){
 
-    var View = require("backbone").View;
+    var Model = require("backbone").Model;
 
-    return View.extend({
-        defaults: function(){
-            return {
-                title: "empty todo..."
-            };
+    var TodoModel = Model.extend({
+        defaults: {
+            "title":"empty todo..."
         }
     });
+
+    return TodoModel;
 });

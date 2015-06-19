@@ -37,13 +37,15 @@
             <input type="text" placeholder="What needs to be done?"/>
         </header>
         <section>
+
             <div>
                 <input type="checkbox" id="toggle-all">
                 <label for="toggle-all">Mark all as complete</label>
             </div>
+
             <ul>
 
-                <li>
+        <!--         <li>
                     <div class="view">
                         <input type="checkbox" class="toggle-li" />
                         <label>aaa</label>
@@ -57,12 +59,13 @@
                         <label for="li1">aaa</label>
                     </div>
                     <input type="text"/>
-                </li>
+                </li> -->
+
             </ul>
         </section>
         <footer>
-            <span>6 items left</span>
-            <div>Clear 1 completed item</div>
+            <!-- <span>6 items left</span>
+            <div>Clear 1 completed item</div> -->
         </footer>
     </div>
 
@@ -75,10 +78,12 @@
         <input type="text" style="display:none" class="edit"/>
     </script>
 
-    <script type="text/template" id="status-template">
-        <span><b><%=remaining%></b> <%= remaining == 1 'item' : 'items'%> left</span>
-        <div>Clear 1 completed item</div>
+    <script type="text/template" id="item-template">
+        <span><%=remaining%> <%= remaining == 1 ? 'item' : 'items'%> left</span>
+        <div> Clear 1 completed item</div>
     </script>
+
+
     <!-- templates -->
 
     <script type="text/javascript">

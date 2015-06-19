@@ -4,16 +4,19 @@ define(function(require, exports, module){
     var $ = require("jquery");
 
     var TodoView = require("backbone").View.extend({
-        
+
         tempalte: _.template($("#item-template").html()),
 
+        tagName: "li"
+
+        /*
         initialize: function(){
             this.listenTo(this.model, "change", this.render),
             this.listenTo(this.model, "destroy", this.remove)
         },
 
         render: function(){
-            alert(this.$el);
+
         },
 
         events: {
@@ -37,7 +40,7 @@ define(function(require, exports, module){
 
         close: function(){
             console.log("close");
-        }
+        }*/
     });
 
     return TodoView;

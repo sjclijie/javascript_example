@@ -24,15 +24,64 @@ define(function(require, exports, module){
 
     var TodoModel = require("Model");
 
+    var TodoView = require("View");
+
     var todoLists = new TodoCollection;
 
     var AppView = require("backbone").View.extend({
+
         el: $("#todo"),
-        //statsTemplate: _.template($("#status-template").html()),
+
+        statsTemplate: _.template($("#item-template").html()),
+
         events: {
             "keypress header input": "createOnEnter",
             "click footer div": "clearCompleted",
             "click #toggle-all": "toggleAllComplete"
+        },
+
+        //初始化，监听model
+        initialize: function(){
+            this.listenTo(todoLists, "add", this.addOne);
+            this.listenTo(todoLists, "all", this.render);
+
+            this.mainContent = $("#todo section");
+            this.footer = $("#todo footer");
+            this.itemUl = $("#todo section ul");
+
+            //this.render();
+        },
+
+        render: function(){
+
+            console.log("App View: render");
+
+            if (todoLists.length > 0 ){
+
+                this.mainContent.show();
+                this.footer.show();
+
+                this.footer.html(this.statsTemplate({
+                    remaining: 1
+                }));
+
+            } else {
+                this.mainContent.hide();
+                this.footer.hide();
+            }
+        },
+
+        addOne: function(todo){
+
+            console.log("App View: addOne");
+
+            var view = new TodoView({
+                model: todo
+            });
+
+            console.log(view.render().el);
+
+            this.itemUl.append(view.render().el);
         },
 
         createOnEnter: function(e){

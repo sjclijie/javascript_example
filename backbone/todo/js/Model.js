@@ -4,7 +4,13 @@ define(function(require, exports, module){
 
     var TodoModel = Model.extend({
         defaults: {
-            "title":"empty todo..."
+            "title":"empty todo...",
+            "done": false
+        },
+        toggle: function(){
+            this.save({
+                done: !this.get("done")
+            });
         }
     });
 

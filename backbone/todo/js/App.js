@@ -22,11 +22,11 @@ define(function(require, exports, module){
 
     var TodoCollection = require("Collection");
 
-    var TodoModel = require("Model");
+    //var TodoModel = require("Model");
 
     var TodoView = require("View");
 
-    var todoLists = new TodoCollection;
+    var todoLists = new TodoCollection();
 
     var AppView = require("backbone").View.extend({
 
@@ -56,19 +56,25 @@ define(function(require, exports, module){
 
             console.log("App View: render");
 
+            var remaining = todoLists.remaining().length;
+            var done = todoLists.done().length;
+
             if (todoLists.length > 0 ){
 
                 this.mainContent.show();
                 this.footer.show();
 
                 this.footer.html(this.statsTemplate({
-                    remaining: 1
+                    remaining: remaining,
+                    done: done
                 }));
 
             } else {
                 this.mainContent.hide();
                 this.footer.hide();
             }
+
+            this.$("#toggle-all")[0].checked = !remaining;
         },
 
         addOne: function(todo){
@@ -78,8 +84,6 @@ define(function(require, exports, module){
             var view = new TodoView({
                 model: todo
             });
-
-            console.log(view.render().el);
 
             this.itemUl.append(view.render().el);
         },
@@ -92,21 +96,21 @@ define(function(require, exports, module){
             console.log("App View: createOnEnter");
             console.log("data: "+ $(e.target).val());
 
-            /*  需要请求网络保存
+            //需要请求网络保存
             todoLists.create({
                 "title": $(e.target).val()
             });
-            */
-
+        
             // 不需要请求网络
-            todoLists.add( new TodoModel({"title": $(e.target).val()}));
+            //todoLists.add( new TodoModel({"title": $(e.target).val()}));
 
             //清除
             $(e.target).val("");
         },
 
-        clearCompleted: function(e){
+        clearCompleted: function(){
             console.log("App View: clearCompleted");
+            _.invoke(todoLists.done(), "destroy");
         },
 
         toggleAllComplete: function(e){
@@ -114,7 +118,6 @@ define(function(require, exports, module){
             var done = e.target.checked;
 
             console.log("App View: toggleAllComplete");
-            console.log(done);
 
             todoLists.each(function(model) {
                 model.save({
@@ -123,6 +126,6 @@ define(function(require, exports, module){
             });
         }
     });
-
-    new AppView;
+    
+    return AppView;
 });

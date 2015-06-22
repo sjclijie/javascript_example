@@ -72,22 +72,24 @@
     <!-- tempaltes -->
     <script type="text/template" id="item-template">
         <div class="view">
-            <input type="checkbox" class="toggle-li" />
-            <label>aaa</label>
+            <input type="checkbox" class="toggle-li" <%= done ? 'checked="checked"' : ''%>/>
+            <label><%=title%></label>
         </div>
-        <input type="text" style="display:none" class="edit"/>
+        <input type="text" style="display:none" class="edit" value="<%=title%>"/>
     </script>
 
     <script type="text/template" id="stats-template">
         <span><%=remaining%> <%= remaining == 1 ? 'item' : 'items'%> left</span>
-        <div> Clear 1 completed item</div>
+        <div> Clear <%=done%> completed item</div>
     </script>
 
 
     <!-- templates -->
 
     <script type="text/javascript">
-        require(["App"]);
+        require(["App"], function(App){
+            new App();
+        });
     </script>
 </body>
 </html>

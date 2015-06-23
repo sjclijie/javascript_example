@@ -86,7 +86,9 @@
             //   =========================   previousSibling
             var oPrev = oLast.previousElementSibling || oLast.previousSibling;
             oPrev.style.backgroundColor = 'pink';
-            
+
+            //同样的nextElementSibling和previousElementSibling这两个方法也可能报错，需要没注意判断节点
+            //是否为最后一个或者第一个，如果是第一个节点，则没有上一个节点，如果是最后一个节点，则没有下一个节点
         };
 
     </script>

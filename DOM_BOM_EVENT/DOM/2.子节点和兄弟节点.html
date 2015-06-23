@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>子节点和兄弟节点</title>
+    <script type="text/javascript">
+
+        /**
+         *
+         * 元素.firstChild : 只读  属性   第一个子节点
+         *     标准下： firstChild会包含文本类型的节点
+         *     非标准下： 只包含元素节点
+         *
+         * 元素.firstElementChild: 只读  属性  第一个元素类型的子节点
+         *     非标准ie下没有这个属性
+         */
+        
+        /*    
+         * 元素.lastChild : 只读  属性   最后一个子节点
+         *
+         * 元素.lastElementChild: 只读  属性  最后一个元素类型的子节点
+         */
+        
+        /**
+         *  元素.nextSibling  || 元素.nextElementSibling  下一个兄弟节点
+         * 
+         */
+        
+        /**
+         *  元素.prevousSibling  || 元素.previousElementSibling  上一个兄弟节点
+         */
+
+        window.onload = function(){
+            var oUl = document.getElementsByTagName("Ul")[0];
+
+            //   ===================  firstChild
+
+            //alert(oUl.firstChild);
+            //alert(oUl.firstElementChild);
+
+            //兼容
+            //1.
+            /*
+            if (oUl.firstElementChild){
+                oUl.firstElementChild.style.backgroundColor = "red";
+            } else {
+                //ie下
+                oUl.firstChild.style.backgroundColor = 'red';
+            }*/
+
+            //2.
+            /*
+            var oFirst = oUl.firstElementChild || oUl.firstChild;
+            oFirst.style.backgroundColor = 'red';
+            问题：
+                如果ul里面为空，在标准浏览器下，oUl.firstElementChild为null,
+                执行oUl.firstChild，获取到的节点为文本节点，文本节点没有backgroupColor属性
+            */
+           
+            //3.最好的办法
+            var oFirst = oUl.children[0];
+            if (oFirst){
+                oFirst.style.backgroundColor = 'red';
+            }
+
+            //   =========================   lastChild
+            
+            /**
+             * 有跟firstChild同样的问题，在标准浏览器下，如果没有子节点，那个lastElementChild为null
+             * 则会执行lastChild，结果是文本类型的节点
+             */
+            /*
+            var oLastChild = oUl.lastElementChild || oUl.lastChild;
+            if (oLastChild){
+                oLastChild.style.backgroundColor = 'yellow';
+            }*/
+            var length = oUl.children.length;
+            if (length > 0){
+                var oLast  = oUl.children[length-1];
+                oLast.style.backgroundColor = "yellow";
+            }
+
+            //   =========================   nextSibling
+            var oNext = oFirst.nextElementSibling || oFirst.nextSibling;
+            oNext.style.backgroundColor = 'blue';
+
+            //   =========================   previousSibling
+            var oPrev = oLast.previousElementSibling || oLast.previousSibling;
+            oPrev.style.backgroundColor = 'pink';
+            
+        };
+
+    </script>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+</body>
+</html>

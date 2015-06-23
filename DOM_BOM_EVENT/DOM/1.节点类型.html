@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>节点类型</title>
+    <script type="text/javascript">
+
+        /**
+         * 元素.childNodes:  只读属性  子节点列表
+         *     标准下：包含文本和元素节点，也会包含非法嵌套的子节点 例如 <ul><li>1</li><p>2</p></ul>
+         *     非标准IE下：只包含元素节点, ie7及以下不会包含非法嵌套节点
+         *
+         *     childNodes只包含一级子勤快点，不包含后辈孙级以下的节点
+         *     
+         *
+         * 元素.nodeType:  只读属性   当前元素的类型
+         *     元素节点：  1
+         *     属性节点：  2
+         *     文本节点：  3
+         *     注释节点：  8
+         *     文档节点：  9
+         *
+         * 元素.attributes:  只读属性  获取元素属性
+         */
+        
+        /**
+         * 元素.children:  只读属性  子节点列表属性
+         *        只包含元素类型的节点 对于非法嵌套的标签和文档解析模式有关
+         * 
+         */
+            
+        window.onload  = function(){
+
+            var oUl = document.getElementsByTagName("ul")[0];
+
+            console.log(oUl.childNodes);
+            console.log(oUl.children);                  
+
+            console.log(oUl.nodeType);                 // 1
+
+            console.log(oUl.attributes);               // obj
+
+            console.log(oUl.attributes[0].nodeType);   //  2
+
+            console.log(oUl.attributes[0].name);    //  class
+
+            console.log(oUl.attributes[0].value);    //  list-item
+        };
+
+    </script>
+</head>
+<body>
+    <ul class="list-item">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+</html>

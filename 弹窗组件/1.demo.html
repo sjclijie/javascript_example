@@ -7,10 +7,10 @@
 
         #mark {
             background: #ccc;
-            opacity: 0.2;
             filter: alpha(opacity=20);
-            position: absolute;
             left: 0;
+            opacity: 0.2;
+            position: absolute;
             top: 0;
             z-index: 100;
         }
@@ -98,7 +98,7 @@
                     title: "登入",
                     pos: "topRight",
                     //mark: true
-                });   
+                });
             }
         }
 
@@ -133,10 +133,10 @@
                 this.fnClose();
 
                 if (this.defaults.mark){
-                    this.createMark();    
+                    this.createMark();
                 }
 
-                this.DialogMap[this.defaults.id] = true;   
+                this.DialogMap[this.defaults.id] = true;
             }
         }
 
@@ -235,7 +235,7 @@
 </head>
 <body>
     <input type="button" value="弹窗" id="btn1">
-    
+
     <input type="button" value="弹窗2" id="btn2">
 </body>
 </html>

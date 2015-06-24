@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>test</title>
+    <style type="text/css">
+        div {
+            padding: 40px 50px;
+        }
+
+        #div1 {
+            background: red;
+        }
+
+        #div2 {
+            background: yellow;
+            zoom: 1;
+        }
+        #div3 {
+            background: green;
+            -position: relative;
+        }
+    </style>
+    <script type="text/javascript">
+
+    /**
+     *   元素.offsetParent:  属性   离当前元素最近的有定位属性的父节点
+     *   如果没有我定位元素，则默认为body
+     *   兼容性： 在ie7及以下，如果元素自身有定位属性，则offsetParent为html元素
+     *           在ie7及以下，如果父级元素触发了hasLayout,则offsetParent为触发了hasLayout的元素
+     */
+
+    window.onload = function(){
+        
+        console.log(document.getElementById("div2").currentStyle.hasLayout);   //ie私有属性
+
+        var div3 = document.getElementById("div3");
+
+        console.log(div3.offsetParent.tagName);
+    };
+    </script>
+</head>
+<body>
+    <div id="div1">
+        <div id="div2">
+            <div id="div3">
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>父节点</title>
+    <script type="text/javascript">
+
+        /**
+         * 元素.parentNode:  属性   获取父节点（无兼容问题）
+         * 
+         */
+
+        window.onload = function(){
+
+            var oA = document.getElementsByTagName("a");
+
+            console.log(oA[0].offsetParent);   //有定位的父节点
+
+            for(var i=0; i<oA.length; i++){
+                oA[i].onclick = function(){
+                    this.parentNode.style.display = "none";
+                };
+            }
+
+        };
+
+    </script>
+</head>
+<body>
+    <ul>
+        <li>11111 <a href="javascript:;">隐藏</a></li>
+        <li>22222 <a href="javascript:;">隐藏</a></li>
+        <li>33333 <a href="javascript:;">隐藏</a></li>
+        <li>44444 <a href="javascript:;">隐藏</a></li>
+        <li>55555 <a href="javascript:;">隐藏</a></li>
+    </ul>
+</body>
+</html>

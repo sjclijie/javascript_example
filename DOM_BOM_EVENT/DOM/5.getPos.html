@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>getPos</title>
+    <style type="text/css">
+        
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        div {
+            padding: 50px 40px;
+        }
+
+        #div1 {
+            background-color: red;
+        }
+
+        #div2 {
+            background-color: green;
+        }
+
+        #div3 {
+            background-color: pink;
+        }
+    </style>
+    <script type="text/javascript">
+
+        /**
+         *
+         * offsetLeft   offset
+         * offsetParent
+         *
+         */
+
+        window.onload = function(){
+
+            /**
+             * 在chrome下，body.offsetTop 为0
+             * 在ie下，body.offsetTop 为 15
+             */
+            alert(document.body.offsetTop);
+
+            var oDiv3 = document.getElementById("div3");
+
+            //alert(oDiv3.offsetLeft);
+            //alert(oDiv3.offsetParent);
+
+            function getPos(obj){
+                
+                var pos = {left:0, top:0};
+
+                while(obj){
+                    pos.top  += obj.offsetTop;
+                    pos.left += obj.offsetLeft;
+                    obj = obj.offsetParent;
+                } 
+
+                return pos;
+            }
+
+            console.log(getPos(oDiv3));
+
+        };
+
+    </script>
+</head>
+<body>
+    <div id="div1">
+        <div id="div2">
+            <div id="div3">
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

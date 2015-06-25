@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>操作元素属性</title>
+    <script type="text/javascript">
+
+        window.onload = function(){
+            var oInput = document.getElementById("input1");
+
+            /**
+             * 1.直接使用.或者[]来操作
+             * 2.getAttribute  setAttribute  removeAttribute
+             *
+             * 对于自定义属性，在标准下 无法使用.和[]操作，在非标准ie下，可以使用(ie7)
+             * 必须使用getAttribute
+             */
+            
+            /*
+            oInput.value = 22;
+            alert(oInput.value);
+            */
+           
+           //oInput.setAttribute("value", 23);
+           //alert(oInput.getAttribute("value"));
+           //oInput.removeAttribute('type');
+           
+           var name = oInput.getAttribute("_name_");
+           //var name = oInput['_name_'];
+           alert(name);
+           oInput.value = name;
+
+           // ===== 
+           /**
+            * 对于img
+            * oImg.src 会将相对路径自动转换为绝对路径
+            * oImg.getAttribute('src') 不会转换 (ie7下会带绝对路径)
+            */
+           var oImg = document.getElementsByTagName("img")[0];
+           alert(oImg.src);   //http://localhost:8080/javascript/DOM_BOM_EVENT/DOM/aaa.jpg
+           alert(oImg.getAttribute('src'));
+        };
+
+    </script>
+</head>
+<body>
+    <input type="text" id="input1" _name_="lijie"/>
+    <img src="aaa.jpg" />
+</body>
+</html>

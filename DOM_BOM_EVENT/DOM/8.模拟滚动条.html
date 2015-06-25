@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>模拟滚动条</title>
+    <style>
+        #div1 {
+            width: 10px;
+            height: 500px;
+            background: #ccc;
+            position: relative;
+            border-radius: 5px;
+        }
+
+        #div2 {
+            width: 10px;
+            height: 40px;
+            background: #666;
+            position: absolute;
+            border-radius: 5px;
+        }
+
+        #div3 {
+            height: 500px;
+            width: 500px;
+            border: 1px solid #ccc;
+            position: absolute;
+            left: 40px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        #div4 {
+            position: absolute;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+
+            var oD = document.getElementById("div1");
+
+            var oDiv = document.getElementById("div2");
+
+            var oDiv3 = document.getElementById("div3");
+
+            var oDiv4 = document.getElementById("div4");
+
+            //滚动条最大滚动高度
+            var maxHeight = oD.offsetHeight - oDiv.offsetHeight;
+
+            oDiv.onmousedown = function (ev) {
+
+                var ev = ev || window.event;
+
+                var disY = ev.clientY - this.offsetTop;
+                
+                document.onmousemove = function (ev) {
+
+                    var ev = ev || window.event;
+
+                    var posY = ev.clientY - disY;
+
+                    if (posY < 0){
+                        posY = 0
+                    }else if (posY > maxHeight){
+                        posY = maxHeight;
+                    }
+
+                    //拖动比例
+                    var iScale = posY / maxHeight;
+
+                    //document.title = iScale;
+                    //oDiv3.style.height = iScale * oD.offsetHeight + 'px';
+
+                    //拖动距离
+                    oDiv4.style.top = - iScale * (oDiv4.offsetHeight - oD.offsetHeight + 10) + 'px';
+
+                    oDiv.style.top = posY + 'px';
+
+                    return false;
+                }
+
+                document.onmouseup = function () {
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                }
+
+                return false;
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <div id="div1">
+        <div id="div2"></div>
+        <div id="div3">
+            <div id="div4" contenteditable="true">
+                RequireJS的目标是鼓励代码的模块化，它使用了不同于传统标签的脚本加载步骤。可以用它来加速、优化代码，但其主要目的还是为了代码的模块化。它鼓励在使用脚本时以module ID替代URL地址。
+                RequireJS以一个相对于baseUrl的地址来加载所有的代码。 页面顶层标签含有一个特殊的属性data-main，require.js使用它来启动脚本加载过程，而baseUrl一般设置到与该属性相一致的目录。下列示例中展示了baseUrl的设置：
+                baseUrl亦可通过RequireJS config手动设置。如果没有显式指定config及data-main，则默认的baseUrl为包含RequireJS的那个HTML页面的所属目录。
+                RequireJS默认假定所有的依赖资源都是js脚本，因此无需在module ID上再加".js"后缀，RequireJS在进行module ID到path的解析时会自动补上后缀。你可以通过paths config设置一组脚本，这些有助于我们在使用脚本时码更少的字。
+                有时候你想避开"baseUrl + paths"的解析过程，而是直接指定加载某一个目录下的脚本。此时可以这样做：如果一个module ID符合下述规则之一，其ID解析会避开常规的"baseUrl + paths"配置，而是直接将其加载为一个相对于当前HTML文档的脚本：
+                以 ".js" 结束.
+                以 "/" 开始.
+                包含 URL 协议, 如 "http:" or "https:".
+                一般来说，最好还是使用baseUrl及"paths" config去设置module ID。它会给你带来额外的灵活性，如便于脚本的重命名、重定位等。 同时，为了避免凌乱的配置，最好不要使用多级嵌套的目录层次来组织代码，而是要么将所有的脚本都放置到baseUrl中，要么分置为项目库/第三方库的一个扁平结构
+                RequireJS的目标是鼓励代码的模块化，它使用了不同于传统标签的脚本加载步骤。可以用它来加速、优化代码，但其主要目的还是为了代码的模块化。它鼓励在使用脚本时以module ID替代URL地址。
+                RequireJS以一个相对于baseUrl的地址来加载所有的代码。 页面顶层标签含有一个特殊的属性data-main，require.js使用它来启动脚本加载过程，而baseUrl一般设置到与该属性相一致的目录。下列示例中展示了baseUrl的设置：
+                baseUrl亦可通过RequireJS config手动设置。如果没有显式指定config及data-main，则默认的baseUrl为包含RequireJS的那个HTML页面的所属目录。
+                RequireJS默认假定所有的依赖资源都是js脚本，因此无需在module ID上再加".js"后缀，RequireJS在进行module ID到path的解析时会自动补上后缀。你可以通过paths config设置一组脚本，这些有助于我们在使用脚本时码更少的字。
+                有时候你想避开"baseUrl + paths"的解析过程，而是直接指定加载某一个目录下的脚本。此时可以这样做：如果一个module ID符合下述规则之一，其ID解析会避开常规的"baseUrl + paths"配置，而是直接将其加载为一个相对于当前HTML文档的脚本：
+                以 ".js" 结束.
+                以 "/" 开始.
+                包含 URL 协议, 如 "http:" or "https:".
+                一般来说，最好还是使用baseUrl及"paths" config去设置module ID。它会给你带来额外的灵活性，如便于脚本的重命名、重定位等。 同时，为了避免凌乱的配置，最好不要使用多级嵌套的目录层次来组织代码，而是要么将所有的脚本都放置到baseUrl中，要么分置为项目库/第三方库的一个扁平结构
+                RequireJS的目标是鼓励代码的模块化，它使用了不同于传统标签的脚本加载步骤。可以用它来加速、优化代码，但其主要目的还是为了代码的模块化。它鼓励在使用脚本时以module ID替代URL地址。
+                RequireJS以一个相对于baseUrl的地址来加载所有的代码。 页面顶层标签含有一个特殊的属性data-main，require.js使用它来启动脚本加载过程，而baseUrl一般设置到与该属性相一致的目录。下列示例中展示了baseUrl的设置：
+                baseUrl亦可通过RequireJS config手动设置。如果没有显式指定config及data-main，则默认的baseUrl为包含RequireJS的那个HTML页面的所属目录。
+                RequireJS默认假定所有的依赖资源都是js脚本，因此无需在module ID上再加".js"后缀，RequireJS在进行module ID到path的解析时会自动补上后缀。你可以通过paths config设置一组脚本，这些有助于我们在使用脚本时码更少的字。
+                有时候你想避开"baseUrl + paths"的解析过程，而是直接指定加载某一个目录下的脚本。此时可以这样做：如果一个module ID符合下述规则之一，其ID解析会避开常规的"baseUrl + paths"配置，而是直接将其加载为一个相对于当前HTML文档的脚本：
+                以 ".js" 结束.
+                以 "/" 开始.
+                包含 URL 协议, 如 "http:" or "https:".
+                一般来说，最好还是使用baseUrl及"paths" config去设置module ID。它会给你带来额外的灵活性，如便于脚本的重命名、重定位等。 同时，为了避免凌乱的配置，最好不要使用多级嵌套的目录层次来组织代码，而是要么将所有的脚本都放置到baseUrl中，要么分置为项目库/第三方库的一个扁平结构
+                RequireJS的目标是鼓励代码的模块化，它使用了不同于传统标签的脚本加载步骤。可以用它来加速、优化代码，但其主要目的还是为了代码的模块化。它鼓励在使用脚本时以module ID替代URL地址。
+                RequireJS以一个相对于baseUrl的地址来加载所有的代码。 页面顶层标签含有一个特殊的属性data-main，require.js使用它来启动脚本加载过程，而baseUrl一般设置到与该属性相一致的目录。下列示例中展示了baseUrl的设置：
+                baseUrl亦可通过RequireJS config手动设置。如果没有显式指定config及data-main，则默认的baseUrl为包含RequireJS的那个HTML页面的所属目录。
+                RequireJS默认假定所有的依赖资源都是js脚本，因此无需在module ID上再加".js"后缀，RequireJS在进行module ID到path的解析时会自动补上后缀。你可以通过paths config设置一组脚本，这些有助于我们在使用脚本时码更少的字。
+                有时候你想避开"baseUrl + paths"的解析过程，而是直接指定加载某一个目录下的脚本。此时可以这样做：如果一个module ID符合下述规则之一，其ID解析会避开常规的"baseUrl + paths"配置，而是直接将其加载为一个相对于当前HTML文档的脚本：
+                以 ".js" 结束.
+                以 "/" 开始.
+                包含 URL 协议, 如 "http:" or "https:".
+                一般来说，最好还是使用baseUrl及"paths" config去设置module ID。它会给你带来额外的灵活性，如便于脚本的重命名、重定位等。 同时，为了避免凌乱的配置，最好不要使用多级嵌套的目录层次来组织代码，而是要么将所有的脚本都放置到baseUrl中，要么分置为项目库/第三方库的一个扁平结构
+                RequireJS的目标是鼓励代码的模块化，它使用了不同于传统标签的脚本加载步骤。可以用它来加速、优化代码，但其主要目的还是为了代码的模块化。它鼓励在使用脚本时以module ID替代URL地址。
+                RequireJS以一个相对于baseUrl的地址来加载所有的代码。 页面顶层标签含有一个特殊的属性data-main，require.js使用它来启动脚本加载过程，而baseUrl一般设置到与该属性相一致的目录。下列示例中展示了baseUrl的设置：
+                baseUrl亦可通过RequireJS config手动设置。如果没有显式指定config及data-main，则默认的baseUrl为包含RequireJS的那个HTML页面的所属目录。
+                RequireJS默认假定所有的依赖资源都是js脚本，因此无需在module ID上再加".js"后缀，RequireJS在进行module ID到path的解析时会自动补上后缀。你可以通过paths config设置一组脚本，这些有助于我们在使用脚本时码更少的字。
+                有时候你想避开"baseUrl + paths"的解析过程，而是直接指定加载某一个目录下的脚本。此时可以这样做：如果一个module ID符合下述规则之一，其ID解析会避开常规的"baseUrl + paths"配置，而是直接将其加载为一个相对于当前HTML文档的脚本：
+                以 ".js" 结束.
+                以 "/" 开始.
+                包含 URL 协议, 如 "http:" or "https:".
+                一般来说，最好还是使用baseUrl及"paths" config去设置module ID。它会给你带来额外的灵活性，如便于脚本的重命名、重定位等。 同时，为了避免凌乱的配置，最好不要使用多级嵌套的目录层次来组织代码，而是要么将所有的脚本都放置到baseUrl中，要么分置为项目库/第三方库的一个扁平结构
+                RequireJS的目标是鼓励代码的模块化，它使用了不同于传统标签的脚本加载步骤。可以用它来加速、优化代码，但其主要目的还是为了代码的模块化。它鼓励在使用脚本时以module ID替代URL地址。
+                RequireJS以一个相对于baseUrl的地址来加载所有的代码。 页面顶层标签含有一个特殊的属性data-main，require.js使用它来启动脚本加载过程，而baseUrl一般设置到与该属性相一致的目录。下列示例中展示了baseUrl的设置：
+                baseUrl亦可通过RequireJS config手动设置。如果没有显式指定config及data-main，则默认的baseUrl为包含RequireJS的那个HTML页面的所属目录。
+                RequireJS默认假定所有的依赖资源都是js脚本，因此无需在module ID上再加".js"后缀，RequireJS在进行module ID到path的解析时会自动补上后缀。你可以通过paths config设置一组脚本，这些有助于我们在使用脚本时码更少的字。
+                有时候你想避开"baseUrl + paths"的解析过程，而是直接指定加载某一个目录下的脚本。此时可以这样做：如果一个module ID符合下述规则之一，其ID解析会避开常规的"baseUrl + paths"配置，而是直接将其加载为一个相对于当前HTML文档的脚本：
+                以 ".js" 结束.
+                以 "/" 开始.
+                包含 URL 协议, 如 "http:" or "https:".
+                一般来说，最好还是使用baseUrl及"paths" config去设置module ID。它会给你带来额外的灵活性，如便于脚本的重命名、重定位等。 同时，为了避免凌乱的配置，最好不要使用多级嵌套的目录层次来组织代码，而是要么将所有的脚本都放置到baseUrl中，要么分置为项目库/第三方库的一个扁平结构
+            </div>
+        </div>
+    </div>
+</body>
+</html>

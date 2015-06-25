@@ -9,6 +9,13 @@
          * document.createElement("标签名"); 创建元素
          *
          * appendChild()   方法   追加子元素
+         *
+         * 父级.inertBefore(新元素， 被插入的元素)   方法   在指定的元素前面添加一个新元素
+         *
+         * 删除元素
+         * 父级.removeChild(要删除的元素);
+         *
+         * 父级.replaceChild(新节点， 被替换的节点)
          * 
          */
 
@@ -19,13 +26,50 @@
             var ul = document.getElementById("ul1");
 
             btn.onclick = function(){
+
                 var oLi = document.createElement("li");
+                //oLi.innerHTML = input1.value + '<a href="javascript:;">删除</a>';
+                oLi.innerHTML = input1.value;
+
+                var oA = document.createElement("a");
+                oA.innerHTML = "删除";
+                oA.href = "#";
+                oA.onclick = function(){
+                    ul.removeChild(this.parentNode);
+                }
+
+                oLi.appendChild(oA);
+
+                //ul.appendChild(oLi);
+
+                /**
+                 * 在IE浏览器下，如果ul.children[0]不存在，会报错。
+                 * 在其它标准浏览器下，则会心appendChild的形式插入
+                 */
+                //ul.insertBefore(oLi, ul.children[0]);
+
+                if (ul.children[0]){
+                    ul.insertBefore(oLi, ul.children[0]);
+                } else {
+                    ul.appendChild(oLi);
+                }
+            }
+
+            // =====
+
+            var input2 = document.getElementById("input2");
+            var p = document.getElementsByTagName('p')[0];
+            input2.onclick = function () {
+                document.body.replaceChild(p, input1);
             }
         }
     </script>
 </head>
 <body>
-    <input type="text" id="text1"><input type="button" id="input1" value="add" />
+    <input type="text" id="text1">
+    <input type="button" id="input1" value="add" />
+    <input type="button" id="input2" value="replace"/>
     <ul id="ul1"></ul>
+    <p>将要替换的标签</p>
 </body>
 </html>

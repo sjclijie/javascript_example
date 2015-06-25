@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>getElementsByClassName</title>
+    <script>
+        window.onload = function(){
+
+            function getElementsByClassName(selector, context){
+
+                var context = context || document;
+                
+                var aEls = context.getElementsByTagName("*");
+
+                var selector = selector.substring(1);
+
+                var arr = [];
+
+                for(var i=0; i<aEls.length; i++){
+
+                    var aClassName = aEls[i].className.split(" ");
+
+                    for(c in aClassName){
+                        if (aClassName[c] == selector){
+                            arr.push(aEls[i]);
+                            break;
+                        }
+                    }
+                }
+
+                return arr;
+            }
+
+            console.log(getElementsByClassName(".box"));
+        }
+    </script>
+</head>
+<body>
+    <ul id="ul1">
+        <li>00001</li>
+        <li class="box">00002</li>
+        <li class="box2">00003</li>
+        <li class="box box1 box1">00004</li>
+        <li>00005</li>
+    </ul>
+</body>
+</html>

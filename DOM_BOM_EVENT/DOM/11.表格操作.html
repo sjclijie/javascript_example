@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>表格操作</title>
+    <script>
+        window.onload = function(){
+
+            var oTable = document.getElementById("table1");
+
+            /*
+                操作表格的方法：
+                tHead       表格头
+                tBodies     表格内容
+                tToot       表格尾
+                    rows    行
+                    cells   列
+             */
+
+            console.log(oTable.tHead.rows[0].cells.length);
+            console.log(oTable.tBodies[0].rows.length);
+
+            //数据的操作
+            var oBtn = document.getElementById("btn1");
+
+            oBtn.onclick = function(){
+
+                var name = "xx" + Math.random().toFixed(2);
+                var age = (Math.random() * 10).toFixed(0);
+                var sex = "男";
+
+                var oTr = document.createElement("tr");
+                var oNameTd = document.createElement("td");
+                var oAgeTd = document.createElement("td");
+                var oSexTd = document.createElement("td");
+                var oDelTd = document.createElement("td");
+
+                oNameTd.innerHTML = name;
+                oAgeTd.innerHTML = age;
+                oSexTd.innerHTML = sex;
+                oDelTd.innerHTML = '<a href="javascript:;">删除</a>'
+
+                oTr.appendChild(oNameTd);
+                oTr.appendChild(oAgeTd);
+                oTr.appendChild(oSexTd);
+                oTr.appendChild(oDelTd);
+
+                oTable.tBodies[0].appendChild(oTr);
+            }
+
+
+        }
+    </script>
+</head>
+<body>
+    <table id="table1" width="100%" border="1px">
+        <thead>
+            <tr>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>leo</td>
+                <td>男</td>
+                <td><a href="javascript:;">删除</a></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>aaa</td>
+                <td>男</td>
+                <td><a href="javascript:;">删除</a></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>ccc</td>
+                <td>男</td>
+                <td><a href="javascript:;">删除</a></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>ccc</td>
+                <td>男</td>
+                <td><a href="javascript:;">删除</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <input type="button" value="添加一行" id="btn1"/>
+</body>
+</html>

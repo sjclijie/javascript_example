@@ -33,11 +33,19 @@
                 var oAgeTd = document.createElement("td");
                 var oSexTd = document.createElement("td");
                 var oDelTd = document.createElement("td");
+                var oA = document.createElement("a");
 
                 oNameTd.innerHTML = name;
                 oAgeTd.innerHTML = age;
                 oSexTd.innerHTML = sex;
-                oDelTd.innerHTML = '<a href="javascript:;">删除</a>'
+
+                oA.href = "javascript:;";
+                oA.innerHTML = "删除";
+                oA.onclick = function(){
+                    oTable.tBodies[0].removeChild(this.parentNode.parentNode);
+                }
+
+                oDelTd.appendChild(oA);
 
                 oTr.appendChild(oNameTd);
                 oTr.appendChild(oAgeTd);
@@ -46,8 +54,6 @@
 
                 oTable.tBodies[0].appendChild(oTr);
             }
-
-
         }
     </script>
 </head>

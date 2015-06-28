@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>表单操作</title>
+    <script>
+
+        window.onload = function(){
+
+            var oForm = document.getElementById("form1");
+
+            //通过name访问表单元素
+            var oName = oForm.username;
+
+            //onchange事件： 当内容或值发生改变的时候
+            /*
+                不同的控件触发时机不同
+
+                text: 控件失去焦点的时候触发
+             */
+            oName.onchange = function(){
+                console.log(this.value);
+            }
+
+            /**
+                标准浏览器下：在点击的时候触发
+                在ie7和ie6下：在失去焦点的时候触发
+             */
+            var oSex = oForm.sex;
+            for(var i=0; i<oSex.length; i++){
+                oSex[i].onchange = function(){
+                    alert(this.value);
+                }
+            }
+
+            /**
+                标准浏览器下：在点击的时候触发
+                在ie7和ie6下：在失去焦点的时候触发
+             */
+            var oHoby = oForm.hoby;
+            for(var i=0; i<oHoby.length; i++){
+                oHoby[i].onchange = function(){
+                    alert(this.value);
+                }
+            }
+
+            /**
+             * 选择option之后触发
+             */
+            var oCity = oForm.city;
+            oCity.onchange = function(){
+                alert(this.value);
+            }
+
+            var oBtn = oForm.btn;
+            oBtn.onclick = function(){
+                console.log(oSex[0].checked);   //被选中
+            }
+
+            /*
+                onsubmit: 事件   提交表单的时候触发
+
+                submit()  方法    拖动提交表单
+
+                onreset： 事件   表单重置时触发
+                reset()   方法   重置表单
+
+             */
+            oForm.onsubmit = function(){
+                return false;
+            }
+
+            oForm.onreset = function(){
+                return confirm("你确认重置?");
+            }
+
+        }
+
+    </script>
+</head>
+<body>
+    <form action="//" id="form1" method="get">
+        <input type="text" id="text1" name="username" value="内容"/>
+        <input type="radio" name="sex" value="男"/>男
+        <input type="radio" name="sex" value="女"/>女
+
+        <input type="checkbox" name="hoby" value="1"/> 1
+        <input type="checkbox" name="hoby" value="2"/> 2
+        <input type="checkbox" name="hoby" value="3"/> 3
+        <input type="checkbox" name="hoby" value="4"/> 4
+
+        <select name="city">
+            <option value="bj">北京</option>
+            <option value="sh">上海</option>
+            <option value="gz">广州</option>
+        </select>
+
+        <input type="button" name="btn" value="按扭"/>
+
+        <input type="submit" name="submit" value="提交"/>
+        <input type="reset" name="reset" value="重置"/>
+    </form>
+</body>
+</html>

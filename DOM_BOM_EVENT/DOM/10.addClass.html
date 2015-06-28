@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>addClass, removeClass</title>
+    <script type="text/javascript">
+
+        window.onload = function(){
+            var oDiv = document.getElementById("div1");
+
+            addClass(oDiv, "box1");
+
+            removeClass(oDiv, "box");
+
+            function addClass(obj, cls){
+                //如果原来没有className
+                if (obj.className == ''){
+                    obj.className = cls;
+                } else {
+                    var arrClassName = obj.className.split(" ");
+                    var index = arrIndexOf(arrClassName, cls);
+                    if (index == -1){
+                        obj.className += ' ' + cls;                        
+                    }
+                }
+            }
+
+            function removeClass(oDiv, cls){
+
+                if (oDiv.className != ''){
+
+                    var arrClassName = oDiv.className.split(" ");
+                    var index = arrIndexOf(arrClassName, cls);
+
+                    if (index != -1){
+                        arrClassName.splice(index, 1);
+                        oDiv.className = arrClassName.join(" ");
+                    }
+                }
+            }
+
+            function arrIndexOf(arr, v){
+                for(var i=0; i<arr.length; i++){
+                    if (arr[i] == v){
+                        return i;
+                    }
+                }
+                return -1;
+            }
+        };
+    
+    </script>
+</head>
+<body>
+    <div id="div1" class="box"></div>
+</body>
+</html>

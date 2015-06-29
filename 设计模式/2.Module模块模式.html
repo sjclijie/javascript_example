@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        //对象字面量
+        var myObject = {
+
+            variableKey: "hello",
+
+            functionKey: function(){
+
+            }
+            //...
+        };
+
+        //模块模式
+        //提供了一种包含公有/私有变量的方式，只需要返回一个公有的API，其它的一切维持在闭包中
+        var testModule = (function(){
+
+            var counter = 0;
+
+            return {
+                incr: function(){
+                    return ++counter;
+                },
+                reset: function(){
+                    console.log("counter reset...");
+                    counter = 0;
+                }
+            };
+        })();
+
+        console.log(testModule.incr());
+        console.log(testModule.incr());
+        testModule.reset();
+        console.log(testModule.incr());
+
+        //购物车模块
+        var basketModule = (function(){
+
+            var basket = [];
+
+            function doSomething(){
+
+            }
+
+            return {
+
+                addItem: function(values){
+                    basket.push(values);
+                },
+
+                getBasketLength: function(){
+                    return basket.length;
+                },
+
+                getTotal: function(){
+
+                    var itemCount = this.getBasketLength();
+                    var total = 0;
+
+                    while(itemCount--){
+                        total += basket[itemCount].price;
+                    }
+
+                    return total;
+                }
+            };
+        })();
+
+        basketModule.addItem({"name":"aaa","price":0.1});
+        basketModule.addItem({"name":"bbb","price":1.2});
+        basketModule.addItem({"name":"ccc","price":2.1});
+
+        console.log(basketModule.getBasketLength());
+        console.log(basketModule.getTotal());
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

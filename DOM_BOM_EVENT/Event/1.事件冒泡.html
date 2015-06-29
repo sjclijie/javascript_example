@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {padding: 40px;}
+        #div1 {background: red;}
+        #div2 {background: green;}
+        #div3 {background: blue;}
+    </style>
+    <script>
+
+        /**
+         * 事件冒泡与事件捕获
+         *
+         * 事件冒泡：
+         *      由微软提出，事件从最内层的元素开始发生，一直向上传播，直到document对象
+         *
+         * 事件捕获：
+         *      由网景提出，与事件冒泡相反，事件会从最外层开始发生，直到最具体的位置
+         *
+         * W3c:
+         *      事件首先进入捕获阶段，直到目标元素，再进入冒泡阶段
+         *
+         *
+         *
+         * “DOM2级事件”中规定的事件流同时支持了事件捕获和事件冒泡，我们可以选择事件处理函数在哪一个阶段被调用
+         *
+         * addEventListener 方法用来为一个特定的元素绑定一个事件处理函数
+         *
+         * element.addEventListener(event, function,  useCapture); //ie9以上可用
+         *
+         * 第三个参数默认值为false, 表示事件在冒泡阶段调用事件处理函数，如何参数为true,
+         * 则表示在事件捕获阶段调用处理函数。
+         *
+         * IE浏览器：
+         *      element.attach("onclick", function);
+         *      事件从event.srcElement || event.target 开始，直到document
+         *
+         * 事件传播是可以阻止的：
+         *      在w3c中，使用stopPropagation() 方法
+         *      在ie下，使用cancelBubble = true;
+         *      在jquery中：event.stopPropagation();
+         *
+         *  阻止默认行为：
+         *      在w3c中：使用preventDefault();
+         *      在ie下： event.returnValue = false;
+         *      在jquery中： 使用preventDefault();
+         *
+         */
+
+        /*
+        $("span").on("click", function(event){
+            //.....
+            event.stopPropagation();  //阻止事件冒泡
+        });
+
+        $("a").on("click", function(event){
+
+            event.preventDefault(); //阻止事件默认行为
+        })*/
+
+
+        window.onload = function(){
+
+            var oDiv3 = document.getElementById("div3");
+            var oDiv2 = document.getElementById("div2");
+            var oDiv1 = document.getElementById("div1");
+
+            function fn(){
+                console.log(this.id);
+            }
+
+            oDiv1.onclick = fn;
+            oDiv2.onclick = fn;
+            oDiv3.onclick = fn;
+
+
+            var oSpan = document.getElementsByTagName("span")[0];
+
+            oSpan.addEventListener("click", function(event){
+
+                console.log(event.target);
+                //event.stopPropagation();
+                //event.cancelBubble = true;
+
+            }, false);
+
+            var oA = document.getElementsByTagName("a")[0];
+
+            oA.addEventListener("click", function(event){
+
+                event.preventDefault();
+
+            }, false);
+
+        }
+
+    </script>
+</head>
+<body>
+    <div id="div1">
+        <div id="div2">
+            <div id="div3"></div>
+            <span>span</span>
+        </div>
+    </div>
+
+    <a href="http://www.baidu.com">百度一下</a>
+
+</body>
+</html>

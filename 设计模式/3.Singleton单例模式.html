@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>singleton单例模式</title>
+    <script>
+
+        var mySingleton = (function(){
+
+            //保存单例对象
+            var instance;
+
+            function init(){
+                //私有方法和变量
+                var privateVar = "Hello";
+                var privateRandomNumber = Math.random();
+                var privateFunc = function(){
+                    console.log(privateVar);
+                }
+
+                //共有方法和变量
+                return {
+                    publicMethod: function(){
+                        console.log("This is public Method.");
+                        privateFunc();
+                    },
+                    publicProperty: "public Property.",
+                    getRandomNumber: function(){
+                        return privateRandomNumber;
+                    }
+                }
+            }
+
+            return {
+                getInstance: function(){
+                    if (!instance){
+                        instance = init();
+                    }
+                    return instance;
+                }
+            };
+        })();
+
+        var obj1 = mySingleton.getInstance();
+        var obj2 = mySingleton.getInstance();
+
+        console.log(obj1 === obj2);
+
+        console.log(obj1.getRandomNumber());
+        console.log(obj2.getRandomNumber());
+
+
+        //**************************************
+
+
+        var Tester = (function(){
+
+            function Singleton(options){
+
+                options = options || {};
+
+                this.name = "Jaylee";
+
+                this.pointX = options.x || 6;
+
+                this.pointY = options.y || 6;
+            }
+
+            //实例保持者
+            var instance;
+
+            //静态变量
+            var _static = {
+                name: "static",
+                getInstance: function(options){
+                    if (!instance){
+                        instance = new Singleton(options);
+                    }
+
+                    return instance;
+                }
+            };
+
+            return _static;
+
+        })();
+
+
+        var test1 = Tester.getInstance({
+            x: 10,
+            y: 10
+        });
+
+        console.log(test1);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

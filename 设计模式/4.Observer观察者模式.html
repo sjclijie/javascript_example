@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Observer模式</title>
+    <style>
+        
+        body {
+            padding: 100px;
+        }
+        
+        #observerContainer {
+            width: 50%;
+            min-height: 500px;
+            border: 1px solid #cccccc;
+        }
+
+    </style>
+    <script>
+
+        /**
+         * 一个对象维持一系列依赖于它（观察者）的对象，并将有关任何状态的更新自动通知给他们
+         *
+         * Subject (目标)：
+         *      维护一系列的观察者，方便添加或删除观察者
+         *
+         * Observer (观察者)：
+         *      为那些在目标状态发生改变时获得通知的对象提供一个接口
+         *
+         * ConcreteSubject (具体目标)：
+         *      状态改变时，向Observer发出通知
+         *
+         */
+
+        //观察者列表
+        function ObserverList(){
+            this.observerList = [];
+        }
+
+        ObserverList.prototype.Add = function(observer){
+            return this.observerList.push(observer);
+        }
+
+        ObserverList.prototype.Empty = function(){
+            this.observerList = [];
+        }
+
+        ObserverList.prototype.Count = function(){
+            return this.observerList.length;
+        }
+
+        ObserverList.prototype.RemoveIndexAt = function(index){
+            if (index == 0){
+                this.observerList.shift();
+            } else if (index == this.observerList.length -1) {
+                this.observerList.pop();
+            } else {
+                this.observerList.splice(index, 1);
+            }
+        }
+
+        ObserverList.prototype.GetIndexAt = function(index){
+            return this.observerList[index];
+        }
+
+        //目标
+        function Subject(){
+            this.observers = new ObserverList();
+        }
+
+        //事件通知
+        Subject.prototype.Notify = function(context){
+            var observerCount = this.observers.Count();
+            for(var i=0; i<observerCount; i++){
+                this.observers.GetIndexAt(i).Update(context);
+            }
+        }
+
+        //Observer
+        function Observer(){
+            this.Update = function(context){
+                console.log(context);
+            }
+        }
+
+        //扩展函数
+        function extend(obj, extension){
+            for(key in obj){
+                extension[key] = obj[key];
+            }
+        }
+
+        window.onload = function(){
+
+            var addNewObserverBtn = document.getElementById("addNewObserver");
+            var observerContainer = document.getElementById("observerContainer");
+            var subjectObj = document.getElementById("subject");
+            
+            subjectObj.onchange = function () {
+                this.Notify(this.checked);
+            }
+
+            //继承
+            extend(new Subject(), subjectObj);
+
+            addNewObserverBtn.onclick = function () {
+
+                //创建观察者
+                var checkBoxObj = document.createElement("input");
+                checkBoxObj.type = "checkbox";
+
+                extend(new Observer(), checkBoxObj);
+
+                //重新定义行为
+                checkBoxObj.Update = function(value){
+                    this.checked = value;
+                }
+
+                //添加进ObserverList
+                subjectObj.observers.Add(checkBoxObj);
+
+                observerContainer.appendChild(checkBoxObj);
+            }
+        }
+        
+    </script>
+</head>
+<body>
+
+    <button id="addNewObserver">添加一个观察者</button>
+
+    <input type="checkbox" id="subject"/>目标
+
+    <div id="observerContainer"></div>
+</body>
+</html>

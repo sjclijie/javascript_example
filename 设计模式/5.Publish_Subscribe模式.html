@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>发布订阅者模式</title>
+    <script>
+
+        var pubsub = {};
+
+        (function(q){
+
+            var topics = {};
+
+            q.publish = function(topicName, args){
+
+                if (!topics[topicName]){
+                    return false;
+                }
+
+                var subscribers = topics[topicName],
+                        len = subscribers ? subscribers.length : 0;
+
+                for(var i=0; i<len; i++){
+                    subscribers[i].func(topicName, args);
+                }
+
+                return this;
+            };
+
+            q.subscribe = function(topicName, func){
+
+                if (!topics[topicName]){
+                    topics[topicName] = [];
+                }
+
+                topics[topicName].push({
+                    func: func
+                });
+
+                return this;
+            };
+
+            q.unSubscribe = function(topicName){
+                delete topics[topicName];
+
+                return this;
+            }
+
+        })(pubsub);
+
+        window.onload = function(){
+            //订阅消息
+            var sub1 = pubsub.subscribe("inbox/newMessage", function(topics, data){
+                console.log("sub1");
+                console.log(topics);
+                console.log(data);
+
+                var oUl = document.getElementsByTagName("ul")[0];
+
+                var oLi = document.createElement("li");
+
+                oLi.innerHTML = topics + ' == ' + data.toString();
+
+                oUl.appendChild(oLi);
+            });
+
+            var sub2 = pubsub.subscribe("inbox/newMessage", function(topics, data){
+                console.log("sub2");
+                console.log(topics);
+                console.log(data);
+
+                var oUl = document.getElementsByTagName("ul")[0];
+
+                var oLi = document.createElement("li");
+
+                oLi.innerHTML = topics + ' == ' +  data.toString();
+
+                oUl.appendChild(oLi);
+            });
+
+            //发布消息
+            pubsub.publish("inbox/newMessage", ["a","b","c"]);
+            pubsub.publish("inbox/newMessage", {"name":"jaylee","age":22});
+        }
+
+    </script>
+</head>
+<body>
+
+    <ul></ul>
+
+</body>
+</html>

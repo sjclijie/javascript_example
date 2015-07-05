@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>外观模式</title>
+    <script>
+
+        /**
+         * 为更大的代码提供了一个高层次的接口，能够隐藏其底层的真实复杂性。
+         * 可以把它想成是简化API来展示给其它开发人员
+         */
+
+        var addEvent = function(el, event, fn){
+
+            if (window.addEventListener){
+                el.addEventListener(event, fn, false);
+            } else if (window.attachEvent){
+                el.attachEvent("on" + event, fn)
+            } else {
+                el['on' + event] = fn;
+            }
+        }
+
+        var module = (function(){
+
+            var _private = {
+                func1: function(){},
+                func2: function(){},
+                func3: function(){}
+            };
+
+            return {
+                facade: function(){
+                    _private.func1();
+                    _private.func2();
+                    _private.func3();
+                }
+            }
+        })();
+
+        module.facade(); //这里调用facade实际上会触发一系列的私有行为
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

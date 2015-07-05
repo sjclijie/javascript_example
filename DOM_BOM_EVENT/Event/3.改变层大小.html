@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 200px;
+            top: 200px;
+            border: 10px solid #cccccc;
+        }
+    </style>
+    <script>
+
+        window.onload = function(){
+
+            var oDiv = document.getElementById("div1");
+
+            oDiv.onmousedown = function(e){
+
+                var event = e || window.event;
+
+                var oDivWidth = oDiv.offsetWidth;
+                var oDivHeight = oDiv.offsetHeight;
+                var oDivLeft = oDiv.offsetLeft;
+                var oDivTop = oDiv.offsetTop;
+
+                var mouseLeft = event.clientX;
+                var mouseTop = event.clientY;
+
+                var pos = '';
+
+                if (event.clientX > this.offsetLeft + this.offsetWidth - 10){
+                    pos = 'right';
+                }
+
+                if (event.clientX < this.offsetLeft + 10 ){
+                    pos = 'left';
+                }
+
+                if (event.clientY < this.offsetTop + 10){
+                    pos = 'top';
+                }
+
+                if (event.clientY > this.offsetTop + this.offsetHeight - 10 ){
+                    pos = 'bottom';
+                }
+
+                document.onmousemove = function(e){
+
+                    var event = e || window.event;
+
+                    var disX = event.clientX - mouseLeft;
+                    var disY = event.clientY - mouseTop;
+
+                    switch (pos){
+                        case "right":
+                            oDiv.style.width = oDivWidth + disX + 'px';
+                            break;
+                        case "left":
+                            oDiv.style.left = oDivLeft + disX + 'px';
+                            oDiv.style.width = oDivWidth - disX + 'px';
+                            break;
+                        case "top":
+                            oDiv.style.height = oDivHeight - disY + 'px';
+                            oDiv.style.top = oDivTop + disY + 'px';
+                            break;
+                        case "bottom":
+                            oDiv.style.height = oDivHeight + disY + 'px';
+                            break;
+                    }
+
+                    document.onmouseup = function(){
+                        document.onmousemove = document.onmouseup = null;
+                    }
+                }
+            }
+
+        }
+
+    </script>
+</head>
+<body>
+    <div id="div1">
+
+    </div>
+</body>
+</html>

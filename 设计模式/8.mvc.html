@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <title>MVC</title>
+    <script src="../backbone/js/underscore-1.8.2.js"></script>
+    <script src="../backbone/js/backbone-1.1.2.js"></script>
+    <script>
+
+        var Photo = Backbone.Model.extend({
+            defaults: {
+                src:"placeholder.jpg",
+                caption: "A default image",
+                viewed: false
+            },
+
+            initialize: function(){
+                this.set({"src":this.defaults.src});
+            }
+        });
+
+         var PhotoGallery = Backbone.Collection.extend({
+
+             model: Photo,
+
+             viewed : function(){
+                 return this.filter(function(photo){
+                     return photo.get("viewed");
+                 });
+             },
+
+             unViewed: function () {
+                 return this.without.apply(this, this.viewed());
+             }
+         });
+
+
+        var buildPhotoView = function(photoModel, photoController){
+
+            var base = document.createElement("div"),
+                    photoEl = document.createElement("div");
+
+            base.appendChild(photoEl);
+
+            var render = function(){
+                photoEl.innerHTML = _.template("#photoTemplate", {
+                    src:  photoModel.get("src")
+                });
+            }
+
+            
+
+
+
+        }
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

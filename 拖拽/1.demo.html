@@ -25,6 +25,17 @@
     </style>
     <script type="text/javascript">
 
+
+        /**
+         *  选中文字之后拖拽，会产生问题：
+         *      原因：当鼠标按下的时候的如果页面中有文字被选中，则会触发浏览器的默认拖拽文字效果。
+         *      解决：
+         *          标准： 阻止默认行为
+         *          ie：  setCapture（全局捕获）
+         *
+         */
+
+
         window.onload = function(){
 
             var d1 = new Drag("div1");
@@ -42,6 +53,10 @@
             var that = this;
             this.obj.onmousedown = function(ev){
 
+                if (this.obj.setCapture){
+                    this.obj.setCapture();
+                }
+
                 var event = ev || window.event;
 
                 that.fnDown(event);
@@ -55,6 +70,9 @@
                     that.fnUp();
                 }
 
+                /**
+                 * 解决选中文字之后拖拽的问题
+                 */
                 return false;
             }
         }
@@ -72,6 +90,10 @@
         Drag.prototype.fnUp = function(){
             document.onmousemove = null;
             document.onmouseup = null;
+
+            if (this.obj.releaseCapture){
+                this.obj.releaseCapture();
+            }
         }
 
 

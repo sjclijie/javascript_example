@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>html5新的选择器</title>
+    <script>
+        window.onload = function(){
+
+            //id
+            var oDiv = document.querySelector("#Div1");
+            oDiv.style.backgroundColor = "red";
+
+            //class
+            var oDiv2 = document.querySelector(".box");  //只能选择一组的第一个元素
+            oDiv.style.backgroundColor = "blue";
+
+
+            var oDivs = document.querySelectorAll(".box");  //选择全部，数组
+            console.log(oDivs.length);
+
+            var oDivs = document.getElementsByClassName("box");
+            console.log(oDivs.length);
+
+            //获取class列表属性相关
+            var cls = oDiv.classList; //类数组对象
+            cls.add("aaa");
+            cls.remove("class1");
+            cls.toggle("class1");
+            cls.toggle("class1");
+        }
+    </script>
+</head>
+<body>
+    <div id="Div1" class="box class1 class2 class3">div</div>
+    <div class="box">div</div>
+</body>
+</html>

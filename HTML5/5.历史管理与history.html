@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        //触发历史管理 1.页面跳转   2.hash   3.history
+
+        var hashNum = 0;
+
+        var hash = {};
+
+        window.onload = function(){
+
+            var btn = document.getElementById("btn1");
+
+            var oDiv = document.getElementById("div1");
+
+            btn.onclick = function(){
+
+                var num = Math.random() * 10;
+
+                hash[hashNum] = num;
+
+                oDiv.innerHTML = num;
+
+                window.location.hash = hashNum;
+
+                hashNum++;
+            }
+
+
+            window.onhashchange = function(){
+
+                var hashNum = window.location.hash.substring(1);
+
+                var num = hash[hashNum];
+
+                oDiv.innerHTML = num;
+            }
+
+
+
+        }
+
+
+    </script>
+</head>
+<body>
+
+<input type="button" id="btn1" value="生成随机数"/>
+
+<div id="div1"></div>
+
+</body>
+</html>

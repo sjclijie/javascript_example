@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        //触发历史管理 1.页面跳转   2.hash   3.history
+
+        /**
+         *
+         * History Api
+         *
+         * 方法 pushState
+         *
+         * 事件 onpopstate
+         *
+         *
+         *
+         *
+         */
+
+        var hashNum = 0;
+
+        var hash = {};
+
+        window.onload = function(){
+
+            var btn = document.getElementById("btn1");
+
+            var oDiv = document.getElementById("div1");
+
+            var i = 0;
+
+            btn.onclick = function(){
+
+                var randomNum = Math.random();
+
+                history.pushState(randomNum, "", i++);
+
+                oDiv.innerHTML = randomNum;
+            }
+
+
+            window.onpopstate = function(ev){
+
+                console.log(ev);
+
+                oDiv.innerHTML = ev.state;
+            }
+        }
+
+    </script>
+</head>
+<body>
+
+<input type="button" id="btn1" value="生成随机数"/>
+
+<div id="div1"></div>
+
+</body>
+</html>

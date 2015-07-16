@@ -3,18 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <style>
+        body{font-size:84%;}
+        .dustbin{width:100px; height:260px; line-height:1.4; background-color:gray; font-size:36px; font-family:"微软雅黑", "Yahei Mono"; text-align:center; text-shadow:-1px -1px #bbb; float:left;}
+        .dragbox{width:500px; padding-left:20px; float:left;}
+        .draglist{padding:10px; margin-bottom:5px; border:2px dashed #ccc; background-color:#eee; cursor:move;}
+        .draglist:hover{border-color:#cad5eb; background-color:#f0f3f9;}
+        .dragremind{padding-top:2em; clear:both;}
+    </style>
+
+    <script>
+
+        /**
+         * 拖拽元素事件： 事件对象为被拖拽的元素
+         *
+         *      dragstart:  拖拽前触发
+         *      drag        拖拽时连续触发
+         *      dragend     拖拽结束触发
+         *
+         *  目标元素事件  事件对象为目标元素
+         *
+         *      dragenter   进入目标元素触发
+         *      dragover    进入目标后连续触发
+         *      dragleave   离开目标元素触发
+         *      drop        在目标元素上松开鼠标触发   需要给dragover增加阻止默认事件
+         *
+         *
+
+             DataTransfer 对象：退拽对象用来传递的媒介，使用一般为Event.dataTransfer。
+             draggable 属性：就是标签元素要设置draggable=true，否则不会有效果，例如：
+                <div title="拖拽我" draggable="true">列表1</div>
+             ondragstart 事件：当拖拽元素开始被拖拽的时候触发的事件，此事件作用在被拖曳元素上
+             ondragenter 事件：当拖曳元素进入目标元素的时候触发的事件，此事件作用在目标元素上
+             ondragover 事件：拖拽元素在目标元素上移动的时候触发的事件，此事件作用在目标元素上
+             ondrop 事件：被拖拽的元素在目标元素上同时鼠标放开触发的事件，此事件作用在目标元素上
+             ondragend 事件：当拖拽完成后触发的事件，此事件作用在被拖曳元素上
+             Event.preventDefault() 方法：阻止默认的些事件方法等执行。在ondragover中一定要执行preventDefault()，否则ondrop事件不会被触发。另外，如果是从其他应用软件或是文件中拖东西进来，尤其是图片的时候，默认的动作是显示这个图片或是相关信息，并不是真的执行drop。此时需要用用document的ondragover事件把它直接干掉。
+             Event.effectAllowed 属性：就是拖拽的效果。
+
+
+             ev.dataTransfer.effectAllowed = copy | link | none ...
+
+             ev.dataTransfer.setDragImage( oDiv, 0, 0);  //设置拖拽的样式
+
+
+         *
+         */
+
+        var $ = function(selector){
+
+            if (!selector){
+                return [];
+            }
+
+            var arrEle = [];
+
+            if (document.querySelectorAll){
+                arrEle = document.querySelectorAll(selector);
+            } else {
+
+                var oAll = document.getElementsByTagName("div"),
+                        iLen = oAll.length;
+
+                if (iLen){
+
+                    for(var i=0; i<iLen; i++){
+                        if ( /^\./.test(selector) ){
+                            if (oAll[i].className === selector.replace(".", "")){
+                                arrEle.push(oAll[i]);
+                            }
+                        } else if (/^#/.test(selector)){
+                            if (oAll[i].id === selector.replace("#", "")){
+                                arrEle.push(oAll[i]);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return arrEle;
+        }
+
+
+        window.onload = function(){
+
+            var eleDustbin = $(".dustbin"),
+                    eleDrags = $(".draglist"),
+                    eleDrag = null;
+
+            for(var i=0; i<eleDrags.length; i++){
+
+                eleDrags[i].onselectstart = function() {
+                    return false;
+                };
+
+                eleDrags[i].ondragstart = function(ev) {
+                    /*拖拽开始*/
+                    //拖拽效果
+                    ev.dataTransfer.effectAllowed = "move";
+                    ev.dataTransfer.setData("text", ev.target.innerHTML);
+                    ev.dataTransfer.setDragImage(ev.target, 0, 0);
+                    eleDrag = ev.target;
+                    return true;
+                };
+
+                eleDrags[i].ondragend = function(ev){
+                    ev.dataTransfer.clearData("text");
+                    eleDrag = ev.target;
+
+                    return false;
+                }
+            }
+
+            eleDustbin.ondragover = function(ev) {
+                /*拖拽元素在目标元素头上移动的时候*/
+                ev.preventDefault();
+                return true;
+            };
+
+            eleDustbin.ondragenter = function(ev) {
+                /*拖拽元素进入目标元素头上的时候*/
+                this.style.color = "#ffffff";
+                return true;
+            };
+            eleDustbin.ondrop = function(ev) {
+                /*拖拽元素进入目标元素头上，同时鼠标松开的时候*/
+                if (eleDrag) {
+                    eleRemind.innerHTML = '<strong>"' + eleDrag.innerHTML + '"</strong>被扔进了垃圾箱';
+                    eleDrag.parentNode.removeChild(eleDrag);
+                }
+                this.style.color = "#000000";
+                return false;
+            };
+
+        }
+
+
+
+    </script>
+
 </head>
 <body>
 
-<ul>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li> 
-</ul>
-
-    <div id="div1"></div>
+<div class="dustbin"><br />垃<br />圾<br />箱</div>
+<div class="dragbox">
+    <div class="draglist" title="拖拽我" draggable="true">列表1</div>
+    <div class="draglist" title="拖拽我" draggable="true">列表2</div>
+    <div class="draglist" title="拖拽我" draggable="true">列表3</div>
+    <div class="draglist" title="拖拽我" draggable="true">列表4</div>
+    <div class="draglist" title="拖拽我" draggable="true">列表5</div>
+    <div class="draglist" title="拖拽我" draggable="true">列表6</div>
+</div>
+<div class="dragremind"></div>
 
 </body>
 </html>

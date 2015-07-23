@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>checkbox Trickery With Css</title>
+    <style type="text/css">
+        input {
+            position: absolute;
+            left: -999px;
+        }
+
+        label {
+            display: block;
+            position: relative;
+            margin: 20px;
+            border: 1px solid #234;
+            padding: 15px 0 15px 50px;
+            border-radius: 100px;
+            color: #fff;
+            background-color: #6a849a;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            word-wrap: nowrap;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -webkit-transition: background-color .25s, box-shadow .2s;
+               -moz-transition: background-color .25s, box-shadow .2s;
+                -ms-transition: background-color .25s, box-shadow .2s;
+                 -o-transition: background-color .25s, box-shadow .2s;
+                    transition: background-color .25s, box-shadow .2s;
+        }
+
+        label::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 10px;
+            bottom: 10px;
+            left: 10px;
+            width: 22px;
+            border: 3px solid #fff;
+            border-radius: 100px;
+            transition: background-color .2s;
+        }
+
+        label:hover, input:focus + label {
+            box-shadow: 0 0 20px rgba(0, 0, 0, .6);
+        }
+
+        input:checked + label {
+            background-color: #ab567c;
+        }
+
+        input:checked + label::before {
+            background-color: #fff;
+        }
+
+    </style>
+</head>
+<body>
+    <input type="checkbox" id="toggle">
+    <label for="toggle">Toggle Me!</label>
+
+    <input type="checkbox" id="ck1">
+    <label for="ck1">Toggle Me!</label>
+</body>
+</html>

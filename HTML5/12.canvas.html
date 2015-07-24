@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        window.onload = function(){
+
+            var canvas1 = document.querySelector("canvas");
+
+            var ocContext = canvas1.getContext("2d");
+
+            ocContext.fillRect(0,0,50,50);
+
+            var num = 0;
+
+            setInterval(function(){
+                ocContext.clearRect(0,0,500,500);
+                num++;
+                ocContext.fillRect(num,num,50,50);
+            }, 30);
+        }
+
+    </script>
+</head>
+<body>
+    <canvas width="500" height="500" style="border: 1px solid #C6E746;"></canvas>
+</body>
+</html>

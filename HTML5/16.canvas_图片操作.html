@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        canvas {
+            border: 1px solid #C6E746;
+        }
+    </style>
+    <script>
+
+        /*
+            等待图片加载完毕之后，再执行canvas想关方法
+            drawimage(oImg, x, y , w ,h)
+         */
+
+        window.onload = function(){
+
+            var oCanvas = document.querySelector("#canvas1");
+
+            var oc = oCanvas.getContext("2d");
+
+            var oImg = new Image();
+
+            oImg.onload = function(){
+                console.log("图片已加载...");
+                oc.drawImage(oImg, 0, 0, 200, 200);
+            }
+
+            oImg.src = "./images/1.jpg";
+        }
+
+    </script>
+</head>
+<body>
+    <canvas id="canvas1" width="400" height="400"></canvas><br >
+</body>
+</html>

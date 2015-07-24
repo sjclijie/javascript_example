@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        canvas {
+            border: 1px solid #C6E746;
+        }
+    </style>
+    <script>
+
+        /*
+         等待图片加载完毕之后，再执行canvas想关方法
+         drawimage(oImg, x, y , w ,h)
+         */
+
+        window.onload = function(){
+
+            var oImg = document.querySelector("img");
+            var leftBtn = document.querySelector("#left");
+            var rightBtn = document.querySelector("#right");
+
+            var leftCount = 0;
+
+            function draw(imgObj){
+
+                var oCanvas = document.createElement("canvas");
+
+                var oc = oCanvas.getContext("2d");
+
+                oCanvas.width = imgObj.width;
+                oCanvas.height = imgObj.height;
+
+                oImg.parentNode.replaceChild(oCanvas, imgObj);
+
+                oc.drawImage(oImg, 0, 0, oCanvas.width, oCanvas.height);
+
+                leftBtn.onclick = function(){
+                    leftCount++;
+                    if (leftCount==4){
+                        leftCount = 0;
+                    }
+                    toChange();
+                }
+
+                rightBtn.onclick = function () {
+                    leftCount--;
+                    if (leftCount == -1){
+                        leftCount = 3;
+                    }
+                    toChange();
+                }
+
+
+                function toChange(){
+                    switch (leftCount){
+                        case 1:
+                                oCanvas.width = imgObj.height;
+                                oCanvas.height = imgObj.width;
+                                oc.rotate(90*Math.PI/180);
+                                oc.drawImage(imgObj, 0, -imgObj.height);
+                            break;
+                        case 2:
+                                oCanvas.width = imgObj.height;
+                                oCanvas.height = imgObj.width;
+                                oc.rotate(180*Math.PI/180);
+                                oc.drawImage(imgObj, -imgObj.width, -imgObj.height);
+                            break;
+                        case 3:
+                                oCanvas.width = imgObj.height;
+                                oCanvas.height = imgObj.width;
+                                oc.rotate(270*Math.PI/180);
+                                oc.drawImage(imgObj, -imgObj.width, 0);
+                            break;
+                        case 0:
+                                oCanvas.width = imgObj.height;
+                                oCanvas.height = imgObj.width;
+                                oc.rotate(0);
+                                oc.drawImage(imgObj, 0, 0);
+                            break;
+                    }
+                }
+            }
+
+            draw(oImg);
+
+
+        }
+
+    </script>
+</head>
+<body>
+<img src="./images/1.JPG"/><br/>
+<input type="button" id="left" value="<"/>
+<input type="button" id="right" value=">"/>
+</body>
+</html>

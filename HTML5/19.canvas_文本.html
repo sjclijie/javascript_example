@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        canvas {
+            border: 1px solid #C6E746;
+        }
+    </style>
+    <script>
+
+        /*
+
+         strokeText(文字， x, y );   边框
+
+         fillText( 文字， x, y  );  文字填充
+
+         font   文字大小  默认60px impact
+
+         textAlign   默认start, left,   end , right , center
+
+         textBaseline  文字上下位置  alphabetic   top  middle  bottom
+
+         */
+
+        window.onload = function(){
+
+            var oConvas = document.querySelector("#canvas1");
+
+            var oc = oConvas.getContext("2d");
+
+            oc.font = "60px impact";
+
+            oc.textBaseline = "top";
+
+            oc.strokeText("Hello", 0, 0);
+
+            oc.fillText("李杰", 200, 200);
+
+            oc.strokeText("李杰", 80, 200);
+        }
+
+    </script>
+</head>
+<body>
+
+<canvas id="canvas1" width="400" height="400"></canvas>
+</body>
+</html>

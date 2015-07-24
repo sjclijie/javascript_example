@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+
+        #box {
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            background: #008B8B;
+            color: #fff;
+        }
+
+        #result {
+            width: 300px;
+            min-height: 100px;
+            border: 1px solid #cc9966;
+            margin: 20px;
+            display: none;
+        }
+
+        img {
+            width: 300px;
+            margin: 20px;
+        }
+
+    </style>
+
+    <script>
+
+        /*
+        *  FileReader  读取文件信息
+         *
+         *  readAsDataUrl(fs)
+         *      参数为要读取的文件对象，将文件读取为DataUrl
+         *
+         *  onload
+         *      当文件读取成功之后触发此事件
+         *      this.result   获取读取的文件数据
+        */
+
+        window.onload = function(){
+
+
+            var oDiv = document.querySelector("#box");
+            var oResult = document.querySelector("#result");
+
+            oDiv.ondragenter = function(event){
+
+                console.log(event);
+
+                oResult.style.display = "none";
+
+                this.innerHTML = "可以释放鼠标啦...";
+
+                //event.preventDefault();
+            }
+
+            oDiv.ondragover = function(event){
+                //console.log(event);
+                event.preventDefault();
+            }
+
+            oDiv.ondragleave = function(event){
+                console.log(event);
+                this.innerHTML = "将文件拖放到此区域";
+                event.preventDefault();
+            }
+
+            oDiv.ondrop = function(event){
+
+                var fs = event.dataTransfer.files;
+
+                var fd = new FileReader();
+
+                var typeArr = fs[0]['type'].split("/");
+
+                console.log(typeArr[0]);
+
+                switch (typeArr[0]){
+                    case 'text':
+                        fd.readAsText(fs[0]);
+                        fd.onload = function () {
+                            oResult.style.display = "block";
+                            oResult.innerHTML = this.result;
+                        }
+                        break;
+                    case "image":
+                        fd.readAsDataURL(fs[0]);
+                        fd.onload = function () {
+                            if (document.querySelector("img")){
+                                document.body.removeChild(document.querySelector("img"));
+                            }
+                            var oImg = document.createElement("img");
+                            oImg.src = this.result;
+                            document.body.appendChild(oImg);
+                        }
+                        break;
+                }
+
+                console.log(fs);
+
+                this.innerHTML = "将文件拖放到此区域";
+                event.preventDefault();
+            }
+
+        }
+
+    </script>
+
+
+</head>
+<body>
+        <div id="box">
+            将文件拖放到此区域
+        </div>
+
+        <div id="result">
+
+        </div>
+</body>
+</html>

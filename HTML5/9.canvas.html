@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+    <style>
+        canvas {
+            border: 1px solid #C6E746;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+
+            var oc = document.getElementById("c1");
+
+            var ocContext = oc.getContext("2d");   //目前只支持2d wegGL支持3d
+
+            //不带边框
+            ocContext.fillStyle = "red";
+            ocContext.strokeStyle = "green";
+            ocContext.lineWidth = 2;
+            ocContext.lineJoin = "round";
+            ocContext.fillRect(50, 50, 200, 100);   //left, top, width, height
+            //带边框的
+            ocContext.strokeRect(50.5, 50.5, 200, 100);   //left, top, width, height
+
+            //设置绘图
+            // fillstyle 填充颜色
+            // lineWidth 线的粗细
+            // strokestyle 边框的颜色
+
+            //边界的绘制
+            // lineJoin  round 图角 bevel 斜角  miter默认
+            // lineCap: 端点样式  butt 默认  round 圆角 square 高度多出一半宽的值
+
+            //绘制路径
+            // beginPath 开始
+            // closePath 结束
+            // moveTo  移动到新目标点
+            // lineTo 新目标点
+            // stroke 画一条线
+
+            ocContext.save();
+
+            ocContext.fillStyle = 'green';
+            ocContext.beginPath();
+            ocContext.moveTo(100, 200);
+            ocContext.lineTo(200, 300);
+            ocContext.lineTo(100, 300);
+            ocContext.closePath();
+            //ocContext.stroke();   //画一条线
+            ocContext.fill();
+
+            ocContext.restore();
+
+
+            //rect画一个矩形
+            ocContext.beginPath();
+            //ocContext.fillStyle = 'yellow';
+            ocContext.rect(100, 400, 100, 100);
+            ocContext.closePath();
+            ocContext.fill();
+
+            //clearRect 删除一个矩形区域
+            //ocContext.clearRect(0, 0, 400,400);  //top, left, width, height
+
+            //save 保存路径
+        }
+    </script>
+</head>
+<body>
+    <!--默认高150 宽300-->
+    <canvas id="c1" width="400" height="800">
+        您的浏览器不支持canvas
+    </canvas>
+</body>
+</html>

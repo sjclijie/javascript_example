@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+
+        #canvas1 {
+            border: 1px solid #C6E746;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+
+            var oc1 = document.querySelector("#canvas1");
+            var clearBtn = document.querySelector("#clearBtn");
+
+            var oc1Context = oc1.getContext("2d");
+
+            oc1.onmousedown = function(event){
+                oc1Context.beginPath();
+                var event = event || window.event;
+                oc1Context.moveTo(event.clientX - oc1.offsetLeft, event.clientY - oc1.offsetTop);
+
+                document.onmousemove = function (event) {
+                    var event = event || window.event;
+                    oc1Context.lineTo(event.clientX - oc1.offsetLeft, event.clientY - oc1.offsetTop);
+                    oc1Context.stroke();
+                }
+                
+                document.onmouseup = function () {
+                    oc1Context.closePath();
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                }
+            }
+
+            clearBtn.onclick = function(){
+                oc1Context.clearRect(0, 0, 400, 800);
+            }
+        }
+    </script>
+</head>
+<body>
+    <canvas id="canvas1" width="400" height="800">
+    </canvas>
+    <input type="button" value="清除" id="clearBtn"/>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #canvas_id {
+            border: 1px solid #C6E746;
+        }
+    </style>
+    <script>
+
+        window.onload = function(){
+
+            var oCanvas = document.querySelector("#canvas_id");
+
+            var oc = oCanvas.getContext("2d");
+
+
+            /*
+            oc.rotate(45*Math.PI / 180);   //旋转
+            oc.scale(0.5, 0.5);         //缩放
+            oc.fillRect(50, 50, 100, 100);
+            */
+
+            var num = 0;
+
+            var num2 = 0;
+
+            var num3 = 1;
+
+            setInterval(function(){
+                num++;
+                oc.save();
+                oc.clearRect(0,0, oCanvas.width, oCanvas.height);
+                oc.translate(200, 200);        //改变中心点
+                if (num2 == 100){
+                    num3 = -1;
+                }else if (num2 == 0){
+                    num3 = 1;
+                }
+                num2 += num3;
+                oc.scale(num2*1/50, num2*1/50);
+                oc.rotate(num*Math.PI / 180);
+                oc.translate(-50, -50);        //改变中心点
+                oc.fillRect(0, 0, 100, 100);
+                oc.restore();
+            }, 30);
+        }
+
+    </script>
+</head>
+<body>
+    <canvas id="canvas_id" width="400" height="400"></canvas>
+</body>
+</html>

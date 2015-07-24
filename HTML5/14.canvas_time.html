@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #canvas {
+            border: 1px solid #C6E746;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+
+            var oCanvas = document.querySelector("#canvas");
+
+            var oc = oCanvas.getContext("2d");
+
+            function toDraw(){
+
+                oc.clearRect(0,0,oc.width, oc.height);
+
+                var x = 200;
+                var y = 200;
+                var r = 150;
+
+                var oData = new Date();
+                var oHours = oData.getHours();
+                var oMin = oData.getMinutes();
+                var oSen = oData.getSeconds();
+
+                var oHoursValue = (-90 + oHours * 30  + oMin / 2  ) *Math.PI / 180;
+                var oMinValue = (-90 + oMin * 6) * Math.PI / 180;
+                var oSenValue = (-90 + oSen * 6) * Math.PI / 180;
+
+                oc.moveTo(x, y);
+                var startRadius = 0;
+                while(startRadius < 360){
+
+                    startRadius += 6;
+
+                    var angle =  getAngle(startRadius);
+
+                    oc.arc(x,y,r,0, angle, false);
+
+                    oc.lineTo(x, y);
+                }
+                oc.closePath();
+                oc.stroke();
+
+                oc.fillStyle = 'white';
+                oc.beginPath();
+                oc.moveTo(x,y);
+                oc.arc(x,y, r * 19 / 20 , 0, 360*Math.PI / 180);
+                oc.fill();
+
+
+                oc.beginPath();
+                oc.lineWidth = 2;
+                oc.moveTo(x,y);
+                var startRadius = 0;
+                while(startRadius < 360){
+                    startRadius += 30;
+                    var angle = getAngle(startRadius);
+                    oc.arc(x, y, r, 0, angle);
+                    oc.lineTo(x,y);
+                }
+                oc.closePath();
+                oc.stroke();
+
+                oc.beginPath();
+                oc.fillStyle = "white";
+                oc.moveTo(x, y);
+                oc.arc(x,y, r * 18 / 20 , 0, 360*Math.PI / 180);
+                oc.fill();
+                oc.closePath();
+
+                //*********************************************
+                oc.beginPath();
+                oc.lineWidth = 5;
+                oc.moveTo(x,y);
+                oc.arc(x, y, r * 10 / 20, oHoursValue, oHoursValue);
+                oc.closePath();
+                oc.stroke();
+
+                oc.beginPath();
+                oc.lineWidth = 4;
+                oc.moveTo(x,y);
+                oc.arc(x, y, r * 14 / 20, oMinValue, oMinValue);
+                oc.closePath();
+                oc.stroke();
+
+                oc.beginPath();
+                oc.lineWidth = 3;
+                oc.moveTo(x,y);
+                oc.arc(x, y, r * 17 / 20, oSenValue, oSenValue);
+                oc.closePath();
+                oc.stroke();
+            }
+
+
+            function getAngle(radiu){
+                return radiu*Math.PI / 180;
+            }
+
+            setInterval(function(){
+                toDraw();
+            }, 1000);
+        }
+    </script>
+</head>
+<body>
+<canvas id="canvas" width="400" height="400"></canvas>
+</body>
+</html>

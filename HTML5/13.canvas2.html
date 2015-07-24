@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #canvas {
+            border: 1px solid #C6E746;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+
+            var oCanvas = document.querySelector("#canvas");
+
+            var oc = oCanvas.getContext("2d");
+
+            //绘制圆形
+            //arc( x, y, 半径, 起始弧度，结束弧度, 旋转方向)
+            //弧度计算方法： 角度*Math.PI / 180;   0角度为3点钟方向
+            //旋转方向 ： false 顺时针  true: 逆时针
+
+            oc.beginPath();
+
+            var angle = 90 * Math.PI / 180;
+            oc.moveTo(200, 200);
+            oc.arc(200,200,150, 0, angle, false);
+            oc.closePath();
+            oc.stroke();
+
+
+        }
+    </script>
+</head>
+<body>
+    <canvas id="canvas" width="400" height="400">
+
+    </canvas>
+</body>
+</html>

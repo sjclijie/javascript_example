@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        canvas {
+            border: 1px solid #C6E746;
+        }
+    </style>
+    <script>
+
+        /*
+            createPattern(oImg, 平铺方式)
+            repeat, repeat-x , repeat-y , no-repeat
+         */
+
+        window.onload = function(){
+
+            var oImg = new Image();
+
+            oImg.onload = function(){
+                console.log("图片已加载");
+
+                var oConvas = document.querySelector("#canvas1");
+
+                var oc = oConvas.getContext("2d");
+
+                var bg = oc.createPattern(oImg, "repeat");
+                oc.fillStyle = bg;
+                oc.fillRect(0,0,400,400);
+
+
+                var linearBg = oc.createLinearGradient(0,0, 200, 200);  //第一个点的坐标，第二个点的坐标
+                linearBg.addColorStop(0,"red");
+                linearBg.addColorStop(1, "blue");
+                oc.fillStyle = linearBg;
+                oc.fillRect(0,0,200,200);
+
+                var radialBg = oc.createRadialGradient(350,350, 50, 350, 350,10);
+                radialBg.addColorStop(0, "red");
+                radialBg.addColorStop(0.5, "yellow");
+                radialBg.addColorStop(1, "blue");
+                oc.fillStyle = radialBg;
+                oc.fillRect(300, 300, 400, 400);
+            }
+
+            oImg.src = "./images/1.jpg";
+        }
+
+    </script>
+</head>
+<body>
+
+    <canvas id="canvas1" width="400" height="400"></canvas>
+
+</body>
+</html>

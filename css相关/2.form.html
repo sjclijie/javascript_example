@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>form</title>
+    <style type="text/css">
+        .container {
+            max-width: 500px;
+            min-width: 500px;
+            #background-color: rgba(0,0,0, 0.6);
+            background: linear-gradient(40deg, transparent 40%, #9ab593);
+            background: linear-gradient(-40deg, #ba7461 20%, #593e4e 90%);
+            color: #fff;
+            margin: 0 auto;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 10px 10px 10px #593e4e;
+        }
+
+        .container h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            padding-bottom: 10px;
+            font-weight: normal;
+            line-height: 150%;
+            border-bottom: 1px solid #fff;
+        }
+
+        .container section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .container .top_label {
+            margin: 10px 0;
+            display: block;
+            text-align: left;
+        }
+
+        input[type="email"],textarea {
+            display: block;
+            width: 98%;
+            padding: 5px;
+            border: none;
+            color: #593e4e;
+            background-color: #fff;
+            font-size: inherit;
+            appearance:none;
+        }
+
+        input[type="email"]:focus, textarea:focus, button:focus {
+            outline: 2px solid #9ab593;
+        }
+
+        textarea {
+            height: 100px;
+        }
+        
+        input[type="checkbox"], input[type="radio"] {
+            position: absolute;
+            left: -999px;
+        }
+
+        .side-label {
+            text-align: left;
+            display: block;
+            height: 25px;
+            line-height: 25px;
+            margin: 10px 0;
+            padding-left: 30px;
+            cursor: pointer;
+            position: relative;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .side-label::before , .side-label::after {
+            display: block;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            -webkit-transition: all 0.2s;
+            -moz-transition: all 0.2s;
+            -ms-transition: all 0.2s;
+            -o-transition: all 0.2s;
+            transition: all 0.2s;
+        }
+
+        .side-label::before {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #fff;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -box-sizing: border-box;
+        }
+
+        .side-label::after {
+            width: 12px;
+            height: 12px;
+            margin: 4px;
+        }
+
+        input[type="radio"] + .side-label::before ,
+        input[type="radio"] + .side-label::after {
+            border-radius: 50%;
+        }
+
+        input:focus + .side-label::before {
+            border-color: #9ab593;
+        }
+
+        input:checked + .side-label::after {
+            background: #9ab593;
+        }
+
+        .how-other-disclosure {
+            display: none;
+            margin: 10px 0 0 35px;
+        }
+
+        #how-other:checked ~ .how-other-disclosure {
+            display: block;
+        }
+
+        .blocked {
+            margin: 40px auto 10px;
+        }
+
+        button {
+            display: none;
+            appearance: none;
+            margin: 20px auto 0;
+            padding: 5px 40px;
+            border: 2px solid #fff;
+            color: rgba(0, 0, 0, .8);
+            background-color: #9ab593;
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #permitted:checked ~ .blocked {
+            display: none;
+        }
+
+        #permitted:checked ~ button {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <span>Subscribe to</span><br>
+            Celery Facts Weekly!
+        </h1>
+
+        <section>
+            <label for="email_id" class="top_label">Email</label>
+            <input type="email" id="email_id" autocomplete="off">
+        </section>
+
+        <section>
+            <label class="top_label">How did you hear about us?</label>
+
+            <input type="radio" name="how" id="how-friend">
+            <label for="how-friend" class="side-label">From a friend</label>
+
+            <input type="radio" name="how" id="how-internet">
+            <label for="how-internet" class="side-label">Somewhere on the internet</label>
+
+            <input type="radio" name="how" id="how-other">
+            <label for="how-other" class="side-label">Other...</label>
+
+            <div class="how-other-disclosure">
+                <label for="how-other-explain" class="top_label">Please explain</label>
+                <textarea id="how-other-explain"></textarea>
+            </div>
+        </section>
+
+        <section>
+            <input type="checkbox" id="permitted"/>
+            <label for="permitted" class="side-label">I am legally permitted to submit forms</label>
+            <div class="blocked">(you have to check the checkbox to continue)</div>
+            <button>Submit</button>
+        </section>
+    </div>
+</body>
+</html>

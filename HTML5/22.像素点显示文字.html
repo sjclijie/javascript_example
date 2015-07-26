@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        canvas {
+            border: 1px solid #C6E746;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            display: inline-block;
+            padding: 20px;
+            margin-left: 10px;
+            border: 1px solid #c0c0c0;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+    </style>
+    <script>
+
+        window.onload = function(){
+
+            var oConvas = document.querySelector("#canvas1");
+
+            var oUl = document.querySelector("ul");
+
+            var oLi = oUl.querySelectorAll("li");
+
+            var oc = oConvas.getContext("2d");
+
+            for(var i = 0; i<oLi.length; i++){
+                oLi[i].onclick = function(){
+
+                    var timer = null;
+                    var iNow = 0;
+
+                    var str = this.innerHTML;
+
+                    oc.clearRect(0,0,oConvas.width, oConvas.height);
+
+                    var h = 180;
+                    oc.font = h + "px impact";
+                    oc.fillStyle = "red";
+                    oc.textBaseline = "top";
+                    var w = oc.measureText(str).width;
+                    oc.fillText(str,(oConvas.width - w) / 2, (oConvas.height - h) / 2);
+
+                    var imageData = oc.getImageData((oConvas.width - w) / 2, (oConvas.height - h) / 2, w, h);
+
+                    oc.clearRect(0,0,oConvas.width, oConvas.height);
+
+                    var arr = randomArr(w*h, w*h / 10);
+
+                    var newImageData = oc.createImageData(w, h);
+
+                    timer = setInterval( function(){
+
+                        for(var i=0; i<arr[iNow].length; i++){
+                            newImageData.data[4*arr[iNow][i]] = imageData.data[4*arr[iNow][i]];
+                            newImageData.data[4*arr[iNow][i]+1] = imageData.data[4*arr[iNow][i]+1];
+                            newImageData.data[4*arr[iNow][i]+2] = imageData.data[4*arr[iNow][i]+2];
+                            newImageData.data[4*arr[iNow][i]+3] = imageData.data[4*arr[iNow][i]+3];
+                        }
+
+                        oc.putImageData(newImageData, (oConvas.width - w) / 2, (oConvas.height - h) / 2);
+
+                        iNow++;
+
+                        if (iNow >= 10){
+                            clearInterval(timer);
+                        }
+
+                    }, 60);
+                }
+            }
+
+            function randomArr(iAll, iNum){
+
+                var arr = [];
+                var newArr = [];
+
+                for(var i=0; i<iAll; i++){
+                    arr.push(i);
+                }
+
+                for(var j=0; j<10; j++){
+
+                    var newA = [];
+
+                    for(var i=0; i<iNum; i++){
+                        newA.push( arr.splice(Math.floor(Math.random() * arr.length), 1) );
+                    }
+
+                    newArr.push(newA);
+                }
+
+                return newArr;
+            }
+        }
+
+    </script>
+</head>
+<body>
+
+<canvas id="canvas1" width="500" height="400"></canvas>
+
+<ul>
+    <li>美</li>
+    <li>丽</li>
+    <li>说</li>
+    <li>h</li>
+    <li>i</li>
+    <li>g</li>
+    <li>o</li>
+</ul>
+</body>
+</html>

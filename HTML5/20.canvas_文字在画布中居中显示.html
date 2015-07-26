@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        canvas {
+            border: 1px solid #C6E746;
+        }
+    </style>
+    <script>
+
+        /*
+         * measureText(str);  获取文字宽度
+         *
+         *
+         */
+
+        window.onload = function(){
+
+            var oConvas = document.querySelector("#canvas1");
+
+            var oc = oConvas.getContext("2d");
+
+            var str = "hello world";
+
+            oc.font = "60px impact";
+
+            oc.textBaseline = "top";
+
+            oc.shadowOffsetX = 10;
+            oc.shadowOffsetY = 10;
+            oc.shadowColor = "#ccc";
+            oc.shadowBlur = 8;
+
+            var w = oc.measureText(str);
+
+            oc.fillText(str, (oConvas.width - w.width) / 2, (oConvas.height - 60) / 2);
+        }
+
+    </script>
+</head>
+<body>
+
+<canvas id="canvas1" width="500" height="400"></canvas>
+</body>
+</html>

@@ -27,27 +27,24 @@
 
                 var newImageData = oc.createImageData(oImg.width, oImg.height);
 
-                for(var i=0; i<oImg.width; i++){
-                    for(var j=0; j<oImg.height; j++){
-                        var ret = [];
-                        var data = getXY(imageData, i, j);
-                        ret[0] = data[0];
-                        ret[1] = data[1];
-                        ret[2] = data[2];
-                        ret[3] = 255 * j / oImg.height;         //渐变
-                        setXY(newImageData, oImg.width - i, j, ret);
+                var size = 20;
+
+                for (var i=0; i<oImg.width / size; i++){
+
+                    for(var j = 0; j<oImg.height / size; j++){
+
+                        //随机获取颜色值
+                        var data = getXY(imageData, Math.floor( i * size + Math.random() * size ), Math.floor( j * size + Math.random() * size ));
+
+                        for(var a = 0; a < size; a++){
+                            for(var b=0; b < size; b++){
+                                setXY(newImageData, i*size+a, j*size+b, data);
+                            }
+                        }
                     }
                 }
 
                 oc.putImageData(newImageData, oImg.width, 0);
-
-                /*
-                 var data = getXY(imageData, 4,4);
-
-                 for(var i=0; i < imageData.width; i++){
-                 setXY(imageData, i, 5, [255,0,0,255]);
-                 }
-                 */
             }
 
             oImg.src = "./images/1.jpg";

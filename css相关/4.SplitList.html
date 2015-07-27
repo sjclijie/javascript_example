@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+
+        @import url(http://fonts.googleapis.com/css?family=Roboto:500,700);
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            min-height: 100%;
+        }
+
+        body {
+            background: linear-gradient(#d0b782, #a0cecf);
+            margin: 20px;
+            color: #435757;
+            font: 500 1.2em/1.2 'Roboto', sans-serif;
+        }
+
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, .2);
+            box-shadow: 0 0 10px #eee;
+            border-top: 5px solid #435757;
+        }
+
+        h1 {
+            margin: 0;
+            padding: 10px;
+            text-align: center;
+            background-color: rgba(255,255,255,.4);
+        }
+
+        .items {
+            font-size: 16px;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            counter-reset: done-items undone-items;
+        }
+
+        h2 {
+            position: relative;
+            margin: 5px 0;
+            padding: 10px 0;
+            font-size: 20px;
+        }
+
+        h2::before {
+            content: '';
+            display: block;
+            position: absolute;
+            background-color: #435757;
+            top: 10px;
+            bottom: 10px;
+            left: -20px;
+            width: 10px;
+            height: 20px;
+        }
+
+        input {
+            position: relative;
+            left: -9999px;
+        }
+
+        label {
+            display: block;
+            height: 24px;
+            line-height: 24px;
+            position: relative;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        label::before, label::after {
+            content: '';
+            display: block;
+            position: absolute;
+            border-radius: 50%;
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+
+        label::before {
+            top: 4px;
+            left: -20px;
+            width: 15px;
+            height: 15px;
+            border: 2px solid #5c5d5e;
+        }
+
+        label::after {
+            top: 8px;
+            left: -16px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+        }
+
+        input:checked + label::before {
+            border-color: #36628d;
+        }
+
+        input:checked + label::after {
+            background: #36628d;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Summer To-Do List</h1>
+
+    <div class="items">
+
+        <input id="item1" type="checkbox"/>
+        <label for="item1">Create a to-do list</label>
+
+        <input id="item2" type="checkbox"/>
+        <label for="item2">Take down Christmas tree</label>
+
+        <input id="item3" type="checkbox"/>
+        <label for="item3">Learn Ember.js</label>
+
+        <input id="item4" type="checkbox"/>
+        <label for="item4">Binge watch every episode of MacGyver</label>
+
+        <input id="item5" type="checkbox"/>
+        <label for="item5">Alphabetize everything in the fridge</label>
+
+        <input id="item6" type="checkbox"/>
+        <label for="item6">Do 10 pull-ups without dropping</label>
+
+        <h2 class="done" aria-hidden="true">Done</h2>
+        <h2 class="undone" aria-hidden="true">Not Done</h2>
+    </div>
+
+</div>
+
+</body>
+</html>

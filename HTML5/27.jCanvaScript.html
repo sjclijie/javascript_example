@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        canvas {
+            border: 1px solid #C6E746;
+        }
+
+    </style>
+    <script src="./jCanvaScript.1.5.18.js"></script>
+    <script>
+
+        window.onload = function(){
+
+            var btn1 = document.getElementById("btn1");
+
+            jc.start("canvas1", true);  //第二个参数表示重绘
+
+            jc.rect(100, 100, 100, 100 , "#ccc", false).rotate(30, "center").draggable();
+            jc.rect(130, 100, 100, 100 , "#ddd", false).rotate(30, "center").draggable();
+            jc.rect(160, 100, 100, 100 , "#aaa", false).rotate(30, "center").draggable().id("r1");
+            jc.rect(190, 100, 100, 100 , "#555", false).rotate(30, "center").click(function(){
+                alert(1);
+            });
+
+            jc.start("canvas1");
+
+            btn1.onclick = function(){
+                jc("#r1").color("#DE6664").animate({
+                    x: 300,
+                    y: 200,
+                    radius: 10
+                }, 2000);
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+
+<input type="button" id="btn1" value="改变"/>
+
+<canvas id="canvas1" width="400" height="400"></canvas>
+
+</body>
+</html>

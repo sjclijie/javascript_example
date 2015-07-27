@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        canvas {
+            border: 1px solid #C6E746;
+        }
+
+    </style>
+    <script>
+
+        window.onload = function(){
+
+            var obj = document.querySelector("#canvas1");
+
+            var ctx = obj.getContext("2d");
+
+            ctx.fillRect(50,50, 100, 100);
+
+            ctx.fillStyle = "red";
+            ctx.globalAlpha = 0.5;   //指定透明度
+
+            /*
+            *  source-over
+            *  destination-over
+            *  source-atop
+            *  destination-atop
+            *  source-in
+            *  destination-in
+            *  source-out
+            *  destination-out
+            *  lighter
+            *  copy
+            *  xor
+            */
+            ctx.globalCompositeOperation = "source-over";
+
+            ctx.fillRect(120, 120, 100, 100);
+
+            console.log(obj.toDataURL());   //将画布到处为图像
+
+
+            ctx.beginPath();
+            ctx.arc(300, 300, 50, 0, 360 *Math.PI / 180, false);
+            ctx.closePath();
+            ctx.fill();
+
+            obj.onmousedown = function(event){
+                var event = event || window.event;
+                var x  = event.clientX - obj.offsetLeft;
+                var y = event.clientY - obj.offsetTop;
+
+                console.log(x, y);
+
+                console.log(ctx.isPointInPath(x, y));
+            }
+
+            var oImg = new Image();
+            oImg.src = obj.toDataURL();
+
+            document.body.appendChild(oImg);
+
+            //jCanvaScript
+        }
+
+    </script>
+</head>
+<body>
+
+<canvas id="canvas1" width="400" height="400"></canvas>
+
+</body>
+</html>

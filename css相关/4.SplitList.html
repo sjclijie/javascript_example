@@ -38,46 +38,30 @@
         }
 
         .items {
-            font-size: 16px;
             display: flex;
             flex-direction: column;
-            padding: 20px;
+            padding: 25px 10px;
             counter-reset: done-items undone-items;
         }
 
-        h2 {
-            position: relative;
-            margin: 5px 0;
-            padding: 10px 0;
-            font-size: 20px;
-        }
-
-        h2::before {
-            content: '';
-            display: block;
-            position: absolute;
-            background-color: #435757;
-            top: 10px;
-            bottom: 10px;
-            left: -20px;
-            width: 10px;
-            height: 20px;
-        }
-
         input {
-            position: relative;
-            left: -9999px;
+            position: absolute;
+            visibility: hidden;
+            counter-increment: undone-items;
+            order: 4;
         }
 
         label {
+            order: 4;
+            font-size: 16px;
             display: block;
-            height: 24px;
-            line-height: 24px;
+            -border: 1px dashed #fff;
+            border-top: 1px dashed #fff;
+            padding: 10px 0 10px 30px;
             position: relative;
             cursor: pointer;
             -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
+            animation: undone .5s;
         }
 
         label::before, label::after {
@@ -89,19 +73,33 @@
         }
 
         label::before {
-            top: 4px;
-            left: -20px;
+            top: 12px;
+            left: 8px;
             width: 15px;
             height: 15px;
             border: 2px solid #5c5d5e;
         }
 
         label::after {
-            top: 8px;
-            left: -16px;
+            top: 16px;
+            left: 12px;
             width: 7px;
             height: 7px;
             border-radius: 50%;
+        }
+
+        label:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        input:checked {
+            order: 2;
+            counter-increment: done-items;
+        }
+
+        input:checked + label {
+            order: 2;
+            animation: done .5s;
         }
 
         input:checked + label::before {
@@ -110,6 +108,88 @@
 
         input:checked + label::after {
             background: #36628d;
+        }
+
+        h2 {
+            margin: 0;
+            padding: 10px 7px;
+            font-size: 20px;
+        }
+
+        .done {
+            order: 1;
+        }
+
+        .undone {
+            order: 3;
+        }
+
+        .done, .undone {
+            position: relative;
+        }
+
+        h2::before {
+            content: '';
+            display: block;
+            position: absolute;
+            background-color: #435757;
+            top: 5px;
+            left: -12px;
+            width: 5px;
+            height: 30px;
+        }
+
+        .done::after, .undone::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 10px;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        .done::after {
+            content: '(' counter(done-items) ')';
+        }
+
+        .undone::after {
+            content: '(' counter(undone-items) ')';
+        }
+
+        @keyframes done {
+            0% {
+                opacity: 0;
+                background-color: rgba(255,255,255, .8);
+                transform: translateY(40px);
+            }
+
+            50% {
+                opacity: 0.5;
+                background-color: rgba(255, 255, 255, .4);
+            }
+
+            100% {
+                opacity: 1;
+                background-color: rgba(255, 255, 255, .2);
+            }
+        }
+
+        @keyframes undone {
+            0% {
+                opacity: 0;
+                background-color: rgba(255, 255, 255, .4);
+                transform: translateY(-20px);
+            }
+
+            50% {
+                opacity: 0.5;
+                background-color: rgba(255, 255, 255, .4);
+            }
+
+            100% {
+                opacity: 1;
+                background-color: rgba(255, 255, 255, .4);
+            }
         }
 
     </style>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+
+        @import url(http://fonts.googleapis.com/css?family=Roboto:500,700);
+
+        *, *::before, *::after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        body {
+            font: 16px 'Oswald', sans-serif;
+            -background: linear-gradient(#a0cecf, #9B3422);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .container {
+            width: 700px;
+            margin: 0 auto;
+            border: 1px solid #c0c0c0;
+            box-shadow: 0 0 10px #fff;
+            padding: 20px 5px;
+        }
+
+        h1 {
+            padding: 10px;
+            font-size: 45px;
+            text-align: center;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px #000;
+        }
+
+        .marvel {
+            color: #c00;
+        }
+
+        input {
+            position: absolute;
+            visibility: hidden;
+        }
+
+        header {
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            font-size: 0;
+        }
+
+        label {
+            display: inline-block;
+            font-size: 18px;
+            white-space: nowrap;
+            padding: 0 10px 0 30px;
+            margin: 0 15px;
+            position: relative;
+            cursor: pointer;
+            border-radius: 4px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        label::before, label::after {
+            content: '';
+            position: absolute;
+            display: block;
+        }
+
+        label::before {
+            top: 4px;
+            left: 5px;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #435757;
+        }
+
+        label::after {
+            top: 9px;
+            left: 10px;
+            width: 10px;
+            height: 10px;
+        }
+
+        input:checked + label {
+            background: rgba(255,255,255,0.2);
+            box-shadow: inset 0 0 10px #f0f3f9;
+        }
+
+        input:checked + label::after {
+            background: #323A41;
+        }
+
+        .characters {
+            padding-bottom: 10px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        li {
+            float: left;
+            width: 150px;
+            margin-left: 17px;
+            margin-top: 30px;
+            text-align: center;
+            box-shadow: 2px 2px 10px #ccc;
+            border-radius: 5px;
+            transition: all .2s;
+        }
+
+        li:hover {
+            box-shadow:  0 0 20px #aaa;
+        }
+
+        li img {
+            width: 70%;
+            border-radius: 50%;
+            box-shadow:  0 0 5px #fff;
+        }
+
+
+        li h2 {
+            color: #666;
+            text-align: center;
+            margin: 10px 10%;
+            font-size: 20px;
+            padding: 5px 0;
+            width: 80%;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <h1><span class="marvel">Marvel</span> Mutant Teams</h1>
+
+        <header>
+            <input type="radio" name="team" id="original" checked="checked"/>
+            <label for="original">Original X-Men</label>
+
+            <input type="radio" name="team" id="force"/>
+            <label for="force">X-Force</label>
+
+            <input type="radio" name="team" id="factor"/>
+            <label for="factor">X-Factor</label>
+
+            <input type="radio" name="team" id="hellfire"/>
+            <label for="hellfire">Hellfire Club</label>
+        </header>
+
+
+
+        <ul class="characters">
+            <li id="angel" data-teams="original force factor hellfire">
+                <h2>Angel</h2>
+                <img src="./img/ct-angel.png" alt="">
+            </li>
+            <li id="beast" data-teams="original factor">
+                <h2>Beast</h2>
+                <img src="./img/ct-beast.png" alt="">
+            </li>
+            <li id="cyclops" data-teams="original force factor">
+                <h2>Cyclops</h2>
+                <img src="./img/ct-cyclops.png" alt="">
+            </li>
+            <li id="emma-frost" data-teams="hellfire">
+                <h2>Emma Frost</h2>
+                <img src="./img/ct-emma-frost.png" alt="">
+            </li>
+            <li id="iceman" data-teams="original factor">
+                <h2>Iceman</h2>
+                <img src="./img/ct-iceman.png" alt="">
+            </li>
+            <li id="jean-grey" data-teams="original factor">
+                <h2>Jean Grey</h2>
+                <img src="./img/ct-jean-grey.png" alt="">
+            </li>
+            <li id="magneto" data-teams="hellfire">
+                <h2>Magneto</h2>
+                <img src="./img/ct-magneto.png" alt="">
+            </li>
+            <li id="nightcrawler" data-teams="force">
+                <h2>Nightcrawler</h2>
+                <img src="./img/ct-nightcrawler.png" alt="">
+            </li>
+            <li id="professor-x" data-teams="original">
+                <h2>Professor X</h2>
+                <img src="./img/ct-professor-x.png" alt="">
+            </li>
+            <li id="psylocke" data-teams="force hellfire">
+                <h2>Psylocke</h2>
+                <img src="./img/ct-psylocke.png" alt="">
+            </li>
+            <li id="quicksilver" data-teams="factor">
+                <h2>Quicksilver</h2>
+                <img src="./img/ct-quicksilver.png" alt="">
+            </li>
+            <li id="rictor" data-teams="force factor">
+                <h2>Rictor</h2>
+                <img src="./img/ct-rictor.png" alt="">
+            </li>
+            <li id="storm" data-teams="force hellfire">
+                <h2>Storm</h2>
+                <img src="./img/ct-storm.png" alt="">
+            </li>
+            <li id="sunspot" data-teams="force hellfire">
+                <h2>Sunspot</h2>
+                <img src="./img/ct-sunspot.png" alt="">
+            </li>
+            <li id="tithe" data-teams="hellfire">
+                <h2>Tithe</h2>
+                <img src="./img/ct-tithe.png" alt="">
+            </li>
+            <li id="wolverine" data-teams="force">
+                <h2>Wolverine</h2>
+                <img src="./img/ct-wolverine.png" alt="">
+            </li>
+        </ul>
+
+    </div>
+</body>
+</html>

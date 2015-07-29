@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #box {
+            padding: 15px;
+            background-color: #f0f3f9;
+        }
+
+        .container {
+            height: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container img {
+            position: absolute;
+            bottom: 0;
+        }
+
+    </style>
+    <script>
+
+        window.onload = function(){
+
+            (function(){
+
+                var oBtn = document.getElementById("btn");
+                var oMore = document.getElementById("more");
+
+                var height = 0, display = false, timer = null;
+
+                var step = function(){
+
+                    height = display ? ( height + 5 ) : ( height - 5 );
+
+                    if (height > 191){
+                        height = 191;
+                    } else if (height < 0){
+                        height = 0;
+                    }
+
+                    oMore.style.height = height + 'px';
+
+                    if ( height > 0 && height < 191 ){
+                        timer = setTimeout(step, 10);
+                    }
+                }
+
+                oBtn.onclick = function(){
+                    display = !display;
+                    step();
+
+                    return false;
+                }
+
+
+            })();
+
+        }
+
+    </script>
+</head>
+<body>
+
+<div id="box">
+    <p>想看美女图片？<a href="javascript:" id="btn">点我</a></p>
+
+    <div id="more" class="container">
+        <img src="http://image.zhangxinxu.com/image/study/s/s256/mm1.jpg" height="191" alt=""/>
+    </div>
+</div>
+
+</body>
+</html>

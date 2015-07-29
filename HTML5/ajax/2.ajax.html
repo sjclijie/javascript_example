@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        /**
+         *  upload.onprogress 上传
+         *  FormData对象
+         *  ev.total 发送的总量   ev.loaded 已发送的总量
+         *  onprogress 下载
+         *
+         */
+
+        window.onload = function(){
+
+            var oBtn = document.getElementById("btn");
+
+            var oFile = document.getElementById("myfile");
+
+            var xhr = new XMLHttpRequest();
+
+            oBtn.onclick = function(){
+
+                for(var i in oFile.files){
+                    console.log(oFile.files[i]);
+                }
+
+                var oUpload = xhr.upload;
+
+                oUpload.onprogress = function (ev) {
+                    console.log(ev);
+                    var span = document.createElement("span");
+                    span.innerHTML = "发送的总量: "+ev.total+" ,已发送的总量: "+ ev.loaded;
+                    document.body.appendChild(span);
+                }
+
+                xhr.onload = function(){
+                    console.log("上传成功.");
+                }
+
+                //构建上传数据
+                var oFormData = new FormData();
+
+                oFormData.append("file",oFile.files[0]);
+
+                xhr.open("POST", "/ajax.php");
+                xhr.setRequestHeader("X-Request-With", "XMLHttpRequest");
+                xhr.send(oFormData);
+
+
+
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+<input type="file" id="myfile" multiple="multiple"/>
+<input type="button" value="上传" id="btn"/>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        /**
+         * ajax跨域：
+         *      header("Access-Control-Allow-Origin: a.com");   //允许访问的源  IE下不支持
+         *
+         * ie下如果想实现跨域请求，则需要使用XDomainRequest
+         */
+        
+        window.onload = function(){
+
+            var oBtn = document.getElementById("btn");
+
+            oBtn.onclick = function(){
+
+                var xhr = new XMLHttpRequest();
+
+                console.log(typeof xhr);
+
+                xhr.onreadystatechange = function(){
+                    if (xhr.readyState == 4){
+                        if (xhr.status == 200){
+                            console.log(xhr.responseText);
+                        }
+                    }
+                }
+
+                xhr.open("GET", "http://php.jaylee.cc/ajax.php");
+
+                xhr.send(null);
+
+            }
+        }
+        
+        
+    </script>
+</head>
+<body>
+
+<input type="button" id="btn" value="发送请求"/>
+
+</body>
+</html>

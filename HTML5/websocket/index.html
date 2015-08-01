@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="./socket.io.js"></script>
+    <script>
+        var socket = io("http://localhost:8888");
+
+        socket.on('news', function(data){
+            console.log(data);
+            socket.emit("my other emit",{my:"data"});
+        });
+
+        socket.on("a", function(data){
+            console.log(data);
+        });
+
+    </script>
+</head>
+<body>
+    李杰
+</body>
+</html>

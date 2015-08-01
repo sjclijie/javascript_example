@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        var w1 = new Worker("./worker.js");
+
+        w1.postMessage("aaa");
+
+        w1.onmessage = function(ev){
+            console.log(ev.data);
+        }
+
+    </script>
+</head>
+<body>
+    <div style="width: 100px; height:200px; border: 1px solid #ccc;" contenteditable="true">
+    </div>
+
+    <input type="text"   size="30" x-webkit-speech />
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        canvas {
+            border: 1px solid #c0c0c0;
+        }
+    </style>
+    <script>
+
+        window.onload = function(){
+
+            var c1 = document.getElementById("c1");
+
+            var v1 = document.getElementById("v1");
+
+            var ctx = c1.getContext("2d");
+
+            v1.width = 400;
+            v1.height = 400;
+
+            c1.width = 400;
+            c1.height = 400;
+
+            setInterval(function(){
+                ctx.drawImage(v1, 0, 0);
+            },30);
+        }
+
+    </script>
+</head>
+<body>
+
+<video controls id="v1" autoplay="autoplay" src="./res/Intermission-Walk-in.ogv">
+</video>
+
+<canvas id="c1"></canvas>
+    
+</body>
+</html>

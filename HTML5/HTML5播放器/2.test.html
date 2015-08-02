@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script>
+
+        /**
+         * 视频特性
+         *  poster: 视频播放前的预览图片
+         *  width,  height  视频尺寸
+         *  videoWidth, videoHeight 视频实际尺寸（只读）
+         */
+
+        window.onload = function(){
+
+            var videoObj = document.getElementById("v1");
+
+            videoObj.poster = "./../images/1.jpg";
+            videoObj.width = 400;
+            videoObj.height = 500;
+        }
+
+    </script>
+
+</head>
+<body>
+
+<video controls id="v1" src="./res/Intermission-Walk-in.ogv" controls></video>
+
+
+</body>
+</html>

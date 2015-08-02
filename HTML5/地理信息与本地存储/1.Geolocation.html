@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum=1.2"/>
+    <title></title>
+    <script>
+
+        /**
+         * 地理位置
+         *  经度： 南北极的连接线
+         *  纬度： 东西的连接线
+         *
+         *  地理信息从何而来
+         *      IP地址
+         *      GPS
+         *      WiFi
+         *      基站
+         */
+
+        window.onload = function(){
+
+            var oBtn = document.getElementById("geoBtn");
+
+            oBtn.onclick = function(){
+
+
+                //getCurrentPosition(successCallback, errorCallback, positionOptions);  //单次
+                //watchPosition();  //多次
+                //clearWawtch()  关闭更新请求
+                //frequency 更新频率
+                navigator.geolocation.watchPosition(function(position){
+
+                    var oP = document.createElement("p");
+
+                    oP.innerHTML = "经度: "+position.coords.longitude + ", 纬度: "+position.coords.latitude + ", 准确度: "+position.coords.accuracy;
+
+                    document.body.appendChild(oP);
+
+                    console.log("海拔："+position.coords.altitude);
+
+                }, function(error){
+
+                    console.log(error.message);
+
+                }, {
+                    "enableHighAcuracy" : true, //表示是否启用高精确度模式，如果启用这种模式，浏览器在获取位置信息时可能需要耗费更多的时间
+                    //"timeout": 100000,   //超时时间
+                    "maximumAge": 100, //浏览器重新获取位置信息的时间间隔
+                });
+            }
+        }
+
+    </script>
+</head>
+<body>
+
+<input type="button" value="请求地理信息" id="geoBtn"/>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        /**
+         *
+         * storage
+         *  sessionStorage
+         *      临时会话，从页面打开到页面关闭的时候段，窗口关闭时，数据消失
+         *  localStorage
+         *      永久存储（可以手动存储数据）
+         *
+         *  Storage的特点：
+         *      存储量限制（5MB）
+         *      客户端完成，不会请求服务器
+         *      sessionStorage数据是不共享的，localStorage数据是共享的
+         *
+         *  事件：
+         *      当数据有修改或有删除的情况下，就会触发storage事件
+         *      在对数据进行改变的窗口对象是不会触发的
+         *
+         *      sessionStorage 同窗口才可以（iframe窗口）
+         */
+
+        localStorage.setItem("name", "jaylee3");
+
+        //sessionStorage.setItem("name", "jaylee22");
+
+        window.addEventListener('storage', function(ev){
+            console.log(ev);
+        })
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

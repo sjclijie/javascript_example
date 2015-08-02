@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        ul {
+            list-style: none;
+            overflow: hidden;
+            font-size: 0;
+            padding: 0;
+        }
+        
+        li {
+            font-size: 18px;
+            display: inline-block;
+            border: 1px solid #c0c0c0;
+            padding: 5px 10px;
+        }
+
+        li:hover {
+            background: #F0C869;
+            cursor: pointer;
+        }
+
+    </style>
+    <script>
+
+        window.onload = function(){
+
+            //http://s8.qhimg.com/share/audio/piano1/c4.ogg
+            //http://s8.qhimg.com/share/audio/piano1/d4.ogg
+            //http://s8.qhimg.com/share/audio/piano1/e4.ogg
+            //http://s8.qhimg.com/share/audio/piano1/f4.ogg
+            //http://s8.qhimg.com/share/audio/piano1/g4.ogg
+
+            var oA = document.getElementById("a1");
+
+            var oLi = document.getElementsByTagName("li");
+
+            for(var i=0; i<oLi.length; i++){
+                oLi[i].onmouseover = function(){
+                    oA.src = "http://s8.qhimg.com/share/audio/piano1/" + this.dataset.au + ".ogg";
+                    oA.play();
+                }
+            }
+            
+        }
+
+    </script>
+</head>
+<body>
+
+    <ul>
+        <li data-au="c4">1111</li>
+        <li data-au="d4">2222</li>
+        <li data-au="e4">3333</li>
+        <li data-au="f4">4444</li>
+        <li data-au="g4">5555</li>
+    </ul>
+
+    <audio id="a1"></audio>
+
+</body>
+</html>

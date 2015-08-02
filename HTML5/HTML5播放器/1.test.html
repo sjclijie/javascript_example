@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script>
+
+        window.onload = function(){
+
+            var videoObj = document.getElementById("v1");
+
+            videoObj.volume = 0.7;        //音量  0.0 ~ 1.0
+
+            videoObj.currentTime = 180;  //可以设置开始时间
+            console.log(videoObj.duration); //总时间
+
+            videoObj.muted = true;  //静音
+
+            console.log(videoObj.muted);  //是否静音
+
+            console.log(videoObj.paused);//是否暂停
+            //videoObj.pause(); //暂停
+
+            console.log(videoObj.error);  //是否播放错误
+            console.log(videoObj.ended); //是否播放结束
+            console.log(videoObj.currentSrc); //当前播放文件的地址
+
+            //play()  播放
+            //pause() 暂停
+            //load()  重新加载媒体
+
+
+            videoObj.onmouseover = function(){
+                this.play();
+            }
+
+            videoObj.onmouseout = function () {
+                this.pause();
+            }
+
+            setInterval(function(){
+
+                console.log(videoObj.currentTime);
+
+            }, 1000);
+
+            /**
+             *
+             * 事件
+             * loadstart
+             * progress
+             * suspend
+             * emptied
+             * stalled
+             * play
+             * pause
+             * loadedmetadata
+             * loadeddata
+             * waiting
+             * playing
+             * canplay
+             * canplaythrough
+             * seeking
+             * seeked
+             * timeupdate
+             * ended
+             * ratechange
+             * durationchange
+             * volumechange
+             */
+
+            videoObj.addEventListener("ended", function(){
+                alert("视频播放完成.");
+            })
+
+        }
+
+    </script>
+
+</head>
+<body>
+
+<audio src="./res/johann_sebastian_bach_air.mp3" controls></audio>
+
+<video src="./res/Intermission-Walk-in_512kb.mp4" controls></video>
+
+<video controls autobuffer="autobuffer" id="v1">
+
+    <source src="./res/Intermission-Walk-in.ogv"/>
+    <source src="./res/Intermission-Walk-in_512kb.mp4"/>
+
+</video>
+
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<form action="">
+
+    <input type="text" id="text1" name="name"/>
+
+    <input type="submit"/>
+
+    <input type="submit" formaction="http://www.baidu.com" formnovalidate="formnovalidate" value="关闭表单验证"/>
+
+</form>
+
+<script>
+
+    var oText = document.getElementById("text1");
+
+    //oText.addEventListener("invalid", function(ev){
+        //ev.preventDefault();
+    //}, false)
+
+    oText.oninput = function(){
+        console.log(this.value);
+        if (this.value == 'abc'){
+            this.setCustomValidity("请不要输入abc");
+        } else {
+            this.setCustomValidity("");
+        }
+    }
+
+</script>
+
+</body>
+</html>

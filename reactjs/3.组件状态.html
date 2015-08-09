@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="./bower_components/react/react.js"></script>
+    <script src="./bower_components/react/JSXTransformer.js"></script>
+    <title></title>
+</head>
+<body>
+<div id="app">
+
+</div>
+<script type="text/jsx">
+
+    var MessageBox = React.createClass({
+
+        getInitialState: function(){
+
+            return {
+                isVisible: true,
+                titleMessage: "你好世界（来自state）"
+            }
+        },
+
+        render: function(){
+
+            var styleObj = {
+                display: this.state.isVisible ? "block" : "hidden"
+            }
+
+            var subMessages = [];
+
+            for(var i=0; i<10; i++){
+                subMessages.push(<SubMessageBox key={"sub"+i} />);
+            }
+
+            return (
+                    <div>
+                        <h1 style={styleObj}>{this.state.titleMessage}</h1>
+                        {subMessages}
+                    </div>
+            );
+        }
+    });
+
+    var SubMessageBox = React.createClass({
+        render: function(){
+            return (
+                    <div>
+                        <h3>xxxxxx</h3>
+                        <Footer/>
+                    </div>
+            );
+        }
+    });
+
+    var Footer = React.createClass({
+        render: function(){
+            return(<h5>yyyyyyyy</h5>);
+        }
+    });
+
+    messageBox = React.render( <MessageBox />, document.getElementById("app"), function(){
+        console.log("渲染完成啦!");
+    });
+
+    //messageBox.setState({titleMessage:"aaa"});
+    //messageBox.forceUpdate();
+
+
+</script>
+</body>
+</html>

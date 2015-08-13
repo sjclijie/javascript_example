@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"/>
+    <title></title>
+</head>
+<body>
+
+<form action="">
+    Email: <input type="email"/><br/>
+    Url: <input type="url"/><br/>
+    Tel: <input type="tel"/><br /><!--在移动端会有键盘的切换-->
+    Search: <input type="search"/><br/>
+    Number: <input type="number" min="0" max="10" step="2"/><br/>
+    Range: <input type="range" step="1" min="0" max="10"/><br/>
+    Color: <input type="color"/><br/>
+    DateTime: <input type="datetime"/><input type="time"/><input type="date"/><br/>
+
+    <br/>
+
+    <input type="text" name="username" placeholder="hello" autocomplete="off" required="required" pattern="\d{1,5}"/><br />
+
+    <input type="password" autofocus="autofocus"/><br />
+
+    <br/>
+    <hr/>
+    <br/>
+
+    <input type="submit" value="提交"/>
+
+    <input type="submit" value="临时保存" formaction="//www.baidu.com"/>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="./bower_components/react/react.js"></script>
+    <script src="./bower_components/react/JSXTransformer.js"></script>
+    <title></title>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+    <script type="text/jsx">
+
+        var MessageBox = React.createClass({
+            alertMe: function(){
+                alert(1);
+            },
+            render: function(){
+                return (<h1 onClick={this.alertMe}> Hello world !!! </h1>);
+            }
+        });
+
+        React.render( <MessageBox />, document.getElementById("app"), function(){
+            console.log("渲染完成啦!");
+        });
+
+    </script>
+</body>
+</html>

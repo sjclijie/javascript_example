@@ -6,7 +6,7 @@ var findLargest = require("./findLargestFile");
 var path = require("path");
 var fs = require("fs");
 
-var basePath = path.join(__dirname, "../../testa");
+var basePath = path.join(__dirname, "../../test");
 
 findLargest(basePath);
 

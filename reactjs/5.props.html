@@ -18,7 +18,12 @@
 
             return {
                 isVisible: true,
-                titleMessage: "你好世界（来自state）"
+                titleMessage: "你好世界（来自state）",
+                subMessage: [
+                    "coding",
+                    'singing..',
+                    'xxoo'
+                ]
             }
         },
 
@@ -28,26 +33,44 @@
                 display: this.state.isVisible ? "block" : "none"
             }
 
-            var subMessages = [];
-
-            for(var i=0; i<10; i++){
-                subMessages.push(<SubMessageBox key={"sub"+i} />);
-            }
-
             return (
                     <div>
                         <h1 style={styleObj}>{this.state.titleMessage}</h1>
-                        {subMessages}
+                        <SubMessageBox messages={this.state.subMessage}/>
                     </div>
             );
         }
     });
 
     var SubMessageBox = React.createClass({
+
+        //定义类型
+        propTypes: {
+            messages: React.PropTypes.array,
+        },
+
+        /**
+         * 默认的消息
+         */
+        getDefaultProps: function(){
+            return {
+                messages: ['默认的消息']
+            };
+        },
+
         render: function(){
+
+            var msgs = [];
+
+            this.props.messages.forEach(function(data, index){
+                msgs.push(
+                        <p>{index} : {data}</p>
+                );
+            });
+
             return (
                     <div>
-                        <h3>xxxxxx</h3>
+                        <div>{msgs}</div>
                         <Footer/>
                     </div>
             );

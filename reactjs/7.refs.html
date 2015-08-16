@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="bower_components/react/react.js"></script>
+    <script src="bower_components/react/JSXTransformer.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/jsx">
+
+    var FormApp = React.createClass({
+
+        getInitialState: function(){
+            return {
+                inputValue: "A input Value",
+                selectValue: "C",
+                radioValue: "",
+                textareaValue: "some text here ... ",
+                checkValues: []
+            }
+        },
+
+        handleSubmit: function(e){
+            e.preventDefault();
+
+            console.log(this.refs);
+
+            console.log(this.refs["name"].getDOMNode().value);    //获取表单的值
+
+            console.log(React.findDOMNode(this.refs["name"]).value);
+
+            console.log(this.state);
+
+            this.refs.aaa.saySomething();
+        },
+
+        handleRadio: function(e){
+
+            console.log(e.target.value);
+
+            this.setState({
+                radioValue: e.target.value
+            });
+        },
+
+        handleCheckbox: function(e){
+
+            var checkValues = this.state.checkValues;
+
+            var newValue = e.target.value;
+
+            var index = checkValues.indexOf(newValue);
+
+            if (index == -1){
+                checkValues.push(newValue);
+            } else {
+                checkValues.splice(index,1);
+            }
+
+            console.log(checkValues);
+        },
+
+        render: function(){
+
+            return (
+                    <form onSubmit={this.handleSubmit}>
+                        <input ref="name" type="text" defaultValue={this.state.inputValue}/>
+                        <br/>
+                        <select ref="sex" defaultValue={this.state.selectValue}>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                        </select>
+                        <br/>
+                        <RadioButtons handleRadio={this.handleRadio} ref="aaa"/>
+                        <br/>
+                        <CheckboxButtons handleBox={this.handleCheckbox}/>
+                        <br/>
+                        <textarea ref="textarea" name="area" cols="30" rows="10" defaultValue={this.state.textareaValue}></textarea>
+                        <br/>
+                        <input type="submit" value=" 提交"/>
+                    </form>
+            );
+        }
+    });
+
+    var CheckboxButtons = React.createClass({
+        render: function(){
+            return (
+                    <span>
+                        <input ref="checkbox" type="checkbox" name="goodRadio" value="A" onChange={this.props.handleBox}/>A
+                        <input ref="checkbox" type="checkbox" name="goodRadio" value="B" onChange={this.props.handleBox}/>B
+                        <input ref="checkbox" type="checkbox" name="goodRadio" value="C" onChange={this.props.handleBox}/>C
+                    </span>
+            );
+        }
+    });
+
+    var RadioButtons = React.createClass({
+
+        saySomething: function(){
+            alert("通过refs弹出的信息");
+        },
+
+        render: function(){
+            return (
+                    <span>
+                        <input ref="radio" type="radio" name="radioName" onChange={this.props.handleRadio} value="A"/>A
+                        <input ref="radio" type="radio" name="radioName" onChange={this.props.handleRadio} value="B"/>B
+                    </span>
+            );
+        }
+    });
+
+    var formApp = React.render(<FormApp/>, document.getElementById("app"));
+
+</script>
+</body>
+</html>

@@ -3,8 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <!--<script src="bower_components/react/react.js"></script>-->
+    <script src="bower_components/react/react-with-addons.min.js"></script>
+    <script src="bower_components/react/JSXTransformer.js"></script>
+
 </head>
 <body>
+    <div id="app"></div>
+    <script type="text/jsx">
 
+        var WithLink = React.createClass({
+            mixins:[React.addons.LinkedStateMixin],
+            getInitialState: function(){
+                return {
+                    message: "hello",
+                    yesNo: true
+                }
+            },
+            inputChange: function(e){
+                this.setState({
+                    message: e.target.value
+                });
+            },
+            render: function(){
+                return (
+                        <div>
+                            <input type="text" valueLink={this.linkState('message')}/>
+                            <input type="text" value={this.state.message} onChange={this.inputChange}/>
+                            <br/>
+                            <input type="checkbox" checkedLink={this.linkState("yesNo")}/>
+                            <span> {this.state.yesNo ? "yes" : "no"} </span>
+                            <h2>我想说：{this.state.message}</h2>
+                            <hr/>
+                            <SubComp messageLink={this.linkState("message")} checkedLink={this.linkState('yesNo')}/>
+                        </div>
+
+                )
+            }
+        });
+
+        var SubComp = React.createClass({
+            render: function(){
+                return (
+                        <div>
+                            <h3>这是一个子组件</h3>
+                            <SubSubComp messageLink={this.props.messageLink} checkedLink={this.props.checkedLink}/>
+                            <SubSubComp {...this.props}/>
+                        </div>
+                );
+            }
+        });
+
+        var SubSubComp = React.createClass({
+            render: function(){
+                return (
+                        <div>
+                            <p>你想说什么</p>
+                            <input type="text" valueLink={this.props.messageLink}/>
+                            <input type="checkbox" checkedLink={this.props.checkedLink}/>
+                        </div>
+                );
+            }
+        });
+
+        React.render(<WithLink />, document.getElementById("app"));
+
+    </script>
 </body>
 </html>

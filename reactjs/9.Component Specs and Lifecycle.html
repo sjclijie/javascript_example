@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="bower_components/react/react.js"></script>
+    <script src="bower_components/react/JSXTransformer.js"></script>
+</head>
+<body>
+
+    组件的生命周期
+
+    <div id="app"></div>
+
+    <script type="text/jsx">
+
+        var MessageBox = React.createClass({
+
+            getDefaultProps: function(){
+                console.log("getDefaultProps");
+            },
+
+            getInitialState: function(){
+                console.log("getInitialState");
+                return {
+                    message: "Hello world"
+                }
+            },
+
+            componentWillMount: function(){
+                console.log("ComponentWillMount");
+                this.setState({    //这里更新不会造成二次渲染
+                    message: "aaa"
+                });
+            },
+
+            render: function(){
+                console.log("render");
+                return <div>{this.state.message}</div>
+            },
+
+            componentDidMount: function(){
+                console.log("componentDidMount");
+                this.setState({
+                    message: "bbb"  //二次渲染
+                });
+
+                console.log(this.getDOMNode());
+            }
+        });
+
+
+        React.render(<MessageBox/>, document.getElementById("app"));
+
+    </script>
+</body>
+</html>

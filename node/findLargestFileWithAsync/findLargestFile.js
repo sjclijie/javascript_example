@@ -21,6 +21,7 @@ var async = require("async");
  *
  */
 
+/*
 module.exports = function(dir, callback){
 
     async.waterfall([
@@ -40,4 +41,30 @@ module.exports = function(dir, callback){
     ], function(err){
         console.log(err);
     });
+}
+*/
+
+module.exports = function(dir){
+
+    async.waterfall(
+        [
+            function(next){
+
+                fs.readdir(dir, function(err, files){
+
+                    console.log(err)
+                    console.log(files);
+
+                });
+
+                next(null,"bb");
+            }, function(p1, p2, next){
+                console.log(p1);
+                console.log(p2);
+                console.log(next);
+            }
+        ], function(err){
+            console.log(err);
+        }
+    );
 }

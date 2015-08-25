@@ -23,27 +23,75 @@
             getInitialState: function(){
                 console.log("getInitialState");
                 return {
-                    message: "Hello world"
+                    message: 0
                 }
             },
 
+            /*
             componentWillMount: function(){
                 console.log("ComponentWillMount");
-                this.setState({    //这里更新不会造成二次渲染
-                    message: "aaa"
+
+                var self = this;
+
+                this.timer = setInterval(function(){
+
+                    self.setState({    //这里更新不会造成二次渲染
+                        message: self.state.message + 1
+                    });
+
+                },1000);
+
+            },
+
+
+            componentWillUnmount: function(){
+                clearInterval(this.timer);
+                console.log("componentWillUnmount");
+            },
+
+            */
+
+            shouldComponentUpdate: function(nextProp, nextState){
+                console.log("shouldComponentUpdate");
+                return false;
+            },
+
+            componentWillUpdate: function(nextProp, nextState){
+                console.log("componentWillUpdate");
+                console.info(nextProp);
+                console.info(nextState);
+            },
+
+            deleteComp: function(){
+                React.unmountComponentAtNode(document.getElementById("app"));
+            },
+
+            doUpdate: function(){
+
+                this.setState({
+                    message: this.state.message + 1
                 });
+
             },
 
             render: function(){
                 console.log("render");
-                return <div>{this.state.message}</div>
+                return (
+                        <div>
+                            <div>{this.state.message}</div>
+                            <button onClick={this.deleteComp}>删除组件</button>
+                            <button onClick={this.doUpdate}>手动更新一下</button>
+                        </div>
+                )
             },
 
             componentDidMount: function(){
                 console.log("componentDidMount");
+                /*
                 this.setState({
                     message: "bbb"  //二次渲染
                 });
+                */
 
                 console.log(this.getDOMNode());
             }

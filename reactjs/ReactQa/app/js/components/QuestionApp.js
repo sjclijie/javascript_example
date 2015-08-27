@@ -3,6 +3,7 @@ var React =require("react");
 var ShowAddButton = require("./ShowAddButton.js");
 var QuestionForm = require("./QuestionForm.js");
 var QuestionList = require("./QuestionList.js");
+var _ = require("lodash");
 
 module.exports = React.createClass({
 
@@ -24,25 +25,73 @@ module.exports = React.createClass({
         ];
 
         return {
-            questions: questions
+            questions: questions,
+            displayFormBtn: false
         }
     },
 
+    onToggleForm: function(event){
+        console.log(this.state.displayFormBtn);
+        this.setState({
+            displayFormBtn: !this.state.displayFormBtn,
+        });
+        event.preventDefault();
+    },
+
+    onNewQuestion: function(question){
+        question.key = this.state.questions.length + 1;
+
+        console.log(this.state.questions.concat(question));
+
+        var newQuestions = this.sortNewQuestions(this.state.questions.concat(question));
+
+        this.setState({
+            questions: newQuestions
+        });
+    },
+
+    sortNewQuestions: function(questions){
+
+        questions.sort(function(a, b){
+            return b.voteCount - a.voteCount;
+        });
+
+        return questions;
+    },
+
+    onVote: function(key, newCount){
+
+        console.log(key, newCount);
+
+        var questions = _.uniq(this.state.questions);
+
+        var index = _.findIndex(questions, function(q){
+            return q.key == key;
+        });
+
+        this.state.questions[index].voteCount = newCount;
+
+        console.log(this.sortNewQuestions(this.state.questions));
+
+        this.setState({
+            questions: this.sortNewQuestions(this.state.questions)
+        });
+    },
+
     render: function(){
+
         return (
             <div>
                 <div className="jumbotron text-center">
                     <div classclassName="container">
+                        <ShowAddButton onToggleForm={this.onToggleForm}/>
                         <h1>React问答</h1>
-                        <ShowAddButton/>
                     </div>
                 </div>
 
                 <div className="main container">
-
-                    <QuestionForm />
-                    <QuestionList questions={this.state.questions}/>
-
+                    <QuestionForm formDisplayd={this.state.displayFormBtn} onToggleForm={this.onToggleForm} onNewQuestion={this.onNewQuestion}/>
+                    <QuestionList questions={this.state.questions} onVote={this.onVote}/>
                 </div>
             </div>
         );

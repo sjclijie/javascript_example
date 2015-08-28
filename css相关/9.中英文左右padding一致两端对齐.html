@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #wrapper {
+            width: 300px;
+            background: #eaa36d;
+            padding: 10px;
+            -ms-word-break: break-all;   /*强制连续英文字符换行*/
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+<div id="wrapper">我我我我我我我我我我我多我我我我我我我我我我我多 hello world aaaaaaaaa我我多我我我我我我我aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa我多我我我我我aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa我多我我我我我aaaaaaaaaaaa</div>
+<script>
+
+
+
+    var wrapperEle = document.getElementById("wrapper");
+
+    console.log( wrapperEle.innerHTML.replace(/^[]|[]$/) );
+
+    wrapperEle.innerHTML = wrapperEle.innerHTML.split("").join(" ");
+    wrapperEle.style.textAlign = "justify";
+    wrapperEle.style.letterSpacing = "-0.15em";
+
+</script>
+</body>
+</html>

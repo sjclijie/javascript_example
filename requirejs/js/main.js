@@ -1,12 +1,19 @@
-require.config({
-    baseUrl:"js",
-    paths:{
-        jquery: "jquery-2.1.4"
-    }
-});
+define(function(require, exports, module){
 
-require(["selector"], function(query){
-    
-    var els = query(".wrapper");
-    console.log(els);
+    var test = require("./test.js");
+    var selector = require("./selector");
+
+    console.log(require);
+
+    console.log(exports);
+
+    exports.hello = function(){
+        console.log("bbbb");
+    }
+
+    console.log(module);
+
+    test.test();
+
+    console.log(selector);
 });

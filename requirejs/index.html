@@ -13,8 +13,18 @@
 <body>
     <div id="wrapper"></div>
     <script type="text/javascript" src="require.js"></script>
+    <script>
+        require.config({
+            baseUrl:".",
+            paths:{
+                jquery: "jquery-2.1.4"
+            }
+        });
+    </script>
     <script type="text/javascript">
-        require(["js/main"]);
+        require(["js/main"], function(main){
+            main.hello();
+        });
     </script>
 </body>
 </html>

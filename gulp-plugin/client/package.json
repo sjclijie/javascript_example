@@ -1,18 +1,15 @@
 {
-  "name": "gulp-plugin",
+  "name": "client",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "client.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-qiniu": "0.0.9"
-  },
   "dependencies": {
-    "qn": "^1.0.1"
+    "formstream": "^1.0.0",
+    "urllib": "^2.4.0"
   }
 }

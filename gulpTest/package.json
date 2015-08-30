@@ -1,5 +1,5 @@
 {
-  "name": "gulp-plugin",
+  "name": "gulptest",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,10 +9,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-qiniu": "0.0.9"
-  },
-  "dependencies": {
-    "qn": "^1.0.1"
+    "gulp": "^3.9.0"
   }
 }

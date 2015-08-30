@@ -4,9 +4,11 @@ var gulp = require("gulp"),
     qiniu = require("gulp-qiniu");
 
 gulp.task("default", function(){
-    console.log(test());
-});
 
+    gulp.src("./public/*.*")
+        .pipe(test())
+        .pipe(gulp.dest("./dist"));
+});
 
 gulp.task("qiniu", function(){
     gulp.src("./public/*.*")

@@ -2,17 +2,21 @@
  * Created by Jaylee on 15/8/30.
  */
 
-var Higo = require("client");
+var Higo = require("higo-cdn");
 
 var higo = Higo.create({
+    uploadUrl: "http://php.jaylee.cc/upload.php",
     "timeout": 10
 });
 
-higo.uploadFile("./1.jpg", {
+higo.uploadFile("./package.json", {
     kind: "pic",
     ext: "jpg",
-    timeout: 10000000
+    timeout: 10000
 },function(err, data, res){
-    //console.log(err);
-    console.log( JSON.parse( data.toString() ) );
+    if ( err ){
+        console.log(err);
+    } else {
+        console.log( JSON.parse( data.toString() ) );
+    }
 });

@@ -10,9 +10,6 @@
   "license": "ISC",
   "devDependencies": {
     "gulp": "^3.9.0",
-    "gulp-higo-cdn": "^0.1.0"
-  },
-  "dependencies": {
-    "higo-cdn": "^0.2.0"
+    "gulp-higo-cdn": "^0.2.1"
   }
 }

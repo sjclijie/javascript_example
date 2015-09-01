@@ -1,3 +1,4 @@
 .idea/*
 **/node_modules/*
 PersonPage/node_modules/*
+gulpTest/uploadedFile.json

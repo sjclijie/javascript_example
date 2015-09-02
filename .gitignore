@@ -1,4 +1,5 @@
 .idea/*
 **/node_modules/*
 PersonPage/node_modules/*
+gulp-replace/node_modules/*
 gulpTest/uploadedFile.json

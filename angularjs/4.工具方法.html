@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ngApp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="./bower_components/angularjs/angular.min.js"></script>
+    <script>
+
+        // angular.bind() -> $.proxy();
+        function show(n1, n2){
+            console.log(n1, n2);
+        }
+
+        show();
+
+        angular.bind(document, show)(1, 2);
+
+        // angular.copy()  拷贝对象
+        var a = {name:"xxx"};
+        var b = angular.copy(a);
+
+        console.log(a,b);
+
+        b.name = "aaa";
+
+        console.log(a,b);
+
+        //angular.extend()   类似jquery中的extend
+
+    </script>
+</head>
+<body>
+</body>
+</html>

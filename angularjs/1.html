@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" ng-app="ngApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="./bower_components/angularjs/angular.min.js"></script>
+    <script>
+
+        /**
+         * ng-app   初使化指令
+         */
+
+        angular.module("ngApp",[]).controller("Aaa", function($scope, $rootScope, $timeout){
+            $scope.name = "Lijie";
+            $rootScope.age = 22;
+
+            $timeout(function(){
+                $scope.name  = "aaaa";
+            },2000)
+
+            $scope.show = function(){
+                alert(1);
+            }
+
+        });
+
+    </script>
+</head>
+<body>
+
+    Your Name: <input type="text" ng-model="yourname" placeholder="World"/>
+
+    <hr/>
+
+    Hello {{ yourname  || 'world'}}
+
+    <div ng-controller="Aaa" ng-click="show()">
+        {{name}}
+    </div>
+
+    {{age}}
+
+</body>
+</html>

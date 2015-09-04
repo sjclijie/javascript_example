@@ -1,5 +1,6 @@
 .idea/*
 **/node_modules/*
+**/bower_components/*
 PersonPage/node_modules/*
 gulp-replace/node_modules/*
 gulpTest/uploadedFile.json

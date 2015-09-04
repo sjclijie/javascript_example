@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ngApp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="./bower_components/angularjs/angular.min.js"></script>
+    <script>
+
+        var m1 = angular.module('ngApp',[]);
+
+        /**
+         * 为了压缩， 使用数组
+         */
+        m1.controller("Aaa", ["$scope", function(s){
+
+            s.iphone = {
+                price: 5,
+                num: 1
+            };
+
+            s.sum = function(){
+                return s.iphone.price * s.iphone.num;
+            };
+        }]);
+
+        /*
+
+        angular.module("ngApp",[]).controller("Aaa", function($scope){
+
+            $scope.iphone = {
+                price: 5,
+                num: 1
+            };
+
+            $scope.sum = function(){
+                return $scope.iphone.price * $scope.iphone.num;
+            };
+
+            $scope.$watch('iphone.price', function(newValue, oldValue){
+
+                console.log(newValue, oldValue);
+
+                return false;
+
+            }, true);   //第三个参数表示是否监听一个集合
+
+            $scope.$watch($scope.sum, function(newValue, oldValue){
+                console.log(newValue, oldValue);
+            });
+
+        });
+
+        */
+    </script>
+</head>
+<body>
+
+<div ng-controller="Aaa">
+
+    单价： <input type="text" ng-model="iphone.price"/><br/>
+    数量：<input type="text" ng-model="iphone.num"/><br/>
+    费用：<span>{{ sum() | currency:"￥"}}</span>
+</div>
+
+</body>
+</html>

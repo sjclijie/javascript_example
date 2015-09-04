@@ -7,7 +7,7 @@ var gulp = require("gulp");
 var higo = require("gulp-higo-cdn");
 
 gulp.task("default", function(){
-    gulp.src("./public/*")
+    gulp.src("./public/**")
         .pipe(higo({
             timeout: 10000,
         })

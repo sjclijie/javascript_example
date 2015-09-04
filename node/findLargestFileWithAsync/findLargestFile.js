@@ -58,6 +58,7 @@ module.exports = function(dir){
                 });
 
                 next(null,"bb");
+
             }, function(p1, p2, next){
                 console.log(p1);
                 console.log(p2);

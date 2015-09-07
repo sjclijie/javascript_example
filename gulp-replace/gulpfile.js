@@ -1,20 +1,13 @@
 
 var gulp = require("gulp"),
-    replace = require("gulp-cdn-replace");
-
+    replace = require("gulp-cdn-replace"),
+    config = require("./uploadedFile.json");
 
 gulp.task("default", function(){
 
     gulp.src("./src/**/*")
-        .pipe(replace({
-            dir:"./dist/",
-            root: {
-                js: "https://js.example.com",
-                css: "http://css.example.com"
-            }
-        }))
+        .pipe(replace(config))
         .pipe(gulp.dest("./dist/"));
-
 });
 
 

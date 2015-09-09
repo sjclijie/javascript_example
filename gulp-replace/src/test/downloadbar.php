@@ -86,18 +86,22 @@ $this->params["appAsset"] = 'frontend\assets\promotion\pre150720\TreasureAsset';
             </div>
 
             <div class="item">
-                <img src="./statics/img/test/18.jpg" alt="" class="lazyImg" data-webp="1">
+                <img src="__CDN__/statics/img/test/180.jpg" alt="" class="lazyImg" data-webp="1">
             </div>
 
             <!--build-->
             <div class="item">
-                <img src="./statics/img/test/17.jpg" alt="" class="lazyImg" data-webp="1">
+                <img src="__CDN__/statics/img/test/7.jpg" alt="" class="lazyImg" data-webp="1">
             </div>
             <!--endbuild-->
 
             <div class="item">
-                <img data-src="./statics/img/test/20.gif" alt="" class="lazyImg">
+                <img data-src="__CDN__/statics/img/test/3.jpg" alt="" class="lazyImg">
             </div>
+
+            <img src="__CDN__/statics/img/test/1.jpg" alt="" class="lazyImg">
+
+            <img src='__CDN__/statics/img/test/2.jpg?xxx=xxx' alt="" class="lazyImg">
 
         </section>
     </main>

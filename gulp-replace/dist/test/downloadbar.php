@@ -86,18 +86,22 @@ $this->params["appAsset"] = 'frontend\assets\promotion\pre150720\TreasureAsset';
             </div>
 
             <div class="item">
-                <img src="./statics/img/test/18.jpg" alt="" class="lazyImg" data-webp="1">
+                <img src="./statics/img/test/180.jpg" alt="" class="lazyImg" data-webp="1">
             </div>
 
             <!--build-->
             <div class="item">
-                <img src="./statics/img/test/17.jpg" alt="" class="lazyImg" data-webp="1">
+                <img src="http://d06.res.meilishuo.net/pic/_o/1a/d1/cfd971609576a3d993e0f3680b7b_710_400.cg.jpg" alt="" class="lazyImg" data-webp="1">
             </div>
             <!--endbuild-->
 
             <div class="item">
-                <img data-src="./statics/img/test/20.gif" alt="" class="lazyImg">
+                <img data-src="http://d06.res.meilishuo.net/pic/_o/96/d3/22e46ed178571b8017e6a1524838_750_500.cf.jpg" alt="" class="lazyImg">
             </div>
+
+            <img src="http://d05.res.meilishuo.net/pic/_o/aa/7a/aee7de0401e791a8b2454a38422e_750_500.cg.jpg" alt="" class="lazyImg">
+
+            <img src='http://d04.res.meilishuo.net/pic/_o/5b/be/a8ddd1f58c935b8a0dddb93c821c_750_500.cg.jpg' alt="" class="lazyImg">
 
         </section>
     </main>

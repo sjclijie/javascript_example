@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ngApp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="./bower_components/angularjs/angular.min.js"></script>
+    <script>
+
+        var m1 = angular.module("ngApp",[]);
+
+        m1.controller("Aaa", function($scope){
+            $scope.salary = 1111231231;
+        })
+
+    </script>
+</head>
+<body>
+<div ng-controller="Aaa">
+    {{salary|currency:"￥"}}
+    <hr/>
+    {{salary|number:4}}
+</div>
+</body>
+</html>

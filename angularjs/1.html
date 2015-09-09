@@ -16,12 +16,21 @@
 
             $timeout(function(){
                 $scope.name  = "aaaa";
-            },2000)
+            },2000);
+
+            //也可以使用这种方法
+            /*
+            setTimeout(function(){
+                $scope.$apply(function(){
+                    $scope.name = "setTimeout";
+                    console.log($scope.name);
+                });
+            }, 3000);
+            */
 
             $scope.show = function(){
                 alert(1);
             }
-
         });
 
     </script>

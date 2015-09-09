@@ -27,8 +27,41 @@
 
         //angular.extend()   类似jquery中的extend
 
+        //angular.identify / noop
+
+        console.log(angular.identity("aaa"));
+
     </script>
 </head>
 <body>
+
+    <div id="div1">
+        aaaa
+    </div>
+
+    <div>
+        {{name}}
+    </div>
+
+    <script>
+
+        var oDiv = document.getElementById("div1");
+
+        angular.element(oDiv).css({"backgroundColor":"red"});
+
+
+        var m1 = angular.module("ngApp", []);
+
+        m1.controller("Aaa", function($scope){
+            $scope.name = "Jaylee";
+        });
+
+        m1.run(function($rootScope){
+            $rootScope.name = "xxxx";
+        });
+
+        console.log(m1);
+
+    </script>
 </body>
 </html>

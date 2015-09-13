@@ -1,11 +1,11 @@
 @media (-Webkit-min-device-pixel-ratio: 1) {
     body {
-        background: #000;
+        /*background: #000;*/
     }
 }
 
 @media (-webkit-min-device-pixel-ratio: 2) {
     body {
-        background: red;
+        /*background: red; */
     }
 }

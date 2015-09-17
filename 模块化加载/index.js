@@ -78,7 +78,6 @@
     }
 })();
 
-
 thin.define("A", [], function(){
     return "a";
 });

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../lodash.min.js"></script>
+    <script src="../bower_components/react/react.js"></script>
+    <script src="../bower_components/react/JSXTransformer.js"></script>
+</head>
+<body>
+
+<div id="app"></div>
+
+<script type="text/jsx">
+
+    var AnswerRadioInput = React.createClass({
+
+        propTypes: {
+            id: React.PropTypes.string,
+            name: React.PropTypes.string.isRequired,
+            label: React.PropTypes.string.isRequired,
+            value: React.PropTypes.string.isRequired,
+            checked: React.PropTypes.bool
+        },
+
+        getDefaultProps: function(){
+            return {
+                id: null,
+                checked: false
+            }
+        },
+
+        getInitialState: function(){
+
+            var id = this.props.id ? this.props.id : _.uniqueId("radio-");
+
+            return {
+                id: id,
+                name: id,
+                checked: !!this.props.checked
+            };
+        },
+
+        render: function(){
+            return (
+                <div className="radio">
+                    <label htmlFor={this.props.id}>
+                        <input type="radio"
+                           name={this.props.name}
+                           id={this.props.id}
+                           value={this.props.value}
+                           checked={this.state.checked} />
+                        {this.props.label}
+                    </label>
+                </div>
+            );
+        }
+    });
+
+    var AnswerMultipleChoiceQuestion = React.createClass({
+
+        propTypes: {
+            value: React.PropTypes.string,
+            choices: React.PropTypes.array.isRequired,
+            onCompleted:React.PropTypes.func.isRequired
+        },
+
+        renderChoices: function(){
+            return this.props.choices.map(function(choice, i){
+                return AnswerRadioInput({
+                    id: "choice-" + i,
+                    name: this.state.id,
+                    label: choice,
+                    value: choice,
+                    checked: this.state.value == choice
+                });
+            }.bind(this));
+        },
+
+        getInitialState: function(){
+            return {
+                id: _.uniqueId("multiple-choice-"),
+                value: this.props.value
+            };
+        },
+
+        render: function(){
+            return (
+                <div className="form-group">
+
+                    <labe className="survey-item-label" htmlFor={this.state.id}>
+                        {this.props.label}
+                    </labe>
+
+                    <div className="survey-item-content">
+                        {this.renderChoices()}
+                    </div>
+
+                </div>
+            );
+        }
+    });
+
+    React.render( <AnswerMultipleChoiceQuestion/>, document.getElementById("app") );
+
+</script>
+
+</body>
+</html>

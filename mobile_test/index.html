@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum=1.0, minimum=1.0"/>
+    <meta charset="UTF-8">
+    <title>网易考拉</title>
+    <link rel="stylesheet" href="./css/main.css"/>
+    <script>
+        !function(win, doc){
+            "use strict";
+
+            var resize = function(){
+
+                var innerWidth = win.innerWidth;
+
+                if (!innerWidth){
+                    return false;
+                }
+
+                doc.documentElement.style.fontSize = (innerWidth * 20 / 320) + 'px';
+            }
+
+            resize();
+
+            win.addEventListener("resize", resize, false);
+
+            win.addEventListener("load", resize, false);
+
+        }(window, document);
+    </script>
+</head>
+<body>
+
+<div class="m-nav-wrap">
+    <article class="m-nav-stickytabs">
+        <div class="navbox scroll-navbox" style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+            <span class="tab">Hot</span>
+            <span class="tab curr">New</span>
+            <span class="tab">净水器</span>
+            <span class="tab">剃须刀</span>
+            <span class="tab">数码</span>
+            <span class="tab">美容脱毛器</span>
+            <span class="tab">空气净化器</span>
+            <span class="tab">汉美驰</span>
+            <span class="tab">惠人</span>
+            <span class="tab">扫地机器人</span>
+            <span class="tab">其他</span>
+        </div>
+        <span class="select-btn"><span class="ic"></span></span>
+    </article>
+</div>
+
+</body>
+</html>

@@ -2,11 +2,9 @@
 @import "compass/css3";
 @import "../common/tools";
 
-
 body {
     font-size: px2rem(20);
 }
-
 
 .nav-wrap {
     position: relative;
@@ -33,7 +31,6 @@ body {
         -webkit-transition: height 0.25s ease-in-out;
         transition: height 0.25s ease-in-out;
         */
-
         .scroll-navbox {
             width: auto;
             padding-right: 54px;
@@ -49,14 +46,15 @@ body {
 
             .tab {
                 display: inline-block;
-                //border: 1px solid #ccc;
+                vertical-align: top;
+                border: 1px solid #ccc;
                 height: 45px;
                 line-height: 45px;
+                text-align: center;
                 font-size: .3rem;
                 color: #333;
-                white-space: nowrap;
-                vertical-align: top;
-                text-align: center;
+
+                //white-space: nowrap;
 
                 position: relative;
 

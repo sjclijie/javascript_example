@@ -63,12 +63,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: block;
 }
 
-/* line 6, sass/main.scss */
+/* line 5, sass/main.scss */
 body {
   font-size: 0.42667rem;
 }
 
-/* line 11, sass/main.scss */
+/* line 9, sass/main.scss */
 .nav-wrap {
   position: relative;
   height: 46px;
@@ -78,7 +78,7 @@ body {
   -webkit-user-select: none;
   user-select: none;
 }
-/* line 17, sass/main.scss */
+/* line 15, sass/main.scss */
 .nav-wrap .nav-stickytabs {
   position: absolute;
   left: 0;
@@ -99,12 +99,12 @@ body {
   transition: height 0.25s ease-in-out;
   */
 }
-/* line 37, sass/main.scss */
+/* line 34, sass/main.scss */
 .nav-wrap .nav-stickytabs .scroll-navbox {
   width: auto;
   padding-right: 54px;
 }
-/* line 42, sass/main.scss */
+/* line 39, sass/main.scss */
 .nav-wrap .nav-stickytabs .navbox {
   display: inline-block;
   white-space: nowrap;
@@ -113,20 +113,20 @@ body {
   font-size: 0;
   vertical-align: top;
 }
-/* line 50, sass/main.scss */
+/* line 47, sass/main.scss */
 .nav-wrap .nav-stickytabs .navbox .tab {
   display: inline-block;
+  vertical-align: top;
+  border: 1px solid #ccc;
   height: 45px;
   line-height: 45px;
+  text-align: center;
   font-size: .3rem;
   color: #333;
-  white-space: nowrap;
-  vertical-align: top;
-  text-align: center;
   position: relative;
   padding: 0 20px;
 }
-/* line 65, sass/main.scss */
+/* line 63, sass/main.scss */
 .nav-wrap .nav-stickytabs .navbox .tab.curr:after {
   content: "";
   position: absolute;
@@ -141,7 +141,7 @@ body {
   -webkit-border-radius: 15px;
   border-radius: 15px 15px 0 0;
 }
-/* line 80, sass/main.scss */
+/* line 78, sass/main.scss */
 .nav-wrap .nav-stickytabs .select-btn {
   position: absolute;
   right: 0;
@@ -152,7 +152,7 @@ body {
   background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAABCAYAAACc0f2yAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAxSURBVHjaYvz///8qBgYGdihmQ8OsWDALFLMyMDAwI2F84D8DAwMjAw0BAAAA//8DAG8xBP72M7+9AAAAAElFTkSuQmCC") repeat-y left top;
   background-size: 54px 45px;
 }
-/* line 96, sass/main.scss */
+/* line 94, sass/main.scss */
 .nav-wrap .nav-stickytabs .select-btn .ic {
   position: absolute;
   top: 15px;

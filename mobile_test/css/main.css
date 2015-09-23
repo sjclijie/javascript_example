@@ -63,31 +63,58 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: block;
 }
 
-/* line 5, sass/main.scss */
+/* line 6, sass/main.scss */
 body {
   font-size: 0.42667rem;
 }
 
-/* line 9, sass/main.scss */
-.m-nav-stickytabs .select-btn {
-  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAABCAYAAACc0f2yAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAxSURBVHjaYvz///8qBgYGdihmQ8OsWDALFLMyMDAwI2F84D8DAwMjAw0BAAAA//8DAG8xBP72M7+9AAAAAElFTkSuQmCC") repeat-y left top;
-  background-size: 54px 45px;
-}
-
-/* line 14, sass/main.scss */
-.m-nav-wrap {
+/* line 11, sass/main.scss */
+.nav-wrap {
   position: relative;
   height: 46px;
   z-index: 1;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
-
-/* line 20, sass/main.scss */
-.m-nav-wrap .hidden {
-  visibility: hidden;
+/* line 17, sass/main.scss */
+.nav-wrap .nav-stickytabs {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 46px;
+  overflow: hidden;
+  border-bottom: 1px solid #ccc;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  /*
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: height 0.25s ease-in-out;
+  transition: height 0.25s ease-in-out;
+  */
 }
-
-/* line 24, sass/main.scss */
-.m-nav-wrap .tab {
+/* line 37, sass/main.scss */
+.nav-wrap .nav-stickytabs .scroll-navbox {
+  width: auto;
+  padding-right: 54px;
+}
+/* line 42, sass/main.scss */
+.nav-wrap .nav-stickytabs .navbox {
+  display: inline-block;
+  white-space: nowrap;
+  background-color: #fff;
+  width: 100%;
+  font-size: 0;
+  vertical-align: top;
+}
+/* line 50, sass/main.scss */
+.nav-wrap .nav-stickytabs .navbox .tab {
   display: inline-block;
   height: 45px;
   line-height: 45px;
@@ -96,85 +123,37 @@ body {
   white-space: nowrap;
   vertical-align: top;
   text-align: center;
-}
-
-/* line 35, sass/main.scss */
-.m-nav-stickytabs {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 46px;
-  overflow: hidden;
-  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAUSURBVHjaYrh79+5/AAAAAP//AwAIyQOX7KwXjwAAAABJRU5ErkJggg==") repeat-x left bottom #fff;
-  background-size: 100% 1px;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  -webkit-transition: height 0.25s ease-in-out;
-  transition: height 0.25s ease-in-out;
-}
-
-/* line 52, sass/main.scss */
-.m-nav-stickytabs .navbox {
-  display: inline-block;
-  white-space: nowrap;
-  background-color: #fff;
-  width: 100%;
-  font-size: 0;
-  vertical-align: top;
-}
-
-/* line 61, sass/main.scss */
-.m-nav-stickytabs .navbox .tab {
   position: relative;
-  width: 20%;
-}
-
-/* line 66, sass/main.scss */
-.m-nav-stickytabs .navbox .tab.curr:after {
-  content: " ";
-  font-size: 0;
-  position: absolute;
-  bottom: -1px;
-  left: 50%;
-  margin-left: -25px;
-  width: 50px;
-  height: 4px;
-  -webkit-border-radius: 15px 15px 0 0;
-  border-radius: 15px 15px 0 0;
-  background-color: #d22147;
-}
-
-/* line 80, sass/main.scss */
-.m-nav-stickytabs .scroll-navbox {
-  width: auto;
-  padding-right: 54px;
-}
-
-/* line 85, sass/main.scss */
-.m-nav-stickytabs .scroll-navbox .tab {
-  width: auto;
   padding: 0 20px;
 }
-
-/* line 90, sass/main.scss */
-.m-nav-stickytabs .select-btn {
+/* line 65, sass/main.scss */
+.nav-wrap .nav-stickytabs .navbox .tab.curr:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 50px;
+  height: 4px;
+  font-size: 0;
+  margin-left: -25px;
+  background-color: #ff0000;
+  -moz-border-radius: 15px 15px 0 0;
+  -webkit-border-radius: 15px;
+  border-radius: 15px 15px 0 0;
+}
+/* line 80, sass/main.scss */
+.nav-wrap .nav-stickytabs .select-btn {
   position: absolute;
   right: 0;
   top: 0;
   z-index: 2;
   width: 54px;
   height: 45px;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-transform: tranzlateZ(0);
-  transform: tranzlateZ(0);
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAABCAYAAACc0f2yAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAxSURBVHjaYvz///8qBgYGdihmQ8OsWDALFLMyMDAwI2F84D8DAwMjAw0BAAAA//8DAG8xBP72M7+9AAAAAElFTkSuQmCC") repeat-y left top;
+  background-size: 54px 45px;
 }
-
-/* line 103, sass/main.scss */
-.m-nav-stickytabs .select-btn .ic {
+/* line 96, sass/main.scss */
+.nav-wrap .nav-stickytabs .select-btn .ic {
   position: absolute;
   top: 15px;
   left: 26px;

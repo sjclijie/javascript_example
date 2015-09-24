@@ -99,12 +99,12 @@ body {
   transition: height 0.25s ease-in-out;
   */
 }
-/* line 34, sass/main.scss */
+/* line 35, sass/main.scss */
 .nav-wrap .nav-stickytabs .scroll-navbox {
   width: auto;
   padding-right: 54px;
 }
-/* line 39, sass/main.scss */
+/* line 40, sass/main.scss */
 .nav-wrap .nav-stickytabs .navbox {
   display: inline-block;
   white-space: nowrap;
@@ -113,7 +113,7 @@ body {
   font-size: 0;
   vertical-align: top;
 }
-/* line 47, sass/main.scss */
+/* line 48, sass/main.scss */
 .nav-wrap .nav-stickytabs .navbox .tab {
   display: inline-block;
   vertical-align: top;
@@ -123,10 +123,10 @@ body {
   text-align: center;
   font-size: .3rem;
   color: #333;
-  position: relative;
   padding: 0 20px;
+  position: relative;
 }
-/* line 63, sass/main.scss */
+/* line 64, sass/main.scss */
 .nav-wrap .nav-stickytabs .navbox .tab.curr:after {
   content: "";
   position: absolute;
@@ -141,7 +141,7 @@ body {
   -webkit-border-radius: 15px;
   border-radius: 15px 15px 0 0;
 }
-/* line 78, sass/main.scss */
+/* line 79, sass/main.scss */
 .nav-wrap .nav-stickytabs .select-btn {
   position: absolute;
   right: 0;
@@ -152,7 +152,7 @@ body {
   background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAABCAYAAACc0f2yAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAxSURBVHjaYvz///8qBgYGdihmQ8OsWDALFLMyMDAwI2F84D8DAwMjAw0BAAAA//8DAG8xBP72M7+9AAAAAElFTkSuQmCC") repeat-y left top;
   background-size: 54px 45px;
 }
-/* line 94, sass/main.scss */
+/* line 95, sass/main.scss */
 .nav-wrap .nav-stickytabs .select-btn .ic {
   position: absolute;
   top: 15px;

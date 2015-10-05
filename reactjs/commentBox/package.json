@@ -11,6 +11,7 @@
   "devDependencies": {
     "gulp-browserify": "^0.5.1",
     "gulp-connect": "^2.2.0",
+    "gulp-notify": "^2.2.0",
     "gulp-react": "^3.0.1",
     "react": "^0.13.3",
     "reactify": "^1.1.1"

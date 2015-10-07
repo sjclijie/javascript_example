@@ -7,19 +7,17 @@ var gulp = require("gulp"),
     notify = require("gulp-notify"),
     browserify = require("gulp-browserify");
 
-
 gulp.task("browserify", function(){
-    return gulp.src(["app/**/main.js", "!node_modules/**/*"])
+    return gulp.src(["app/**/*"])
         .pipe(browserify({
                 transform: "reactify"
             }))
         .pipe(gulp.dest("./dist/"))
-        .pipe(livereload())
         .pipe(notify({"message":"reactify complete."}))
 });
 
 gulp.task("otherFiles", function(){
-    return gulp.src(["**","!**/*.js", "!node_modules/**/*"])
+    return gulp.src(["dist/**"])
         .pipe(livereload());
 });
 
@@ -27,8 +25,8 @@ gulp.task("watch", function(){
 
     livereload.listen();
 
-    gulp.watch(["app/**/*.js","!node_modules/**/*"], ["browserify"]);
-    gulp.watch(["**","!**/*.js", "!node_modules/**/*"], ["otherFiles"]);
+    gulp.watch(["app/**/*"], ["browserify"]);
+    gulp.watch(["dist/**"], ["otherFiles"]);
 });
 
 

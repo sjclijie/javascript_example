@@ -15,5 +15,9 @@
     "gulp-react": "^3.0.1",
     "react": "^0.13.3",
     "reactify": "^1.1.1"
+  },
+  "dependencies": {
+    "jquery": "^2.1.4",
+    "showdown": "^1.2.3"
   }
 }

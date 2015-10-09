@@ -139,7 +139,7 @@ var CommentBox2 = React.createClass({
 });
 */
 
-React.render(<CommentBox url="comment.json" pollInterval={10000} serverUrl={"comment.php"}/>, document.querySelector("#app"));
+//React.render(<CommentBox url="comment.json" pollInterval={10000} serverUrl={"comment.php"}/>, document.querySelector("#app"));
 
 
 

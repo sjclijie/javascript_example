@@ -8,6 +8,7 @@ var gulp = require("gulp"),
     browserify = require("gulp-browserify");
 
 gulp.task("browserify", function(){
+    console.log(1);
     return gulp.src(["app/**/*"])
         .pipe(browserify({
                 transform: "reactify"
@@ -17,6 +18,7 @@ gulp.task("browserify", function(){
 });
 
 gulp.task("otherFiles", function(){
+    console.log(2);
     return gulp.src(["dist/**"])
         .pipe(livereload());
 });

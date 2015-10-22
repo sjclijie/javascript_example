@@ -1,0 +1,1 @@
+!function(){"use strict";console.log("Hello world")}(),!function(){"use strict";console.log("Hello Jaylee");var o="<h1>Header</h1>\n";console.log(o)}();

@@ -4,3 +4,4 @@
 PersonPage/node_modules/*
 gulp-replace/node_modules/*
 gulpTest/uploadedFile.json
+**/.sass-cache

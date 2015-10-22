@@ -4,13 +4,13 @@ var gulp = require("gulp"),
 
 
 gulp.task("all", function(){
-    gulp.src(["移动端高清多屏适配方案/**","reactjs/test/**"])
+    gulp.src(["**", "!node_modules/**"])
         .pipe(livereload())
 });
 
 gulp.task("watch", function(){
     livereload.listen();
-    gulp.watch(["移动端高清多屏适配方案/**", "reactjs/test/**"], ["all"])
+    gulp.watch(["**", "!node_modules/**"], ["all"])
 });
 
 

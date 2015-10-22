@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+
+        $(function(){
+
+            function hasWebP(){
+
+                var defer = $.Deferred();
+                var img = new Image();
+
+                img.onload = function(){ defer.resolve(111,222); };
+                img.onerror = function(){ defer.reject(); };
+
+                img.src = "http://zhitu.isux.us/assets/img/imgSample/test-75.webp";
+
+                return defer.promise();
+            }
+
+            hasWebP().then(function(){
+
+                console.log(arguments);
+                console.log("success");
+
+            }, function(){
+
+                console.log("error");
+            });
+
+        });
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

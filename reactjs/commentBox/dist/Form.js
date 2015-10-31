@@ -4,6 +4,7 @@
  */
 var React = require("react/addons");
 
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 /*
 非约束组件：给定<input/>一个值，<input/>的值仍是可以改变的。
@@ -91,20 +92,27 @@ var FormComp = React.createClass({displayName: "FormComp",
 
     render: function(){
         return (
-            React.createElement("form", {onSubmit: this.submitHandler}, 
-                React.createElement("input", {ref: "name", type: "text", value: this.state.helloTo, /*onChange={this.handleChange}*/ onChange: this.handleChange.bind(this, "helloTo")}), React.createElement("br", null), 
-                React.createElement("span", null, this.state.helloTo), React.createElement("br", null), 
-                React.createElement("input", {type: "text", valueLink: this.linkState("message")}), 
-                React.createElement("label", {htmlFor: "desc"}, 
-                    React.createElement("textarea", {name: "desc", cols: "30", rows: "10", value: this.state.textareaTo, /*onChange={this.handleTextareaChange}*/ onChange: this.handleChange.bind(this, "textareaTo")})
-                ), React.createElement("br", null), 
-                React.createElement("select", {name: "hoby", value: this.state.selectTo, /*onChange={this.handleSelectChange}*/ onChange: this.handleChange.bind(this, "selectTo")}, 
-                    React.createElement("option", {value: "1"}, "aaa"), 
-                    React.createElement("option", {value: "2"}, "bbb"), 
-                    React.createElement("option", {value: "3"}, "ccc")
+            React.createElement(ReactCSSTransitionGroup, {transitionName: "form"}, 
+                React.createElement("form", {onSubmit: this.submitHandler}, 
+                    React.createElement("input", {ref: "name", type: "text", value: this.state.helloTo, /*onChange={this.handleChange}*/ onChange: this.handleChange.bind(this, "helloTo")}), React.createElement("br", null), 
+                    React.createElement("span", null, this.state.helloTo), React.createElement("br", null), 
+                    React.createElement("input", {type: "text", valueLink: this.linkState("message")}), 
+                    React.createElement("label", {htmlFor: "desc"}, 
+                        React.createElement("textarea", {name: "desc", cols: "30", rows: "10", value: this.state.textareaTo, /*onChange={this.handleTextareaChange}*/ onChange: this.handleChange.bind(this, "textareaTo")})
+                    ), React.createElement("br", null), 
+                    React.createElement("select", {name: "hoby", value: this.state.selectTo, /*onChange={this.handleSelectChange}*/ onChange: this.handleChange.bind(this, "selectTo")}, 
+                        React.createElement("option", {value: "1"}, "aaa"), 
+                        React.createElement("option", {value: "2"}, "bbb"), 
+                        React.createElement("option", {value: "3"}, "ccc")
+                    ), 
+                    React.createElement("input", {type: "checkbox", checked: this.state.checked, /*onChange={this.handleCheckboxHandle}*/ onChange: this.handleChange.bind(this, "checked")}), 
+                    React.createElement("input", {type: "submit", value: "提交"})
                 ), 
-                React.createElement("input", {type: "checkbox", checked: this.state.checked, /*onChange={this.handleCheckboxHandle}*/ onChange: this.handleChange.bind(this, "checked")}), 
-                React.createElement("input", {type: "submit", value: "提交"})
+
+                React.createElement(ReactCSSTransitionGroup, {transitionName: "question"}, 
+                    React.createElement("span", null, "Hello world")
+                )
+
             )
         );
     }

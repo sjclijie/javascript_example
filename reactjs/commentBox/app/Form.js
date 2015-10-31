@@ -3,6 +3,7 @@
  */
 var React = require("react/addons");
 
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 /*
 非约束组件：给定<input/>一个值，<input/>的值仍是可以改变的。
@@ -90,21 +91,28 @@ var FormComp = React.createClass({
 
     render: function(){
         return (
-            <form onSubmit={this.submitHandler}>
-                <input ref="name" type="text" value={this.state.helloTo} /*onChange={this.handleChange}*/ onChange={this.handleChange.bind(this, "helloTo")}/><br/>
-                <span>{this.state.helloTo}</span><br/>
-                <input type="text" valueLink={this.linkState("message")}/>
-                <label htmlFor="desc">
-                    <textarea name="desc" cols="30" rows="10" value={this.state.textareaTo} /*onChange={this.handleTextareaChange}*/ onChange={this.handleChange.bind(this, "textareaTo")}></textarea>
-                </label><br/>
-                <select name="hoby" value={this.state.selectTo} /*onChange={this.handleSelectChange}*/ onChange={this.handleChange.bind(this, "selectTo")}>
-                    <option value="1">aaa</option>
-                    <option value="2">bbb</option>
-                    <option value="3">ccc</option>
-                </select>
-                <input type="checkbox" checked={this.state.checked} /*onChange={this.handleCheckboxHandle}*/ onChange={this.handleChange.bind(this, "checked")}/>
-                <input type="submit" value="提交"/>
-            </form>
+            <ReactCSSTransitionGroup transitionName="form">
+                <form onSubmit={this.submitHandler}>
+                    <input ref="name" type="text" value={this.state.helloTo} /*onChange={this.handleChange}*/ onChange={this.handleChange.bind(this, "helloTo")}/><br/>
+                    <span>{this.state.helloTo}</span><br/>
+                    <input type="text" valueLink={this.linkState("message")}/>
+                    <label htmlFor="desc">
+                        <textarea name="desc" cols="30" rows="10" value={this.state.textareaTo} /*onChange={this.handleTextareaChange}*/ onChange={this.handleChange.bind(this, "textareaTo")}></textarea>
+                    </label><br/>
+                    <select name="hoby" value={this.state.selectTo} /*onChange={this.handleSelectChange}*/ onChange={this.handleChange.bind(this, "selectTo")}>
+                        <option value="1">aaa</option>
+                        <option value="2">bbb</option>
+                        <option value="3">ccc</option>
+                    </select>
+                    <input type="checkbox" checked={this.state.checked} /*onChange={this.handleCheckboxHandle}*/ onChange={this.handleChange.bind(this, "checked")}/>
+                    <input type="submit" value="提交"/>
+                </form>
+
+                <ReactCSSTransitionGroup transitionName='question'>
+                    <span>Hello world</span>
+                </ReactCSSTransitionGroup>
+
+            </ReactCSSTransitionGroup>
         );
     }
 });

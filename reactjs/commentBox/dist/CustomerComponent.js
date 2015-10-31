@@ -5,29 +5,6 @@
 
 var React = require("react/addons");
 
-var Radio = React.createClass({displayName: "Radio",
-
-    propTypes: {
-        onChange: React.PropTypes.func
-    },
-
-    getInitialState: function(){
-        return {
-            value: this.props.defaultValue
-        }
-    },
-
-    render: function(){
-
-        var children = {};
-        var value = this.props.value || this.state.value;
-
-        React.Children.forEach(this.props.children, function(child, i){
-
-        });
-
-    }
-});
 
 },{"react/addons":3}],2:[function(require,module,exports){
 // shim for using process in browser

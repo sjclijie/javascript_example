@@ -1,7 +1,9 @@
 /**
  * Created by Jaylee on 15/10/08.
  */
-var React = require("react");
+var React = require("react/addons");
+
+var ReactCSSTransitionGroup = React.addons.ReactCSSTransitionGroup;
 
 /*
 var IntervalMixin = function(interval){
@@ -55,10 +57,12 @@ var Timer = React.createClass({
 
     render: function(){
         return (
-            <div>
-                {new Date()}
-                <br />
-            </div>
+            <ReactCSSTransitionGroup transitionName='question'>
+                <div>
+                    aaa
+                    <br />
+                </div>
+            </ReactCSSTransitionGroup>
         );
     }
 });

@@ -10,8 +10,12 @@
          * ng-app   初使化指令
          */
 
-        angular.module("ngApp",[]).controller("Aaa", function($scope, $rootScope, $timeout){
+        var app = angular.module("ngApp", []);
+
+        app.controller("Aaa", function($scope, $rootScope, $timeout){
+
             $scope.name = "Lijie";
+
             $rootScope.age = 22;
 
             $timeout(function(){
@@ -33,6 +37,13 @@
             }
         });
 
+        app.controller("Bbb", function($scope){
+            $scope.name = "xxxx";
+            $scope.show = function(){
+                console.log(this);
+            }
+        });
+
     </script>
 </head>
 <body>
@@ -48,6 +59,10 @@
     </div>
 
     {{age}}
+
+    <div ng-controller="Bbb" ng-click="show()">
+        {{name}}
+    </div>
 
 </body>
 </html>

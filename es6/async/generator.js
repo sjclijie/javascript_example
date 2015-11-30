@@ -14,18 +14,13 @@ var readFile = function(fileName){
     });
 }
 
+console.log(" ============= generator ========== ");
+
 var gen = function * (){
-    
      yield readFile("./file111.txt");
      yield readFile("./file2.txt");
-    //console.log(f1, f2);
 }
 
-/*
-gen[Symbol.iterator] = function(){
-    return this;
-}
-*/
 
 var foo  = gen();
 

@@ -61,14 +61,14 @@ export default class extends Base {
     console.log("is ajax: " + isAjax);
 
     let home = this.model("home");
-    let data = await home.select();
+    let data = await home.field(["name","age"]).select();
 
     //this.fail("GET_DATA_ERROR");
-    //this.json(data);
+    this.json(data);
     //this.error("Params Error.");
     //this.success( data );
 
     //auto render template file index_index.html
-    return this.display("index.html");
+    //return this.display("index.html");
   }
 }

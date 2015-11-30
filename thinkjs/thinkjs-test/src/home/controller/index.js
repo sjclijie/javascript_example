@@ -34,13 +34,27 @@ export default class extends Base {
    */
   async indexAction(self){
 
+    let config = this.config("config.secrue");
+
+    console.log(" ============ ");
+
+    console.log( self.http.headers );
+
+    console.log( config );
+
+    console.log( self.http.host );
+    console.log( self.http.url );
+
+    console.log(" ============ ");
+
+
     let gets = parseInt(self.get("page_id"), 10);
 
     let isAjax = self.isAjax();
 
     let tempalte = await self.fetch("index.html");
 
-    console.log( tempalte );
+    //console.log( tempalte );
 
     //self.download("index.html");
 

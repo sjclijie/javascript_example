@@ -24,7 +24,3 @@ await function asyncReadFile(){
     console.log( f1.toString() );
     console.log( f2.toString() );
 }
-
-
-
-

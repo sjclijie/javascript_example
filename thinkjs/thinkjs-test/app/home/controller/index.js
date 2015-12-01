@@ -10,7 +10,8 @@
 var _default = (function (_Base) {_inherits(_default, _Base);function _default() {_classCallCheck(this, _default);_Base.apply(this, arguments);}_default.prototype.
 
 
-  __before = function __before() {
+  __before = function __before(self) {
+    console.log(self.ip());
     console.log("before");};_default.prototype.
 
 

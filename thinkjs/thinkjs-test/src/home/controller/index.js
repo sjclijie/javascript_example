@@ -47,7 +47,6 @@ export default class extends Base {
 
     console.log(" ============ ");
 
-
     let gets = parseInt(self.get("page_id"), 10);
 
     let isAjax = self.isAjax();

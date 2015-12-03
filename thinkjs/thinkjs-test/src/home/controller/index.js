@@ -10,7 +10,8 @@ import Base from './base.js';
 
 export default class extends Base {
 
-  __before(){
+  __before(self){
+    console.log(self.ip());
     console.log("before");
   }
 

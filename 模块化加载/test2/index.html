@@ -7,5 +7,21 @@
 </head>
 <body>
 
+
+<script src="./js/require.js"></script>
+<script>
+    function test(){
+        var a = require('./js/modules/a.js');
+        var c = require('./js/modules/c.js');
+    }
+
+    var r = /require\((.*)\)/g;
+
+    while( match = r.exec( test.toString() ) ){
+        console.log( match[1] );
+    }
+</script>
+
+
 </body>
 </html>

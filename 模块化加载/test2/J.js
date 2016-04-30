@@ -1,16 +1,11 @@
 /**
  * Created by Jaylee on 15/9/14.
  */
-
-
 //由于浏览器自上而下的分析DOM，当浏览器在解析我们的Javascript这个文件的时候，它就肯定是
 //DOM树中最后加入的script标签
 function getBasePath(){
-
     var nodes = document.getElementsByTagName("script");
-
     var node = nodes[nodes.length - 1];
-
     return document.querySelector ? node.src : node.getAttribute("src", 4);
 }
 
@@ -35,8 +30,11 @@ function getBasePahtByError( ){
             stack = ( (String(e).match(/of kinked script \S+/g)) || [] ).join(" ");
         }
     }
+    console.log( '==========\r\n');
 
     console.log(stack);
+
+    console.log( '==========\r\n');
 
     if ( stack ){
 
@@ -66,6 +64,32 @@ function getBasePahtByError( ){
     }
 }
 
+/**
+ *
+ * rquire方法的作用是当依赖列表都加载客完毕,执行用户回调
+ *
+ */
+
+
 console.log(getBasePahtByError());
+
+
+define( function( require, exports, module ){
+    var a = require('./a.js');
+    a.doSomething();
+
+    var b = require('./b.js');
+    b.doSomething();
+} );
+
+
+
+define(['./a','./b'], function(a, b){
+    a.doSomething();
+    b.doSomething();
+});
+
+
+
 
 

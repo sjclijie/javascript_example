@@ -1,9 +1,6 @@
 
 
-//var fetch = require("node-fetch");
-
-import fetch from "node-fetch";
-import co from "co";
+var fetch = require("node-fetch");
 
 
 /*
@@ -42,22 +39,36 @@ function *gen(){
     var url = 'https://api.github.com/users/github';
     var result = yield fetch(url);
     var json = yield result.json();
+
     console.log(json);
+    //var json = yield result.json();
+    //console.log(json);
 }
 
-//1.
 var g = gen();
 var r = g.next();
-r.value.then( function( res ) {
-    let a = g.next(res);
-    a.value.then( function(a){
-        g.next(a);
-    });
+
+var r2 = r.value.then( function( res ) {
+    return g.next(res);
+}).then( function( data ){
+
+    console.log(data);
+        
+
+    //g.next(1);
 });
 
+//console.log( r2 );
 
-//2
-co( gen );
+/*
+r = g.next();
+r.value.then( function(res){
+    g.next( res );
+});
+*/
+
+
+
 
 
 

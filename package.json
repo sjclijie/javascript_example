@@ -23,6 +23,7 @@
     "co": "^4.6.0",
     "gulp": "^3.9.0",
     "gulp-livereload": "^3.8.0",
-    "node-fetch": "^1.5.1"
+    "node-fetch": "^1.5.1",
+    "thunkify": "^2.1.2"
   }
 }

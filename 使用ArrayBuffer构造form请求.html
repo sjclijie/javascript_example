@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用ArrayBuffer构造form请求</title>
+</head>
+<body>
+
+<form>
+    <p>用户名: <input type="text" name="user" value="Jaylee" readonly></p>
+    <p>密码: <input type="password" name="password" value="123456" readonly></p>
+    <p><label for="onefile">图片</label><input type="file" name="file" id="onefile"></p>
+    <p><button>提交</button></p>
+</form>
+
+<script>
+
+    var picBuffer = null;
+
+    document.querySelector( "#onefile").onchange = function(event){
+        var fileReader = new FileReader();
+        var file = event.target.files[0];
+        fileReader.onload = function(e){
+            picBuffer = e.target.result;
+        };
+        fileReader.readAsArrayBuffer( file );
+    };
+
+    document.querySelector( "button").onclick = function( event ){
+
+        var boundary_key = "sjclijie"; //数据分割符, 一般是随机字符串
+        var boundary = "--" + boundary_key;
+        var end_boundary = "\r\n" + boundary + "--";
+
+
+        //还是直接使用formData()对象吧..
+        var form = new FormData();
+        form.append( "username", "Jaylee" );
+        form.append( "pic", event.target.files[0] );
+
+        //还可以直接使用form对象初始化formData
+        new FormData( document.querySelector('form') );
+
+
+        console.log( picBuffer );
+
+        event.preventDefault();
+    };
+
+
+
+</script>
+
+</body>
+</html>

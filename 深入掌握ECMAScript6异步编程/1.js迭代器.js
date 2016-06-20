@@ -2,7 +2,6 @@
 
 //在js中只要一个对象正确实现了Symbol.iterator方法，那么它就可以被for in 遍历。
 
-
 var student = {};
 
 student[Symbol.iterator] = function(){
@@ -17,3 +16,4 @@ student[Symbol.iterator] = function(){
 for(let item of student) {
     console.log(item);
 }
+

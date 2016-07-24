@@ -1,10 +1,8 @@
 
-
 //var fetch = require("node-fetch");
 
 import fetch from "node-fetch";
 import co from "co";
-
 
 /*
 function *gen(){
